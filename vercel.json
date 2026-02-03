@@ -1,17 +1,4 @@
 {
-  "version": 2,
-  "name": "portfolio-website",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "functions": {
-    "src/app/api/contact/route.ts": {
-      "maxDuration": 10
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -59,12 +46,5 @@
       "destination": "/SrujayReddyVangoor_Resume.pdf",
       "permanent": false
     }
-  ],
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://srujayreddyv.vercel.app"
-  },
-  "github": {
-    "enabled": true,
-    "autoAlias": false
-  }
+  ]
 }
