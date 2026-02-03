@@ -1,0 +1,232 @@
+'use client';
+
+import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Project } from '@/types';
+import { X, ExternalLink, Github, Calendar } from 'lucide-react';
+
+interface ProjectModalProps {
+  project: Project;
+  onClose: () => void;
+}
+
+export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const {
+    title,
+    description,
+    longDescription,
+    technologies,
+    category,
+    imageUrl,
+    images,
+    liveUrl,
+    githubUrl,
+    completedDate,
+    challenges,
+    solutions,
+    results
+  } = project;
+
+  // Handle escape key press
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [onClose]);
+
+  // Handle backdrop click
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long'
+    });
+  };
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black bg-opacity-75"
+      onClick={handleBackdropClick}
+    >
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+        {/* Header */}
+        <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 sm:p-6 flex items-start sm:items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 min-w-0 flex-1">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
+              {title}
+            </h2>
+            <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm px-3 py-1 rounded-full self-start">
+              {category}
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label="Close modal"
+          >
+            <X size={20} className="sm:w-6 sm:h-6" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-4 sm:p-6">
+          {/* Project Image */}
+          <div className="relative h-48 sm:h-64 md:h-80 w-full mb-4 sm:mb-6 rounded-lg overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt={`${title} preview`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 80vw"
+            />
+          </div>
+
+          {/* Project Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+              {/* Long Description */}
+              {longDescription && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Project Details
+                  </h3>
+                  <div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
+                    <div 
+                      className="[&>ul]:list-disc [&>ul]:list-outside [&>ul]:ml-6 [&>ul]:space-y-3 [&>ul>li]:leading-relaxed [&>ul>li]:text-gray-600 [&>ul>li]:dark:text-gray-300"
+                      dangerouslySetInnerHTML={{ __html: longDescription }} 
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Challenges */}
+              {challenges && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Challenges
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {challenges}
+                  </p>
+                </div>
+              )}
+
+              {/* Solutions */}
+              {solutions && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Solutions
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {solutions}
+                  </p>
+                </div>
+              )}
+
+              {/* Results */}
+              {results && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Results
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {results}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-4 sm:space-y-6">
+              {/* Technologies */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                  Technologies Used
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-md"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Project Links */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                  Project Links
+                </h3>
+                <div className="space-y-2 sm:space-y-3">
+                  {liveUrl && (
+                    <Link
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base min-h-[44px]"
+                    >
+                      <ExternalLink size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
+                      <span>View Live Demo</span>
+                    </Link>
+                  )}
+                  {githubUrl && (
+                    <Link
+                      href={githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base min-h-[44px]"
+                    >
+                      <Github size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
+                      <span>View Source Code</span>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Images */}
+          {images && images.length > 0 && (
+            <div>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
+                Additional Screenshots
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                {images.map((image, index) => (
+                  <div key={index} className="relative h-32 sm:h-48 rounded-lg overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={`${title} screenshot ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

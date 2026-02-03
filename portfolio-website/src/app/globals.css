@@ -1,0 +1,338 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: #ffffff;
+  --background-secondary: #f9fafb;
+  --foreground: #374151;
+  --foreground-secondary: #6b7280;
+  
+  /* Card and component backgrounds */
+  --card: #f3f4f6;
+  --card-secondary: #e5e7eb;
+  --card-foreground: #374151;
+  
+  /* Primary brand colors */
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  
+  /* Consistent accent colors */
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-foreground: #ffffff;
+  
+  /* Muted colors */
+  --muted: #6b7280;
+  --muted-foreground: #9ca3af;
+  
+  /* Border colors */
+  --border: #e5e7eb;
+  --border-secondary: #d1d5db;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Base colors */
+    --background: #000000;
+    --background-secondary: #111827;
+    --foreground: #f9fafb;
+    --foreground-secondary: #d1d5db;
+    
+    /* Card and component backgrounds */
+    --card: #1f2937;
+    --card-secondary: #374151;
+    --card-foreground: #ffffff;
+    
+    /* Primary brand colors */
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+    
+    /* Consistent accent colors */
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-foreground: #ffffff;
+    
+    /* Muted colors */
+    --muted: #9ca3af;
+    --muted-foreground: #6b7280;
+    
+    /* Border colors */
+    --border: #374151;
+    --border-secondary: #4b5563;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive base styles for sections */
+section {
+  scroll-margin-top: 4rem; /* Account for fixed header */
+}
+
+@media (min-width: 640px) {
+  section {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* Responsive container with better padding */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Touch-friendly interactive elements */
+@media (hover: none) and (pointer: coarse) {
+  /* Mobile touch targets should be at least 44px */
+  button, 
+  a[role="button"], 
+  input[type="button"], 
+  input[type="submit"], 
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Increase tap targets for mobile */
+  .mobile-tap-target {
+    padding: 12px;
+  }
+  
+  /* Improve mobile navigation */
+  nav a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Better mobile form elements */
+  input, textarea, select {
+    min-height: 44px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 300ms ease-in-out, 
+              color 300ms ease-in-out, 
+              border-color 300ms ease-in-out, 
+              box-shadow 300ms ease-in-out;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Improved focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced button and interactive element styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: 1px solid var(--primary);
+  transition: all 300ms ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all 300ms ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Enhanced card styles */
+.card-enhanced {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  transition: all 300ms ease-in-out;
+}
+
+.card-enhanced:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-enhanced:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Status indicators */
+.status-success {
+  background-color: #10b981;
+  color: white;
+}
+
+.status-warning {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.status-error {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+/* Responsive typography scaling */
+@media (max-width: 640px) {
+  .responsive-text-scale {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-text-scale {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-text-scale {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Improve mobile viewport handling */
+@media (max-width: 640px) {
+  .mobile-full-width {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}
+
+/* Better responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive spacing utilities */
+.responsive-padding {
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-padding {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-padding {
+    padding: 2rem;
+  }
+}
+
+/* Mobile-first responsive margins */
+.responsive-margin-y {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-margin-y {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-margin-y {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* Responsive text sizing for better readability */
+.responsive-heading {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-heading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-heading {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-heading {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+/* Responsive grid improvements */
+@media (max-width: 640px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
