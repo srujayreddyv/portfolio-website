@@ -1,7 +1,38 @@
 {
   "name": "portfolio-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "A modern, responsive portfolio website built with Next.js 16, TypeScript, and Tailwind CSS. Features comprehensive testing, SEO optimization, and production-ready deployment for Vercel.",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "react",
+    "vercel",
+    "responsive",
+    "seo",
+    "testing",
+    "property-based-testing"
+  ],
+  "author": {
+    "name": "Srujay Reddy Vangoor",
+    "email": "srujayreddyv@icloud.com",
+    "url": "https://srujayreddyv.vercel.app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srujayreddyv/portfolio-website.git"
+  },
+  "homepage": "https://srujayreddyv.vercel.app",
+  "bugs": {
+    "url": "https://github.com/srujayreddyv/portfolio-website/issues"
+  },
+  "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +40,13 @@
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
+    "setup:vercel": "./scripts/setup-vercel.sh",
+    "build:analyze": "ANALYZE=true npm run build",
+    "validate:env": "node scripts/validate-env.js",
+    "prebuild": "npm run validate:env"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.4",
