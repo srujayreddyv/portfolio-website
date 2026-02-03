@@ -136,7 +136,7 @@ export default function Header() {
               }`}
               onClick={(e) => handleNavClick(e, '#')}
             >
-              Portfolio
+              Srujay Reddy Vangoor
             </a>
           </div>
 
