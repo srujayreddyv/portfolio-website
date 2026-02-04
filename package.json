@@ -60,7 +60,8 @@
     "next-themes": "^0.4.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-hook-form": "^7.71.1"
+    "react-hook-form": "^7.71.1",
+    "sanitize-html": "^2.16.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

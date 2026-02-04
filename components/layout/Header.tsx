@@ -124,7 +124,7 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} backdrop-blur-sm border-b border-gray-200 dark:border-gray-700`}>
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16 lg:h-18">
+        <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
             <a 

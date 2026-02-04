@@ -12,7 +12,7 @@ Complete guide for deploying the portfolio website to Vercel with GitHub integra
 
 - **GitHub Account** with repository access
 - **Vercel Account** (free tier available)
-- **SendGrid Account** (recommended) or **Formspree Account** (alternative)
+- **SendGrid Account** (recommended)
 - **Node.js 18+** for local development
 
 ## 📋 Pre-Deployment Checklist
@@ -30,7 +30,6 @@ CONTACT_EMAIL=your.email@example.com
 **Optional Environment Variables:**
 
 ```bash
-FORMSPREE_FORM_ID=your_formspree_form_id
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ```
 
@@ -65,7 +64,7 @@ npm run start
 
 ## 🔧 Email Service Setup
 
-### Option 1: SendGrid (Recommended)
+### Option 1: SendGrid (Required)
 
 **Why SendGrid?**
 
@@ -105,32 +104,6 @@ npm run start
    npm run dev
    ```
 
-### Option 2: Formspree (Alternative)
-
-**Why Formspree?**
-
-- ✅ No API key required
-- ✅ 50 submissions/month free
-- ✅ Simple setup
-- ✅ Spam protection included
-
-**Setup Steps:**
-
-1. **Create Formspree Account**
-   - Go to [formspree.io](https://formspree.io)
-   - Sign up for free account
-
-2. **Create Form**
-   - Click "New Form"
-   - Enter form name: "Portfolio Contact Form"
-   - Copy the form ID (e.g., `xdkogkpw`)
-
-3. **Configure Environment**
-   ```bash
-   export FORMSPREE_FORM_ID="your_form_id_here"
-   export CONTACT_EMAIL="your.email@example.com"
-   ```
-
 ## 🚀 Vercel Deployment
 
 ### Method 1: GitHub Integration (Recommended)
@@ -166,7 +139,6 @@ SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 CONTACT_EMAIL=your.email@example.com
 
 # Optional
-FORMSPREE_FORM_ID=your_formspree_form_id
 NEXT_PUBLIC_SITE_URL=https://your-project.vercel.app
 ```
 

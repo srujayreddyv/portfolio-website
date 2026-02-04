@@ -9,7 +9,7 @@ A modern, responsive portfolio website built with Next.js 16, TypeScript, and Ta
 - **Tailwind CSS** for utility-first styling with dark/light theme support
 - **Comprehensive Testing** with Jest, React Testing Library, and fast-check property-based testing
 - **SEO Optimized** with meta tags, structured data, sitemap, and robots.txt
-- **Contact Form** with SendGrid integration and Formspree fallback
+- **Contact Form** with SendGrid integration
 - **Responsive Design** that works perfectly on all devices
 - **Performance Optimized** with static site generation and image optimization
 - **Production Ready** with Vercel deployment configuration and CI/CD pipeline
@@ -95,7 +95,7 @@ portfolio-website/
    cp .env.example .env.local
    ```
 
-   Add your environment variables:
+   Add your environment variables (SendGrid required):
 
    ```env
    SENDGRID_API_KEY=your_sendgrid_api_key
@@ -294,7 +294,6 @@ The website achieves excellent performance metrics:
 
 ### Optional
 
-- `FORMSPREE_FORM_ID` - Formspree form ID for fallback email service
 - `NEXT_PUBLIC_SITE_URL` - Your website URL for SEO
 
 ## 🤝 Contributing

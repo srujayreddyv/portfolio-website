@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import sanitizeHtml from 'sanitize-html';
 import { Project, PersonalData, SkillCategory, SEOData, ContentValidator, ValidationResult } from '@/types';
 
 const contentDirectory = path.join(process.cwd(), 'content');
@@ -33,11 +34,27 @@ export async function getProjectById(id: string): Promise<Project | null> {
     
     // Process markdown content to HTML
     const processedContent = content.trim() ? await marked(content) : '';
+    const sanitizedContent = processedContent
+      ? sanitizeHtml(processedContent, {
+          allowedTags: [
+            'p', 'br', 'strong', 'em', 'b', 'i', 'u', 's',
+            'ul', 'ol', 'li',
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+            'blockquote', 'code', 'pre',
+            'a'
+          ],
+          allowedAttributes: {
+            a: ['href', 'title', 'target', 'rel']
+          },
+          allowedSchemes: ['http', 'https', 'mailto'],
+          disallowedTagsMode: 'discard'
+        })
+      : '';
     
     const project: Project = {
       id: id, // Explicitly set the ID from the filename
       ...data as Omit<Project, 'id' | 'longDescription'>,
-      longDescription: processedContent
+      longDescription: sanitizedContent
     };
     
     // Validate project data

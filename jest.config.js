@@ -14,7 +14,7 @@ const customJestConfig = {
     '**/*.(test|spec).(js|jsx|ts|tsx)'
   ],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/$1',
     // Mock the marked library to avoid ESM issues
     '^marked$': '<rootDir>/__mocks__/marked.js',
   },

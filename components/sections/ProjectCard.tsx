@@ -22,6 +22,14 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     featured
   } = project;
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (!onClick) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <div 
       className={`
@@ -29,7 +37,11 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         transition-all duration-300 overflow-hidden cursor-pointer
         ${featured ? 'ring-2 ring-blue-500 ring-opacity-50' : ''}
       `}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      aria-label={onClick ? `Open ${title} details` : undefined}
     >
       {/* Featured Badge */}
       {featured && (

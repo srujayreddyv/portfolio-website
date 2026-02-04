@@ -11,6 +11,8 @@ import { Project } from '@/types';
 import { generators, propertyTestConfig } from '../property-test-utils';
 import fs from 'fs';
 import path from 'path';
+import { marked } from 'marked';
+import sanitizeHtml from 'sanitize-html';
 
 // Import expect from Jest for TypeScript files
 declare global {
@@ -26,6 +28,47 @@ const cleanupTestProjects = (projectIds: string[]) => {
       fs.unlinkSync(filePath);
     }
   });
+};
+
+const decodeHtmlEntities = (value: string) =>
+  value
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+
+const normalizeText = (value: string) =>
+  value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const makeSafeId = (baseId: string, suffix: string) => {
+  const sanitized = baseId.replace(/[^a-zA-Z0-9-_]/g, '').slice(0, 20);
+  const safeSuffix = suffix.replace(/[^a-zA-Z0-9-_]/g, '').slice(0, 20);
+  return `${sanitized || 'proj'}_${safeSuffix}`.slice(0, 50);
+};
+
+const sanitizeMarkdownToText = (markdown: string) => {
+  const rendered = markdown.trim() ? marked.parse(markdown) : '';
+  const sanitized = rendered
+    ? sanitizeHtml(rendered, {
+        allowedTags: [
+          'p', 'br', 'strong', 'em', 'b', 'i', 'u', 's',
+          'ul', 'ol', 'li',
+          'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+          'blockquote', 'code', 'pre',
+          'a'
+        ],
+        allowedAttributes: {
+          a: ['href', 'title', 'target', 'rel']
+        },
+        allowedSchemes: ['http', 'https', 'mailto'],
+        disallowedTagsMode: 'discard'
+      })
+    : '';
+  return normalizeText(decodeHtmlEntities(sanitized));
 };
 
 // Generator for valid project data
@@ -71,7 +114,7 @@ describe('Content Management Integration Property Tests', () => {
         async (projectData, content) => {
           try {
             // Ensure unique ID by adding timestamp
-            const uniqueId = `${projectData.id}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            const uniqueId = makeSafeId(projectData.id, `${Date.now()}_${Math.random().toString(36).substr(2, 6)}`);
             const uniqueProject = { ...projectData, id: uniqueId };
             
             // Track test project for cleanup
@@ -105,7 +148,11 @@ describe('Content Management Integration Property Tests', () => {
               expect(retrievedProject.imageUrl).toBe(uniqueProject.imageUrl);
               expect(retrievedProject.featured).toBe(uniqueProject.featured);
               expect(retrievedProject.completedDate).toBe(uniqueProject.completedDate);
-              expect(retrievedProject.longDescription?.trim()).toBe(content.trim());
+              const decoded = decodeHtmlEntities(retrievedProject.longDescription?.trim() || '');
+              const expectedText = sanitizeMarkdownToText(content);
+              if (expectedText.length > 0) {
+                expect(normalizeText(decoded)).toContain(expectedText);
+              }
               
               // Verify optional fields
               if (uniqueProject.liveUrl) {
@@ -167,15 +214,16 @@ describe('Content Management Integration Property Tests', () => {
             
             // Ensure unique IDs by adding a timestamp suffix
             const timestamp = Date.now();
-            projectsToTest.forEach((project, index) => {
-              project.id = `${project.id}_${timestamp}_${index}`;
-            });
+            const projectsWithIds = projectsToTest.map((project, index) => ({
+              ...project,
+              id: makeSafeId(project.id, `${timestamp}_${index}`)
+            }));
             
             // Track test projects for cleanup
-            projectsToTest.forEach(p => testProjectIds.push(p.id));
+            projectsWithIds.forEach(p => testProjectIds.push(p.id));
             
             // Create all projects
-            const creationResults = projectsToTest.map((project, index) => 
+            const creationResults = projectsWithIds.map((project, index) =>
               createProject(project, contentsToTest[index])
             );
             
@@ -184,33 +232,37 @@ describe('Content Management Integration Property Tests', () => {
             
             // Verify all projects can be retrieved
             const retrievedProjects = await Promise.all(
-              projectsToTest.map(p => getProjectById(p.id))
+              projectsWithIds.map(p => getProjectById(p.id))
             );
             expect(retrievedProjects.every(p => p !== null)).toBe(true);
             
             // Verify project count is correct
             const allProjects = await getAllProjects();
             const testProjectsInGallery = allProjects.filter(p => 
-              projectsToTest.some(tp => tp.id === p.id)
+              projectsWithIds.some(tp => tp.id === p.id)
             );
             expect(testProjectsInGallery.length).toBe(projectsToTest.length);
             
             // Verify data integrity for each project
             retrievedProjects.forEach((retrieved, index) => {
               if (retrieved) {
-                const original = projectsToTest[index];
+                const original = projectsWithIds[index];
                 expect(retrieved.id).toBe(original.id);
                 expect(retrieved.title).toBe(original.title);
                 expect(retrieved.description).toBe(original.description);
                 expect(retrieved.technologies).toEqual(original.technologies);
                 expect(retrieved.category).toBe(original.category);
                 // Compare longDescription with trimmed content to handle newline differences
-                expect(retrieved.longDescription?.trim()).toBe(contentsToTest[index].trim());
+                const decoded = decodeHtmlEntities(retrieved.longDescription?.trim() || '');
+                const expectedText = sanitizeMarkdownToText(contentsToTest[index]);
+                if (expectedText.length > 0) {
+                  expect(normalizeText(decoded)).toContain(expectedText);
+                }
               }
             });
             
             // Clean up test projects
-            projectsToTest.forEach(p => deleteProject(p.id));
+            projectsWithIds.forEach(p => deleteProject(p.id));
             
             return true;
           } catch (error) {

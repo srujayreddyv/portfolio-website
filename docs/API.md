@@ -6,7 +6,7 @@ This document describes the API endpoints and services used in the portfolio web
 
 ### POST /api/contact
 
-Handles contact form submissions with email delivery via SendGrid or Formspree fallback.
+Handles contact form submissions with email delivery via SendGrid.
 
 #### Request
 
@@ -77,8 +77,7 @@ Content-Type: application/json
 
 **Email Services:**
 
-1. **Primary**: SendGrid (if configured)
-2. **Fallback**: Formspree (if SendGrid fails)
+1. **Primary**: SendGrid (required)
 
 **Security Features:**
 
@@ -97,8 +96,6 @@ SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 # Contact Configuration
 CONTACT_EMAIL=your.email@example.com
 
-# Formspree Fallback
-FORMSPREE_FORM_ID=your_form_id_here
 ```
 
 #### Example Usage
@@ -482,12 +479,9 @@ describe("/api/contact", () => {
 ### Required Environment Variables
 
 ```bash
-# Email Service (Choose one)
+# Email Service
 SENDGRID_API_KEY=SG.your_sendgrid_api_key
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
-
-# OR Formspree
-FORMSPREE_FORM_ID=your_formspree_form_id
 
 # Contact Configuration
 CONTACT_EMAIL=your.email@example.com

@@ -30,7 +30,6 @@ const requiredEnvVars = {
     'CONTACT_EMAIL'
   ],
   optional: [
-    'FORMSPREE_FORM_ID',
     'NEXT_PUBLIC_SITE_URL'
   ]
 };

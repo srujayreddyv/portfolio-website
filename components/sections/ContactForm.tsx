@@ -29,47 +29,23 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       if (onSubmit) {
         await onSubmit(data);
       } else {
-        // Check deployment environment
-        const isVercel = window.location.hostname.includes('vercel.app') || 
-                        process.env.NODE_ENV === 'production';
-        
-        if (isVercel || window.location.hostname === 'localhost') {
-          // Use custom API route for Vercel and local development
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: data.name,
-              email: data.email,
-              subject: data.subject,
-              message: data.message,
-            }),
-          });
+        // Use custom API route
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+          }),
+        });
 
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to send message');
-          }
-        } else {
-          // Fallback to Formspree for other hosting
-          const response = await fetch('https://formspree.io/f/xdkogkpw', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: data.name,
-              email: data.email,
-              subject: data.subject,
-              message: data.message,
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error('Failed to send message');
-          }
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to send message');
         }
       }
       

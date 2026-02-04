@@ -167,7 +167,7 @@ export function ThemeToggle({
         `}
         aria-label={themeInfo.action}
         aria-describedby={showLabel ? 'theme-description' : undefined}
-        aria-pressed={false}
+        aria-pressed={theme === 'dark'}
         role="button"
         tabIndex={0}
         title={`Current: ${themeInfo.current}. Click to switch to ${themeInfo.next}.`}

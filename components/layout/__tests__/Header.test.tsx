@@ -6,6 +6,7 @@
 
 import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import Header from '../Header';
+import { personalData } from '@/content/data/personal';
 
 // Mock scrollIntoView for testing
 const mockScrollIntoView = jest.fn();
@@ -49,7 +50,7 @@ describe('Header Component', () => {
     test('renders brand/logo link', () => {
       render(<Header />);
       
-      const brandLink = screen.getByRole('link', { name: /portfolio/i });
+      const brandLink = screen.getByRole('link', { name: personalData.name });
       expect(brandLink).toBeInTheDocument();
       expect(brandLink).toHaveAttribute('href', '#');
     });

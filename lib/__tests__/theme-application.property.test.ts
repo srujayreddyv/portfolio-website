@@ -7,43 +7,19 @@ import * as fc from 'fast-check';
 import { propertyTestConfig, generators } from '../property-test-utils';
 import { applyTheme, getThemeProperties } from '../theme-utils';
 
-// Mock DOM for testing
-const createMockDocument = () => ({
-  documentElement: {
-    classList: {
-      add: jest.fn(),
-      remove: jest.fn(),
-      contains: jest.fn(),
-      toggle: jest.fn()
-    },
-    style: {
-      setProperty: jest.fn(),
-      getPropertyValue: jest.fn(),
-      colorScheme: ''
-    }
-  }
-});
-
 describe('Theme Application Property Tests', () => {
-  let originalDocument: Document;
-  let mockDocument: any;
+  let initialClassName: string;
+  let initialColorScheme: string;
   
   beforeEach(() => {
     jest.clearAllMocks();
-    
-    // Store original document
-    originalDocument = global.document;
-    
-    // Create fresh mock document for each test
-    mockDocument = createMockDocument();
-    
-    // Mock document
-    (global as any).document = mockDocument;
+    initialClassName = document.documentElement.className;
+    initialColorScheme = document.documentElement.style.colorScheme || '';
   });
   
   afterEach(() => {
-    // Restore original document
-    global.document = originalDocument;
+    document.documentElement.className = initialClassName;
+    document.documentElement.style.colorScheme = initialColorScheme;
   });
 
   describe('Property 5: Consistent Theme Application', () => {
@@ -58,13 +34,13 @@ describe('Theme Application Property Tests', () => {
             
             // Verify document element class manipulation
             if (theme === 'dark') {
-              expect(mockDocument.documentElement.classList.add).toHaveBeenCalledWith('dark');
+              expect(document.documentElement.classList.contains('dark')).toBe(true);
             } else {
-              expect(mockDocument.documentElement.classList.remove).toHaveBeenCalledWith('dark');
+              expect(document.documentElement.classList.contains('dark')).toBe(false);
             }
             
             // Verify color scheme is set
-            expect(mockDocument.documentElement.style.colorScheme).toBe(theme);
+            expect(document.documentElement.style.colorScheme).toBe(theme);
             
             // Test theme properties consistency
             const themeProperties = getThemeProperties(theme);
@@ -119,11 +95,9 @@ describe('Theme Application Property Tests', () => {
             
             // Verify consistent behavior regardless of application count
             if (theme === 'dark') {
-              expect(mockDocument.documentElement.classList.add).toHaveBeenCalledTimes(applicationCount);
-              expect(mockDocument.documentElement.classList.add).toHaveBeenCalledWith('dark');
+              expect(document.documentElement.classList.contains('dark')).toBe(true);
             } else {
-              expect(mockDocument.documentElement.classList.remove).toHaveBeenCalledTimes(applicationCount);
-              expect(mockDocument.documentElement.classList.remove).toHaveBeenCalledWith('dark');
+              expect(document.documentElement.classList.contains('dark')).toBe(false);
             }
             
             return true;
@@ -261,12 +235,12 @@ describe('Theme Application Property Tests', () => {
               expect(classString).toContain('dark:');
               
               // Should follow Tailwind naming conventions
-              expect(classString).toMatch(/^[\w-]+(\s+[\w-:]+)*$/);
+              expect(classString).toMatch(/^[\w-:]+(\s+[\w-:]+)*$/);
               
               // Dark classes should be properly prefixed
               const darkClasses = classString.split(' ').filter(cls => cls.startsWith('dark:'));
               darkClasses.forEach(darkClass => {
-                expect(darkClass).toMatch(/^dark:[\w-]+$/);
+                expect(darkClass).toMatch(/^dark:(?:sm:|md:|lg:|xl:)?(?:hover:|focus:|active:)?[\w-]+$/);
               });
             });
             

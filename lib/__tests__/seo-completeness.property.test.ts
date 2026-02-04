@@ -176,10 +176,10 @@ describe('Property 8: SEO completeness', () => {
         expect(sitemapContent).toMatch(/<changefreq>/);
         expect(sitemapContent).toMatch(/<priority>/);
         
-        // Test that all main sections are included
-        const expectedSections = ['#about', '#projects', '#skills', '#experience', '#education', '#publications', '#contact'];
-        expectedSections.forEach(section => {
-          expect(sitemapContent).toMatch(new RegExp(`<loc>https://srujayreddyv\\.com/${section}</loc>`));
+        // Sitemap should not include fragment URLs (search engines ignore them)
+        const disallowedFragments = ['#about', '#projects', '#skills', '#experience', '#education', '#publications', '#contact'];
+        disallowedFragments.forEach(fragment => {
+          expect(sitemapContent).not.toMatch(new RegExp(`<loc>https://srujayreddyv\\.com/${fragment}</loc>`));
         });
       }
     );

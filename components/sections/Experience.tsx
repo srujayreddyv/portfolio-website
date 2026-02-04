@@ -50,9 +50,12 @@ const Experience: React.FC = () => {
                     {/* Experience card */}
                     <div className="md:ml-16 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
                       {/* Compact Header - Always Visible */}
-                      <div 
-                        className="p-4 sm:p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                      <button
+                        type="button"
+                        className="w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                         onClick={() => toggleCard(exp.id)}
+                        aria-expanded={isExpanded}
+                        aria-controls={`experience-panel-${exp.id}`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-4 flex-1">
@@ -112,11 +115,14 @@ const Experience: React.FC = () => {
                             )}
                           </div>
                         </div>
-                      </div>
+                      </button>
 
                       {/* Expanded Content */}
                       {isExpanded && (
-                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700">
+                        <div
+                          id={`experience-panel-${exp.id}`}
+                          className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700"
+                        >
                           <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
                             {/* Location */}
                             <div className="flex items-center text-sm sm:text-base text-gray-600 dark:text-gray-300">

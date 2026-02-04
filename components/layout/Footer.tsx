@@ -1,5 +1,4 @@
 'use client';
-
 import { personalData } from '@/content/data/personal';
 
 interface NavigationItem {
