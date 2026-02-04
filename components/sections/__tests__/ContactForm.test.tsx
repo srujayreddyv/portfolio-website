@@ -3,10 +3,9 @@
  * **Validates: Requirements 5.5**
  */
 
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ContactForm from '../ContactForm';
-import { ContactFormData } from '@/types';
 
 describe('ContactForm Error Handling', () => {
   beforeEach(() => {

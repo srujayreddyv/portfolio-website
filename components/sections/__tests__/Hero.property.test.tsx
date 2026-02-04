@@ -31,7 +31,6 @@ jest.mock('next/image', () => {
 const imagePropsGenerator = fc.record({
   src: fc.constantFrom('/headshot.jpg', '/profile.png', '/avatar.webp', '/photo.jpeg'),
   alt: fc.string({ minLength: 5, maxLength: 100 }),
-  priority: fc.boolean(),
   sizes: fc.constantFrom(
     '(max-width: 768px) 192px, 192px',
     '(max-width: 640px) 150px, 200px',
@@ -44,7 +43,7 @@ describe('Hero Component Image Optimization Property Tests', () => {
     test('For any image in the Hero component, it should use Next.js Image component optimization for fast loading', () => {
       const property = fc.property(
         imagePropsGenerator,
-        (imageProps) => {
+        (_imageProps) => {
           try {
             // Render the Hero component
             const { container } = render(<Hero />);
@@ -207,7 +206,7 @@ describe('Hero Component Image Optimization Property Tests', () => {
       const property = fc.property(
         fc.boolean(), // priority flag
         fc.constantFrom('eager', 'lazy'), // loading strategy
-        (priority, loading) => {
+        () => {
           try {
             // Render the Hero component
             const { container } = render(<Hero />);

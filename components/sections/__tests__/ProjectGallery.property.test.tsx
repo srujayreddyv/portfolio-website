@@ -5,7 +5,7 @@
  */
 
 import * as fc from 'fast-check';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import ProjectGallery from '../ProjectGallery';
 import { Project } from '@/types';
 import { propertyTestConfig } from '@/lib/property-test-utils';
