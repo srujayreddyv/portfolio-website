@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Monitor } from 'lucide-react';
-import { useReducedMotion, getTransitionDuration } from '@/lib/accessibility-utils';
-import { useThemeWithGracefulDegradation } from '@/lib/hooks/useThemeWithFallback';
+import { useReducedMotion } from '@/lib/accessibility-utils';
 
 interface ThemeToggleProps {
   className?: string;
@@ -21,28 +20,12 @@ export function ThemeToggle({
   const [announceText, setAnnounceText] = useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
   const prefersReducedMotion = useReducedMotion();
-
-  // Try to use the main theme hook, fall back to graceful degradation
-  let theme: string | undefined;
-  let setTheme: (theme: string) => void;
-  let themeHookMounted: boolean;
-
-  try {
-    const themeHook = useTheme();
-    theme = themeHook.theme;
-    setTheme = themeHook.setTheme;
-    themeHookMounted = true;
-  } catch (error) {
-    console.warn('ThemeProvider not available, using fallback');
-    const fallback = useThemeWithGracefulDegradation();
-    theme = fallback.theme;
-    setTheme = fallback.setTheme;
-    themeHookMounted = fallback.mounted;
-  }
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(themeHookMounted);
-  }, [themeHookMounted]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     const sizeClasses = {
@@ -56,15 +39,17 @@ export function ThemeToggle({
     );
   }
 
+  const currentTheme = theme ?? 'system';
+
   const toggleTheme = () => {
     try {
       let newTheme: string;
       let announcement: string;
       
-      if (theme === 'light') {
+      if (currentTheme === 'light') {
         newTheme = 'dark';
         announcement = 'Switched to dark theme';
-      } else if (theme === 'dark') {
+      } else if (currentTheme === 'dark') {
         newTheme = 'system';
         announcement = 'Switched to system theme';
       } else {
@@ -101,7 +86,7 @@ export function ThemeToggle({
     
     const iconSize = sizeClasses[size];
     
-    switch (theme) {
+    switch (currentTheme) {
       case 'light':
         return <Sun className={iconSize} aria-hidden="true" />;
       case 'dark':
@@ -112,7 +97,7 @@ export function ThemeToggle({
   };
 
   const getThemeInfo = () => {
-    switch (theme) {
+    switch (currentTheme) {
       case 'light':
         return {
           current: 'light theme',
@@ -167,7 +152,7 @@ export function ThemeToggle({
         `}
         aria-label={themeInfo.action}
         aria-describedby={showLabel ? 'theme-description' : undefined}
-        aria-pressed={theme === 'dark'}
+        aria-pressed={currentTheme === 'dark'}
         role="button"
         tabIndex={0}
         title={`Current: ${themeInfo.current}. Click to switch to ${themeInfo.next}.`}
@@ -178,7 +163,7 @@ export function ThemeToggle({
         
         {showLabel && (
           <span className="ml-2 font-medium">
-            {theme === 'light' ? 'Light' : theme === 'dark' ? 'Dark' : 'Auto'}
+            {currentTheme === 'light' ? 'Light' : currentTheme === 'dark' ? 'Dark' : 'Auto'}
           </span>
         )}
       </button>

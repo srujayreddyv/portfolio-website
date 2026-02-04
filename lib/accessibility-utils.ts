@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Accessibility utilities for theme system
  * Provides color contrast validation and reduced motion support
@@ -154,27 +156,21 @@ export function getTransitionClasses(
  * Hook for reduced motion preference
  */
 export function useReducedMotion(): boolean {
-  if (typeof window === 'undefined') return false;
-  
-  const [prefersReduced, setPrefersReduced] = React.useState(() => {
-    // Handle test environment where matchMedia might not be available
-    if (!window.matchMedia) return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  });
-  
+  const [prefersReduced, setPrefersReduced] = React.useState(false);
+
   React.useEffect(() => {
-    // Handle test environment where matchMedia might not be available
-    if (!window.matchMedia) return;
-    
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return;
+    }
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const handleChange = () => setPrefersReduced(mediaQuery.matches);
-    
+    setPrefersReduced(mediaQuery.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => setPrefersReduced(event.matches);
+
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
-  
+
   return prefersReduced;
 }
-
-// Import React for the hook
-import React from 'react';

@@ -137,39 +137,44 @@ export interface ValidationResult {
   errors: string[];
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
 export class ContentValidator {
-  static validateProject(project: any): ValidationResult {
+  static validateProject(project: unknown): ValidationResult {
     const errors: string[] = [];
-    
-    if (!project.id || typeof project.id !== 'string') {
+    const projectObj = isRecord(project) ? project : {};
+
+    if (!projectObj.id || typeof projectObj.id !== 'string') {
       errors.push('Project ID is required and must be a string');
     }
     
-    if (!project.title || typeof project.title !== 'string') {
+    if (!projectObj.title || typeof projectObj.title !== 'string') {
       errors.push('Project title is required and must be a string');
     }
     
-    if (!project.description || typeof project.description !== 'string') {
+    if (!projectObj.description || typeof projectObj.description !== 'string') {
       errors.push('Project description is required and must be a string');
     }
     
-    if (!Array.isArray(project.technologies)) {
+    if (!Array.isArray(projectObj.technologies)) {
       errors.push('Project technologies must be an array');
     }
     
-    if (!project.category || typeof project.category !== 'string') {
+    if (!projectObj.category || typeof projectObj.category !== 'string') {
       errors.push('Project category is required and must be a string');
     }
     
-    if (!project.imageUrl || typeof project.imageUrl !== 'string') {
+    if (!projectObj.imageUrl || typeof projectObj.imageUrl !== 'string') {
       errors.push('Project imageUrl is required and must be a string');
     }
     
-    if (typeof project.featured !== 'boolean') {
+    if (typeof projectObj.featured !== 'boolean') {
       errors.push('Project featured must be a boolean');
     }
     
-    if (!project.completedDate || typeof project.completedDate !== 'string') {
+    if (!projectObj.completedDate || typeof projectObj.completedDate !== 'string') {
       errors.push('Project completedDate is required and must be a string');
     }
     
@@ -179,26 +184,27 @@ export class ContentValidator {
     };
   }
   
-  static validatePersonalData(data: any): ValidationResult {
+  static validatePersonalData(data: unknown): ValidationResult {
     const errors: string[] = [];
-    
-    if (!data.name || typeof data.name !== 'string') {
+    const dataObj = isRecord(data) ? data : {};
+
+    if (!dataObj.name || typeof dataObj.name !== 'string') {
       errors.push('Name is required and must be a string');
     }
     
-    if (!data.title || typeof data.title !== 'string') {
+    if (!dataObj.title || typeof dataObj.title !== 'string') {
       errors.push('Title is required and must be a string');
     }
     
-    if (!data.bio || typeof data.bio !== 'string') {
+    if (!dataObj.bio || typeof dataObj.bio !== 'string') {
       errors.push('Bio is required and must be a string');
     }
     
-    if (!data.email || typeof data.email !== 'string') {
+    if (!dataObj.email || typeof dataObj.email !== 'string') {
       errors.push('Email is required and must be a string');
     }
     
-    if (!Array.isArray(data.socialLinks)) {
+    if (!Array.isArray(dataObj.socialLinks)) {
       errors.push('Social links must be an array');
     }
     
@@ -208,18 +214,19 @@ export class ContentValidator {
     };
   }
   
-  static validateSkill(skill: any): ValidationResult {
+  static validateSkill(skill: unknown): ValidationResult {
     const errors: string[] = [];
-    
-    if (!skill.name || typeof skill.name !== 'string') {
+    const skillObj = isRecord(skill) ? skill : {};
+
+    if (!skillObj.name || typeof skillObj.name !== 'string') {
       errors.push('Skill name is required and must be a string');
     }
     
-    if (skill.level && !['Beginner', 'Intermediate', 'Advanced', 'Expert'].includes(skill.level)) {
+    if (skillObj.level && (typeof skillObj.level !== 'string' || !['Beginner', 'Intermediate', 'Advanced', 'Expert'].includes(skillObj.level))) {
       errors.push('Skill level must be one of: Beginner, Intermediate, Advanced, Expert');
     }
     
-    if (skill.yearsOfExperience && typeof skill.yearsOfExperience !== 'number') {
+    if (typeof skillObj.yearsOfExperience !== 'undefined' && typeof skillObj.yearsOfExperience !== 'number') {
       errors.push('Years of experience must be a number');
     }
     
@@ -229,30 +236,31 @@ export class ContentValidator {
     };
   }
   
-  static validateSEOData(seo: any): ValidationResult {
+  static validateSEOData(seo: unknown): ValidationResult {
     const errors: string[] = [];
-    
-    if (!seo.title || typeof seo.title !== 'string') {
+    const seoObj = isRecord(seo) ? seo : {};
+
+    if (!seoObj.title || typeof seoObj.title !== 'string') {
       errors.push('SEO title is required and must be a string');
     }
     
-    if (!seo.description || typeof seo.description !== 'string') {
+    if (!seoObj.description || typeof seoObj.description !== 'string') {
       errors.push('SEO description is required and must be a string');
     }
     
-    if (!Array.isArray(seo.keywords)) {
+    if (!Array.isArray(seoObj.keywords)) {
       errors.push('SEO keywords must be an array');
     }
     
-    if (!seo.ogImage || typeof seo.ogImage !== 'string') {
+    if (!seoObj.ogImage || typeof seoObj.ogImage !== 'string') {
       errors.push('SEO ogImage is required and must be a string');
     }
     
-    if (!seo.canonicalUrl || typeof seo.canonicalUrl !== 'string') {
+    if (!seoObj.canonicalUrl || typeof seoObj.canonicalUrl !== 'string') {
       errors.push('SEO canonicalUrl is required and must be a string');
     }
     
-    if (!seo.structuredData || typeof seo.structuredData !== 'object') {
+    if (!seoObj.structuredData || typeof seoObj.structuredData !== 'object') {
       errors.push('SEO structuredData is required and must be an object');
     }
     

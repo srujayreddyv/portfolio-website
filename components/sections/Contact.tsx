@@ -25,7 +25,7 @@ export default function Contact() {
             </h2>
             <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              I'm always interested in new opportunities and interesting projects. 
+              I&apos;m always interested in new opportunities and interesting projects. 
               Whether you have a question or just want to say hello, feel free to reach out!
             </p>
           </div>

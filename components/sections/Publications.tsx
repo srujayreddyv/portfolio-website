@@ -3,7 +3,7 @@ import { Publication } from '@/types';
 
 export default function Publications() {
   // Check if publications exist in personalData
-  const publications: Publication[] = (personalData as any).publications || [];
+  const publications: Publication[] = personalData.publications ?? [];
 
   if (!publications || publications.length === 0) {
     return null; // Don't render if no publications

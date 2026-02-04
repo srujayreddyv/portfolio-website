@@ -13,6 +13,26 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    files: [
+      "**/__tests__/**/*",
+      "**/*.{test,spec}.{js,jsx,ts,tsx}",
+    ],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "react-hooks/purity": "off",
+    },
+  },
+  {
+    files: [
+      "jest.config.js",
+      "scripts/**/*.js",
+    ],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

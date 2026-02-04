@@ -74,7 +74,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       {/* Honeypot field for spam protection */}
       <div style={{ display: 'none' }}>
         <label>
-          Don't fill this out if you're human: <input name="bot-field" />
+          Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
         </label>
       </div>
       {/* Name Field */}
@@ -208,7 +208,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       {submitStatus === 'success' && (
         <div className="p-3 sm:p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
           <p className="text-sm sm:text-base text-green-800 dark:text-green-300">
-            Thank you for your message! I'll get back to you as soon as possible.
+            Thank you for your message! I&apos;ll get back to you as soon as possible.
           </p>
         </div>
       )}

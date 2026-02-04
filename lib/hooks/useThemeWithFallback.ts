@@ -76,6 +76,7 @@ export function useThemeWithFallback(): ThemeState {
   // Initialize with error handling
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMounted(true);
       
       // Validate current theme
@@ -145,15 +146,16 @@ export function useThemeWithGracefulDegradation(): {
   const [fallbackTheme, setFallbackTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    
+
     // Detect initial theme from document class or system preference
     try {
       if (typeof document !== 'undefined') {
         const isDark = document.documentElement.classList.contains('dark');
         if (isDark) {
           setFallbackTheme('dark');
-        } else {
+        } else if (typeof window !== 'undefined') {
           // Check system preference
           const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           setFallbackTheme(systemPrefersDark ? 'dark' : 'light');
@@ -164,27 +166,10 @@ export function useThemeWithGracefulDegradation(): {
     }
   }, []);
 
-  // Try to use the theme hook, fall back to manual implementation
-  try {
-    const themeHook = useTheme();
-    
-    if (themeHook.theme !== undefined) {
-      const resolvedTheme = themeHook.resolvedTheme === 'dark' ? 'dark' : 'light';
-      return {
-        theme: resolvedTheme,
-        setTheme: themeHook.setTheme,
-        mounted
-      };
-    }
-  } catch (err) {
-    console.warn('ThemeProvider not available, using fallback:', err);
-  }
-
-  // Fallback implementation
   const setTheme = useCallback((newTheme: string) => {
     const theme = newTheme === 'dark' ? 'dark' : 'light';
     setFallbackTheme(theme);
-    
+
     try {
       if (typeof document !== 'undefined') {
         const root = document.documentElement;
@@ -194,7 +179,7 @@ export function useThemeWithGracefulDegradation(): {
           root.classList.remove('dark');
         }
       }
-      
+
       if (typeof localStorage !== 'undefined') {
         localStorage.setItem('theme', newTheme);
       }
