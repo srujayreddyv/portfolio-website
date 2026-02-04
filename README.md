@@ -327,5 +327,5 @@ If you have any questions or need help with setup, please:
 
 ---
 
-**Live Demo**: [https://srujayreddyv.com](https://srujayreddyv.com)  
+**Live Demo**: [https://srujays-portfolio.vercel.app](https://srujays-portfolio.vercel.app)  
 **Repository**: [https://github.com/srujayreddyv/portfolio-website](https://github.com/srujayreddyv/portfolio-website)
