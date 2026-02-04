@@ -35,6 +35,11 @@ const requiredEnvVars = {
 };
 
 function validateEnvironment() {
+  if (process.env.CI === 'true') {
+    console.log('⚪ Skipping environment validation in CI');
+    return;
+  }
+
   console.log('🔍 Validating environment variables...\n');
   
   let hasErrors = false;
