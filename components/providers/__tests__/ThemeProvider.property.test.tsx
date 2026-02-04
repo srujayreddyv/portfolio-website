@@ -33,7 +33,7 @@ describe('ThemeProvider Integration Property Tests', () => {
         generators.themeName(),
         generators.storageKey(),
         fc.boolean(), // enableSystem
-        async (defaultTheme, storageKey, enableSystem) => {
+        async (defaultTheme, storageKey) => {
           try {
             const TestComponent = () => <div data-testid={`test-content-${Date.now()}-${Math.random()}`}>Test Content</div>;
             
@@ -391,10 +391,6 @@ describe('ThemeProvider Integration Property Tests', () => {
               style: {
                 colorScheme: theme === 'dark' ? 'dark' : 'light'
               }
-            };
-
-            const mockDocument = {
-              documentElement: mockDocumentElement
             };
 
             // Simulate theme script execution

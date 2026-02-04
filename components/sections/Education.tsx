@@ -35,7 +35,7 @@ const Education: React.FC = () => {
 
           {/* Education cards */}
           <div className="space-y-6 sm:space-y-8">
-            {education.map((edu, index) => {
+            {education.map((edu) => {
               const isExpanded = expandedCards.has(edu.id);
               
               return (

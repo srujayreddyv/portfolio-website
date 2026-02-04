@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/types';
-import { X, ExternalLink, Github, Calendar } from 'lucide-react';
+import { X, ExternalLink, Github } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project;
@@ -14,7 +14,6 @@ interface ProjectModalProps {
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const {
     title,
-    description,
     longDescription,
     technologies,
     category,
@@ -22,7 +21,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     images,
     liveUrl,
     githubUrl,
-    completedDate,
     challenges,
     solutions,
     results
@@ -95,13 +93,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long'
-    });
   };
 
   return (

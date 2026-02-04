@@ -4,7 +4,7 @@
  * Requirements: 1.1, 1.2, 6.5
  */
 
-import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import Header from '../Header';
 import { personalData } from '@/content/data/personal';
 

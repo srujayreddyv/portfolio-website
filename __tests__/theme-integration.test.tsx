@@ -29,7 +29,7 @@ jest.mock('next-themes', () => ({
 jest.mock('../lib/accessibility-utils', () => ({
   useReducedMotion: () => false,
   getTransitionDuration: (defaultMs: number) => defaultMs,
-  validateThemeColors: (theme: string) => ({
+  validateThemeColors: () => ({
     isValid: true,
     violations: [],
     ratios: { 'body-text': 21 }
@@ -280,8 +280,6 @@ describe('Theme Integration Tests', () => {
 
   describe('Accessibility Integration', () => {
     test('should maintain accessibility features throughout theme changes', async () => {
-      const user = userEvent.setup();
-      
       render(
         <ThemeProvider defaultTheme="light">
           <ThemeToggle />

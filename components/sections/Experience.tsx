@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { experiences } from '@/content/data/experience';
-import { Calendar, MapPin, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 
 const Experience: React.FC = () => {
@@ -39,7 +39,7 @@ const Experience: React.FC = () => {
             <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-600 hidden md:block"></div>
 
             <div className="space-y-6 sm:space-y-8">
-              {experiences.map((exp, index) => {
+              {experiences.map((exp) => {
                 const isExpanded = expandedCards.has(exp.id);
                 
                 return (
