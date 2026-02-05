@@ -3,7 +3,7 @@ import { Experience } from '@/types'
 export const experiences: Experience[] = [
   {
     id: "dds-2025",
-    title: "Software Engineer",
+    title: "Software Engineer – Cloud & GenAI Systems",
     company: "California Department of Developmental Services (DDS)",
     location: "Sacramento, CA (Hybrid)",
     startDate: "Feb 2025",
@@ -12,18 +12,18 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
-      "Increased statewide processing throughput by 30% by designing and deploying 31 REST APIs using HL7 FHIR based data models, enabling interoperability across DDS programs and State Operated Facilities",
-      "Achieved 99% uptime for more than 20K daily requests by scaling Dockerized FastAPI services on AWS ECS and Lambda, with Cognito based authentication and EventBridge workflows for DxF ready realtime data exchange",
-      "Refactored COBOL, JCL, and Db2 batch jobs into Python services, mapping legacy datasets into FHIR aligned structures and reducing nightly runtimes by 60% while eliminating 200+ manual steps",
-      "Reduced analyst review effort by 85% by developing an LLMOps QA pipeline using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
-      "Delivered a production multi-agent GenAI system using React, FastAPI, CrewAI, and Claude, providing source-cited answers across healthcare and compliance data",
-      "Built and deployed a React TypeScript portal backed by Express and PostgreSQL on Terraform provisioned AWS, integrated with Azure DevOps CI/CD, cutting AI Initial Assessment entry time from 30 to 10 minutes"
+      "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs, enabling cross program interoperability and real time data exchange across State Operated Facilities",
+      "Scaled FastAPI services handling 20K plus daily requests on AWS ECS and Lambda, implementing Cognito based authentication and EventBridge driven workflows to achieve 99% uptime for mission critical healthcare integrations",
+      "Modernized legacy COBOL, JCL, and Db2 batch systems into Python based services, mapping historical datasets to FHIR aligned models, cutting nightly processing time by 60% and eliminating more than 200 manual operational steps",
+      "Reduced analyst review effort by 85% by designing an LLMOps QA platform using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
+      "Delivered a production multi agent GenAI system using FastAPI, React, CrewAI, and Claude, providing source grounded answers across healthcare and compliance data for internal users",
+      "Built and deployed a React and TypeScript portal with Express and PostgreSQL on Terraform provisioned AWS infrastructure, reducing AI Assessment entry time from 30 to 10 min through automation and UX optimization"
     ],
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "Claude 4.5", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "Claude", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
   },
   {
     id: "doc-2024",
-    title: "Software Engineer",
+    title: "Software Engineer – Data & Platform Systems",
     company: "California Department of Conservation (DOC)",
     location: "Sacramento, CA (Remote)",
     startDate: "Jan 2024",
@@ -32,9 +32,9 @@ export const experiences: Experience[] = [
     description: "Developed seismic hazard modeling platforms and data processing systems for earthquake monitoring and prediction.",
     achievements: [
       "Built a production seismic hazard modeling platform using Python, Perl, PHP, D3.js, and OpenQuake to deliver ground motion predictions for California fault zones with response times under 3 seconds",
-      "Automated large scale seismic data pipelines handling 10+ GB/day, streamlining ingestion while cutting data retrieval time by 50% and increasing throughput for detection workflows",
-      "Secured 60+ remote monitoring stations by developing a PHP based authentication gateway with AES encryption, AWS IAM roles, and AWS Secrets Manager, passing all audits with zero findings",
-      "Improved geospatial service reliability by resolving ArcGIS server issues and enhancing map rendering with GeoServer, Leaflet.js, and custom JavaScript components, reducing downtime incidents"
+      "Designed and automated large scale seismic data pipelines processing 10+ GB per day, improving ingestion efficiency and reducing data retrieval time by 50% to support high throughput detection workflows",
+      "Strengthened system security for 60+ remote monitoring stations by developing an authentication gateway with AES encryption, AWS IAM roles, and AWS Secrets Manager, passing all compliance audits with zero findings",
+      "Improved reliability of geospatial services by resolving ArcGIS server performance issues and enhancing map rendering with GeoServer and Leaflet.js, reducing downtime and improving system stability"
     ],
     technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "AES Encryption", "AWS IAM", "AWS Secrets Manager", "ArcGIS", "GeoServer", "Leaflet.js", "JavaScript"]
   },
@@ -48,16 +48,16 @@ export const experiences: Experience[] = [
     logo: "/logos/csus-logo.png",
     description: "Developed staff management systems and health data ETL pipelines for public health research and survey operations.",
     achievements: [
-      "Built a staff management system using C#, Entity Framework, and SQL Server that optimized stored procedures, indexing, and query performance to reduce administrative workload by 40%",
-      "Automated health data ETL pipelines using .NET, SQL Server, and PowerShell, migrating legacy Access and Oracle datasets into centralized SQL analytics stores for Power BI reporting under HIPAA compliant workflows",
-      "Developed interactive data entry tools and analytics dashboards for statewide public health studies, boosting data collection efficiency by 60% through automated validation and quality checks",
+      "Built a staff management system using C#, Entity Framework, and SQL Server, optimizing stored procedures, indexing, and query performance to reduce administrative workload by 40%",
+      "Designed and automated health data ETL pipelines using .NET, SQL Server, and PowerShell, migrating legacy Access and Oracle datasets into centralized SQL analytics stores for Power BI reporting under HIPAA compliant workflows",
+      "Developed interactive data entry tools and analytics dashboards for statewide public health studies, increasing data collection efficiency by 60% through automated validation and quality checks",
       "Supported high volume CATI survey operations with system upgrades, PowerShell diagnostic utilities, and HIPAA compliant workflows, reducing survey delays by 30%"
     ],
     technologies: ["C#", "Entity Framework", "SQL Server", ".NET", "PowerShell", "Power BI", "Oracle", "HIPAA Compliance"]
   },
   {
     id: "hsrg-2021",
-    title: "Software Engineer",
+    title: "Software Engineer – AI & Distributed Systems",
     company: "Human Sciences Research Group (HSRG), IIIT-H",
     location: "Hyderabad, IN",
     startDate: "Jan 2021",
@@ -68,13 +68,13 @@ export const experiences: Experience[] = [
       "Designed a cloud native archival and data processing platform for social media and news data, enabling realtime analysis of more than 1 million data points during the Indian Farmers Protests",
       "Fine-tuned multilingual BERT and IndicBERT models using Hugging Face Transformers for sentiment analysis and topic modeling to achieve an 8% accuracy improvement over baseline models",
       "Developed secure REST APIs with C# (ASP.NET Core) to support high volume data ingestion and metadata management, with interactive React dashboards for exploratory data analysis",
-      "Containerized all services with Docker and automated builds, testing, and deployments using GitHub Actions CI/CD, ensuring reproducible environments and 40% faster rollouts"
+      "Containerized services with Docker and implemented automated build, test, and deployment pipelines using GitHub Actions, ensuring reproducible environments and reducing release cycles 40%"
     ],
     technologies: ["Python", "C#", "ASP.NET Core", "React", "Docker", "GitHub Actions", "Hugging Face Transformers", "BERT", "IndicBERT", "Machine Learning", "NLP"]
   },
   {
     id: "spiti-2018",
-    title: "Software Engineer",
+    title: "Software Engineer – Full Stack & GIS Systems",
     company: "Change and Continuity in Spiti Valley, ICSSR Sponsored Project",
     location: "Hyderabad, IN",
     startDate: "Jul 2018",

@@ -34,8 +34,11 @@ describe('Hero Component', () => {
     // Check for name display
     expect(screen.getByText(personalData.name)).toBeInTheDocument();
     
-    // Check for bio/introduction display (title is included in the bio)
-    expect(screen.getByText(personalData.bio)).toBeInTheDocument();
+    // Check for subtitle and intro bullets
+    expect(screen.getByText(/full stack software engineer building cloud and genai systems/i)).toBeInTheDocument();
+    expect(screen.getByText(/i build full stack applications and scalable backend apis\./i)).toBeInTheDocument();
+    expect(screen.getByText(/i design cloud native systems and high throughput distributed services on aws\./i)).toBeInTheDocument();
+    expect(screen.getByText(/i integrate genai into real workflows using rag, llmops, and multi agent systems\./i)).toBeInTheDocument();
   });
   
   test('renders call-to-action buttons', () => {
@@ -117,8 +120,11 @@ describe('Hero Component', () => {
     const mainHeading = screen.getByRole('heading', { level: 1 });
     expect(mainHeading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl', 'lg:text-6xl', 'xl:text-7xl');
     
-    const bioText = screen.getByText(personalData.bio);
-    expect(bioText).toHaveClass('text-base', 'sm:text-lg', 'md:text-xl', 'lg:text-2xl');
+    const subtitleText = screen.getByText(/full stack software engineer building cloud and genai systems/i);
+    expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
+    
+    const bulletList = screen.getByRole('list');
+    expect(bulletList).toHaveClass('text-[clamp(0.95rem,1.55vw,1.5rem)]');
   });
   
   test.skip('has proper accessibility attributes', () => {

@@ -225,7 +225,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       href={liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base min-h-[44px]"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
                     >
                       <ExternalLink size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
                       <span>View Live Demo</span>
@@ -236,7 +236,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       href={githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base min-h-[44px]"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
                     >
                       <Github size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
                       <span>View Source Code</span>

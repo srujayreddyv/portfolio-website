@@ -153,7 +153,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className={`w-full px-3 py-2 sm:py-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white transition-colors min-h-[44px] text-sm sm:text-base dark:bg-gray-800 dark:border-gray-600 dark:text-white ${
             errors.subject ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
           }`}
-          placeholder="What would you like to discuss?"
+          placeholder="Project, role, or collaboration topic"
         />
         {errors.subject && (
           <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>
@@ -182,7 +182,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className={`w-full px-3 py-2 sm:py-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white resize-vertical transition-colors text-sm sm:text-base dark:bg-gray-800 dark:border-gray-600 dark:text-white ${
             errors.message ? 'border-red-500 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
           }`}
-          placeholder="Tell me about your project, opportunity, or question..."
+          placeholder="Briefly describe your project, opportunity, or technical discussion."
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>
@@ -194,10 +194,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full px-4 py-3 sm:py-4 text-white dark:text-black font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:ring-offset-2 transition-all duration-200 min-h-[48px] text-sm sm:text-base ${
+          className={`w-full px-4 py-3 sm:py-4 text-white dark:text-black font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:ring-offset-2 transition-all duration-200 min-h-[48px] text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${
             isSubmitting
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-black hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl'
+              : 'bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600'
           }`}
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}

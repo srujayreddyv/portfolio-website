@@ -88,7 +88,7 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-300 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors min-h-[44px] text-sm sm:text-base"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 min-h-[44px] text-sm sm:text-base"
               >
                 <Filter size={16} />
                 <span>Filters</span>
@@ -97,7 +97,7 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[40px]"
+                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 underline rounded-lg min-h-[40px]"
                 >
                   <X size={14} />
                   <span>Clear filters</span>
@@ -172,7 +172,7 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
             </p>
             <button
               onClick={clearFilters}
-              className="px-4 sm:px-6 py-2 sm:py-3 bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-500 text-white dark:text-black rounded-lg transition-colors min-h-[44px] text-sm sm:text-base"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600 text-white dark:text-black rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 min-h-[44px] text-sm sm:text-base"
             >
               Clear Filters
             </button>

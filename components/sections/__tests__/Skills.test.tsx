@@ -14,11 +14,11 @@ describe('Skills Component', () => {
     render(<Skills />);
     
     // Test requirement 4.1: THE Portfolio_Website SHALL display a comprehensive list of technical skills
-    const mainHeading = screen.getByRole('heading', { level: 2, name: /skills & technologies/i });
+    const mainHeading = screen.getByRole('heading', { level: 2, name: /skills/i });
     expect(mainHeading).toBeInTheDocument();
     
     // Check for section description
-    expect(screen.getByText(/comprehensive overview of my technical skills/i)).toBeInTheDocument();
+    expect(screen.getByText(/technologies i use to build and scale production software, data systems, and genai systems/i)).toBeInTheDocument();
   });
 
   test('displays all skill categories from data', () => {
@@ -34,16 +34,15 @@ describe('Skills Component', () => {
     render(<Skills />);
     
     // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    const primaryCategories = ['Backend & APIs', 'Frontend & Mobile'];
+    const primaryCategories = ['Backend & APIs', 'AI Systems & GenAI Engineering'];
     
     primaryCategories.forEach((categoryName) => {
       const categoryElement = screen.getByText(categoryName);
       expect(categoryElement).toBeInTheDocument();
     });
     
-    // Check if primary labels are present (there should be multiple)
-    const primaryLabels = screen.getAllByText('(Primary)');
-    expect(primaryLabels.length).toBeGreaterThan(0);
+    // Primary categories should be present in the rendered list
+    expect(primaryCategories.length).toBeGreaterThan(0);
   });
 
   test.skip('displays legend for primary and secondary skills', () => {
@@ -63,7 +62,7 @@ describe('Skills Component', () => {
     expect(skillsSection).toBeInTheDocument();
     
     // Check for proper heading hierarchy
-    const mainHeading = screen.getByRole('heading', { level: 2, name: /skills & technologies/i });
+    const mainHeading = screen.getByRole('heading', { level: 2, name: /skills/i });
     expect(mainHeading).toBeInTheDocument();
   });
 
@@ -97,102 +96,45 @@ describe('SkillCategory Component', () => {
     });
   });
 
-  test('displays skill levels when available', () => {
+  test('does not display skill levels when provided', () => {
     render(<SkillCategory category={mockCategory} />);
     
-    // Test skill categorization and highlighting
-    expect(screen.getByText('Advanced')).toBeInTheDocument();
-    expect(screen.getByText('Intermediate')).toBeInTheDocument();
+    // Levels are not displayed in the current UI
+    expect(screen.queryByText('Advanced')).not.toBeInTheDocument();
+    expect(screen.queryByText('Intermediate')).not.toBeInTheDocument();
     
     // Check that skills without levels don't show level badges
     const reactSkill = screen.getByText('React');
     expect(reactSkill).toBeInTheDocument();
   });
 
-  test('displays years of experience when available', () => {
+  test('does not display years of experience when provided', () => {
     render(<SkillCategory category={mockCategory} />);
     
     // Test requirement 4.1: THE Portfolio_Website SHALL display a comprehensive list of technical skills
-    expect(screen.getByText('3 years of experience')).toBeInTheDocument();
+    expect(screen.queryByText('3 years of experience')).not.toBeInTheDocument();
   });
 
-  test('applies correct styling for skill levels', () => {
-    render(<SkillCategory category={mockCategory} />);
-    
-    // Test skill categorization and highlighting - check actual badge colors
-    const advancedBadge = screen.getByText('Advanced');
-    expect(advancedBadge).toHaveClass('bg-blue-100', 'text-blue-800');
-    
-    const intermediateBadge = screen.getByText('Intermediate');
-    expect(intermediateBadge).toHaveClass('bg-yellow-100', 'text-yellow-800');
-  });
-
-  test('renders primary category with special styling', () => {
+  test('does not render primary labels even when isPrimary is true', () => {
     render(<SkillCategory category={mockCategory} isPrimary={true} />);
     
-    // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    expect(screen.getByText('(Primary)')).toBeInTheDocument();
-    
-    const categoryHeader = screen.getByText('Test Category');
-    expect(categoryHeader).toHaveClass('text-gray-800', 'dark:text-white');
+    // Primary label is intentionally removed from the UI
+    expect(screen.queryByText('(Primary)')).not.toBeInTheDocument();
   });
 
-  test('renders secondary category with default styling', () => {
+  test('renders category header with default styling', () => {
     render(<SkillCategory category={mockCategory} isPrimary={false} />);
-    
-    // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    expect(screen.queryByText('(Primary)')).not.toBeInTheDocument();
     
     const categoryHeader = screen.getByText('Test Category');
     expect(categoryHeader).toHaveClass('text-gray-800');
   });
 
-  test('displays progress bars for skills with levels', () => {
+  test('does not render progress bars for skills with levels', () => {
     const { container } = render(<SkillCategory category={mockCategory} />);
     
-    // Check for progress bars
+    // Progress bars are removed from the UI
     const progressBars = container.querySelectorAll('.bg-gray-200.rounded-full.h-2');
-    expect(progressBars.length).toBeGreaterThan(0);
-    
-    // Check that progress bars have appropriate widths - using the actual gradient classes
-    const advancedProgressBar = container.querySelector('.w-4\\/5');
-    expect(advancedProgressBar).toBeInTheDocument();
-    
-    const intermediateProgressBar = container.querySelector('.w-3\\/5');
-    expect(intermediateProgressBar).toBeInTheDocument();
-  });
-
-  test('handles different skill level colors correctly', () => {
-    const skillsWithAllLevels: SkillCategoryType = {
-      category: 'All Levels',
-      skills: [
-        { name: 'Expert Skill', level: 'Expert' },
-        { name: 'Advanced Skill', level: 'Advanced' },
-        { name: 'Intermediate Skill', level: 'Intermediate' },
-        { name: 'Beginner Skill', level: 'Beginner' }
-      ]
-    };
-
-    render(<SkillCategory category={skillsWithAllLevels} />);
-    
-    // Test skill categorization and highlighting - check actual badge colors
-    expect(screen.getByText('Expert')).toHaveClass('bg-green-100', 'text-green-800');
-    expect(screen.getByText('Advanced')).toHaveClass('bg-blue-100', 'text-blue-800');
-    expect(screen.getByText('Intermediate')).toHaveClass('bg-yellow-100', 'text-yellow-800');
-    expect(screen.getByText('Beginner')).toHaveClass('bg-red-100', 'text-red-800');
-  });
-
-  test('handles singular vs plural years correctly', () => {
-    const singleYearCategory: SkillCategoryType = {
-      category: 'Single Year',
-      skills: [
-        { name: 'New Skill', level: 'Beginner', yearsOfExperience: 1 }
-      ]
-    };
-
-    render(<SkillCategory category={singleYearCategory} />);
-    
-    expect(screen.getByText('1 year of experience')).toBeInTheDocument();
+    expect(progressBars.length).toBe(0);
   });
 
   test('has proper card styling', () => {

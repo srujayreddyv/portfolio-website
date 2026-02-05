@@ -9,9 +9,9 @@ interface NavigationItem {
 const quickNavigation: NavigationItem[] = [
   { name: 'About', href: '#about' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Education', href: '#education' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -73,9 +73,6 @@ export default function Footer() {
             <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-black dark:text-white">
               {personalData.name}
             </h3>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-              {personalData.title}
-            </p>
             <div className="space-y-2">
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 <a 
@@ -125,7 +122,7 @@ export default function Footer() {
           {/* Social Media Links */}
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-black dark:text-white">
-              Connect
+              Find Me
             </h3>
             <div className="flex flex-wrap gap-3 sm:gap-4">
               {personalData.socialLinks.map((social) => (
@@ -148,7 +145,7 @@ export default function Footer() {
         <div className="mt-6 sm:mt-8 lg:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 text-center sm:text-left">
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              © {currentYear} {personalData.name}. All rights reserved.
+              © {currentYear} {personalData.name}
             </p>
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               Built with Next.js and Tailwind CSS

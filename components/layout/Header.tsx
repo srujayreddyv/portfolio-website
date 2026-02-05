@@ -149,9 +149,11 @@ export default function Header() {
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium transition-colors min-h-[40px] flex items-center ${
-                    activeSection === item.section
-                      ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                    item.section === 'contact'
+                      ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
+                      : activeSection === item.section
+                        ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
                   {item.name}
@@ -220,9 +222,11 @@ export default function Header() {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`block px-3 py-3 rounded-md text-base font-medium transition-colors min-h-[48px] flex items-center ${
-                  activeSection === item.section
-                    ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                  item.section === 'contact'
+                    ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
+                    : activeSection === item.section
+                      ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 {item.name}

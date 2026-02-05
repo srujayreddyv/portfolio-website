@@ -74,11 +74,10 @@ describe('Footer Component', () => {
   });
 
   describe('Contact Information Display', () => {
-    test('displays personal name and title', () => {
+    test('displays personal name', () => {
       render(<Footer />);
       
       expect(screen.getByText('John Doe')).toBeInTheDocument();
-      expect(screen.getByText('Full Stack Developer')).toBeInTheDocument();
     });
 
     test('displays email as clickable link', () => {
@@ -108,7 +107,7 @@ describe('Footer Component', () => {
     test('displays all quick navigation links', () => {
       render(<Footer />);
       
-      const expectedLinks = ['About', 'Experience', 'Education', 'Skills', 'Projects', 'Contact'];
+      const expectedLinks = ['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'];
       
       expectedLinks.forEach(linkText => {
         const link = screen.getByRole('link', { name: linkText });
@@ -138,10 +137,10 @@ describe('Footer Component', () => {
   });
 
   describe('Social Media Links', () => {
-    test('displays "Connect" section heading', () => {
+    test('displays "Find Me" section heading', () => {
       render(<Footer />);
       
-      expect(screen.getByText('Connect')).toBeInTheDocument();
+      expect(screen.getByText('Find Me')).toBeInTheDocument();
     });
 
     test('displays all social media links with proper attributes', () => {
@@ -185,7 +184,7 @@ describe('Footer Component', () => {
       render(<Footer />);
       
       const currentYear = new Date().getFullYear();
-      const copyrightText = screen.getByText(`© ${currentYear} John Doe. All rights reserved.`);
+      const copyrightText = screen.getByText(`© ${currentYear} John Doe`);
       expect(copyrightText).toBeInTheDocument();
     });
 

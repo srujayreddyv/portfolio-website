@@ -2,7 +2,63 @@
 
 import React, { useState } from 'react';
 import { SkillCategory as SkillCategoryType } from '@/types';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Code, Database, Cloud } from 'lucide-react';
+import {
+  SiAmazoncloudwatch,
+  SiAmazonwebservices,
+  SiAngular,
+  SiApacheairflow,
+  SiApachekafka,
+  SiApachespark,
+  SiBootstrap,
+  SiDatadog,
+  SiD3Dotjs,
+  SiDjango,
+  SiDocker,
+  SiDotnet,
+  SiElasticsearch,
+  SiExpress,
+  SiFastapi,
+  SiFlask,
+  SiGit,
+  SiGithubactions,
+  SiGo,
+  SiGooglecloud,
+  SiGrafana,
+  SiGraphql,
+  SiHuggingface,
+  SiJavascript,
+  SiKubernetes,
+  SiLangchain,
+  SiLeaflet,
+  SiMapbox,
+  SiMeta,
+  SiMlflow,
+  SiMui,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiNuxtdotjs,
+  SiOpensearch,
+  SiPinetwork,
+  SiPostgresql,
+  SiPostman,
+  SiPrometheus,
+  SiPytorch,
+  SiReact,
+  SiRedis,
+  SiScikitlearn,
+  SiSnowflake,
+  SiSocketdotio,
+  SiSwagger,
+  SiTableau,
+  SiTensorflow,
+  SiTerraform,
+  SiTypescript,
+  SiPython,
+  SiPhp
+} from 'react-icons/si';
+import { SiCrewai, SiCrewaiHex } from '@icons-pack/react-simple-icons';
+import type { ComponentType, SVGProps } from 'react';
 
 interface SkillCategoryProps {
   category: SkillCategoryType;
@@ -15,49 +71,84 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
   const hasMoreSkills = category.skills.length > maxInitialSkills;
   const displayedSkills = isExpanded ? category.skills : category.skills.slice(0, maxInitialSkills);
 
-  const getLevelColor = (level?: string) => {
-    switch (level) {
-      case 'Expert':
-        return 'bg-gradient-to-r from-green-500 to-emerald-600';
-      case 'Advanced':
-        return 'bg-gradient-to-r from-blue-500 to-blue-600';
-      case 'Intermediate':
-        return 'bg-gradient-to-r from-yellow-500 to-orange-500';
-      case 'Beginner':
-        return 'bg-gradient-to-r from-red-400 to-red-500';
-      default:
-        return 'bg-gray-300 dark:bg-gray-600';
-    }
-  };
+  const skillIcons: Record<string, { Icon: ComponentType<SVGProps<SVGSVGElement>>; color: string }> = {
+    // Backend & APIs
+    'Python': { Icon: SiPython, color: '#3776AB' },
+    'FastAPI': { Icon: SiFastapi, color: '#009688' },
+    'Django': { Icon: SiDjango, color: '#092E20' },
+    'Flask': { Icon: SiFlask, color: '#000000' },
+    'Node.js': { Icon: SiNodedotjs, color: '#339933' },
+    'Express': { Icon: SiExpress, color: '#000000' },
+    'Go': { Icon: SiGo, color: '#00ADD8' },
+    'C#': { Icon: SiDotnet, color: '#512BD4' },
+    'ASP.NET Core': { Icon: SiDotnet, color: '#512BD4' },
+    'PHP': { Icon: SiPhp, color: '#777BB4' },
+    'REST APIs': { Icon: SiSwagger, color: '#85EA2D' },
+    'GraphQL': { Icon: SiGraphql, color: '#E10098' },
+    'WebSockets': { Icon: SiSocketdotio, color: '#010101' },
+    'gRPC': { Icon: SiGooglecloud, color: '#4285F4' },
+    'Git': { Icon: SiGit, color: '#F05032' },
+    'Postman': { Icon: SiPostman, color: '#FF6C37' },
+    'Swagger/OpenAPI': { Icon: SiSwagger, color: '#85EA2D' },
+    'Entity Framework': { Icon: Database, color: '#5E5E5E' },
+    'Django REST Framework': { Icon: SiDjango, color: '#092E20' },
 
-  const getLevelBadgeColor = (level?: string) => {
-    switch (level) {
-      case 'Expert':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'Advanced':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'Intermediate':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'Beginner':
-        return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
-    }
-  };
+    // AI Systems & GenAI Engineering
+    'AWS Bedrock': { Icon: SiAmazonwebservices, color: '#FF9900' },
+    'LangChain': { Icon: SiLangchain, color: '#2B7A78' },
+    'CrewAI': { Icon: SiCrewai, color: SiCrewaiHex },
+    'Hugging Face Transformers': { Icon: SiHuggingface, color: '#FFD21E' },
+    'RAG Pipelines': { Icon: SiMeta, color: '#0668E1' },
+    'FAISS': { Icon: SiMeta, color: '#0668E1' },
+    'Pinecone': { Icon: SiPinetwork, color: '#0F766E' },
+    'OpenSearch': { Icon: SiOpensearch, color: '#005EB8' },
+    'PyTorch': { Icon: SiPytorch, color: '#EE4C2C' },
+    'TensorFlow': { Icon: SiTensorflow, color: '#FF6F00' },
+    'MLflow': { Icon: SiMlflow, color: '#1E88E5' },
+    'Scikit-learn': { Icon: SiScikitlearn, color: '#F7931E' },
 
-  const getLevelWidth = (level?: string) => {
-    switch (level) {
-      case 'Expert':
-        return 'w-full';
-      case 'Advanced':
-        return 'w-4/5';
-      case 'Intermediate':
-        return 'w-3/5';
-      case 'Beginner':
-        return 'w-2/5';
-      default:
-        return 'w-1/5';
-    }
+    // Cloud & Infrastructure
+    'AWS': { Icon: SiAmazonwebservices, color: '#FF9900' },
+    'Azure': { Icon: Cloud, color: '#0078D4' },
+    'GCP': { Icon: SiGooglecloud, color: '#4285F4' },
+    'Docker': { Icon: SiDocker, color: '#2496ED' },
+    'Kubernetes': { Icon: SiKubernetes, color: '#326CE5' },
+    'Terraform': { Icon: SiTerraform, color: '#7B42BC' },
+    'GitHub Actions': { Icon: SiGithubactions, color: '#2088FF' },
+    'Azure DevOps': { Icon: SiGithubactions, color: '#2088FF' },
+    'CloudWatch': { Icon: SiAmazoncloudwatch, color: '#FF4F8B' },
+    'Datadog': { Icon: SiDatadog, color: '#632CA6' },
+    'Grafana': { Icon: SiGrafana, color: '#F46800' },
+    'Prometheus': { Icon: SiPrometheus, color: '#E6522C' },
+
+    // Data Platforms
+    'PostgreSQL': { Icon: SiPostgresql, color: '#4169E1' },
+    'MS SQL Server': { Icon: Database, color: '#CC2927' },
+    'DynamoDB': { Icon: SiAmazonwebservices, color: '#4053D6' },
+    'Redis': { Icon: SiRedis, color: '#DC382D' },
+    'Snowflake': { Icon: SiSnowflake, color: '#29B5E8' },
+    'Apache Airflow': { Icon: SiApacheairflow, color: '#017CEE' },
+    'Apache Spark': { Icon: SiApachespark, color: '#E25A1C' },
+    'Apache Kafka': { Icon: SiApachekafka, color: '#231F20' },
+    'Elasticsearch': { Icon: SiElasticsearch, color: '#005571' },
+    'Power BI': { Icon: Database, color: '#F2C811' },
+    'Tableau': { Icon: SiTableau, color: '#E97627' },
+    'Amazon QuickSight': { Icon: SiAmazonwebservices, color: '#4B9CD3' },
+
+    // Frontend
+    'React': { Icon: SiReact, color: '#61DAFB' },
+    'Next.js': { Icon: SiNextdotjs, color: '#000000' },
+    'Nuxt.js': { Icon: SiNuxtdotjs, color: '#00DC82' },
+    'TypeScript': { Icon: SiTypescript, color: '#3178C6' },
+    'JavaScript': { Icon: SiJavascript, color: '#F7DF1E' },
+    'React Native': { Icon: SiReact, color: '#61DAFB' },
+    'Angular': { Icon: SiAngular, color: '#DD0031' },
+    'Bootstrap': { Icon: SiBootstrap, color: '#7952B3' },
+    'Material UI': { Icon: SiMui, color: '#007FFF' },
+    'D3.js': { Icon: SiD3Dotjs, color: '#F9A03C' },
+    'Leaflet.js': { Icon: SiLeaflet, color: '#199900' },
+    'GeoServer': { Icon: SiMapbox, color: '#4264FB' },
+    'PostGIS': { Icon: SiPostgresql, color: '#4169E1' }
   };
 
   return (
@@ -72,40 +163,23 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
           : 'text-gray-800 dark:text-white'
       }`}>
         {category.category}
-        {isPrimary && (
-          <span className="ml-2 text-xs sm:text-sm font-normal text-gray-800 dark:text-white">
-            (Primary)
-          </span>
-        )}
       </h3>
       
       <div className="space-y-3 sm:space-y-4">
         {displayedSkills.map((skill) => (
           <div key={skill.name} className="space-y-2">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-              <span className="font-medium text-sm sm:text-base text-gray-700 dark:text-gray-200">
+              <span className="font-medium text-sm sm:text-base text-gray-700 dark:text-gray-200 inline-flex items-center gap-2">
+                {(() => {
+                  const iconEntry = skillIcons[skill.name];
+                  const IconComponent = iconEntry?.Icon || Code;
+                  const color = iconEntry?.color;
+                  return <IconComponent className="h-4 w-4" style={color ? { color } : undefined} aria-hidden="true" />;
+                })()}
                 {skill.name}
               </span>
-              {skill.level && (
-                <span className={`self-start sm:self-auto px-2 py-1 text-xs rounded-full font-medium ${getLevelBadgeColor(skill.level)} whitespace-nowrap`}>
-                  {skill.level}
-                </span>
-              )}
             </div>
             
-            {skill.level && (
-              <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
-                <div 
-                  className={`h-2 rounded-full transition-all duration-300 ${getLevelColor(skill.level)} ${getLevelWidth(skill.level)}`}
-                ></div>
-              </div>
-            )}
-            
-            {skill.yearsOfExperience && (
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-                {skill.yearsOfExperience} year{skill.yearsOfExperience !== 1 ? 's' : ''} of experience
-              </p>
-            )}
           </div>
         ))}
       </div>

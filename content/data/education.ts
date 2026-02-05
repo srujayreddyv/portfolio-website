@@ -12,14 +12,11 @@ export const education: Education[] = [
     logo: "/logos/csus-logo.png", // Add your CSUS logo file here
     relevantCoursework: [
       "Algorithms and Paradigms",
+      "Distributed Systems",
       "Machine Learning",
       "Database System Design",
-      "Advanced Operating System Principles and Design",
-      "Distributed Systems",
-      "Data Analytics and Mining",
-      "Human-Computer Interface Design",
-      "Research Methodology",
-      "Professional Writing in Computer Science"
+      "Advanced Operating Systems",
+      "Data Analytics and Mining"
     ]
   },
   {
@@ -33,17 +30,14 @@ export const education: Education[] = [
     logo: "/logos/iiith-logo.png", // Add your IIIT-H logo file here
     relevantCoursework: [
       "Data Structures and Algorithms",
-      "Object-Oriented Programming",
-      "Database Management Systems",
-      "Computer Networks",
       "Operating Systems",
+      "Computer Networks",
+      "Database Management Systems",
       "Software Engineering",
-      "Computer Graphics",
       "Artificial Intelligence",
-      "Statistical Methods in AI",
       "Machine Learning",
-      "Natural Language Processing",
-      "Distributed Systems"
+      "Statistical Methods in AI",
+      "Natural Language Processing"
     ]
   }
 ]
