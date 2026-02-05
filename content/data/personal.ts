@@ -5,7 +5,6 @@ export const personalData: PersonalData = {
   title: "Full Stack Software Engineer",
   bio: "Full Stack Software Engineer with 6+ years of experience building production full stack applications, scalable backend APIs, and cloud native systems. Strong in Python with FastAPI, React, and AWS, with deep expertise in system design, interoperability architectures, and high throughput distributed services. Known for modernizing legacy systems, designing reliable data pipelines, and integrating GenAI into production systems, including LLMOps pipelines, RAG architectures, and multi-agent workflows that automate complex operational and compliance processes.",
   email: "srujayreddyv@icloud.com",
-  phone: "+1 (916) 940-5986",
   location: "Sacramento, CA",
   socialLinks: [
     {

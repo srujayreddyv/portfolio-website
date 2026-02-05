@@ -53,6 +53,9 @@ export default function Hero() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black dark:text-white mb-3 sm:mb-4 lg:mb-6 leading-tight">
               {personalData.name}
             </h1>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-semibold">
+              {personalData.title}
+            </p>
           </div>
 
           {/* Introduction */}
@@ -111,7 +114,7 @@ export default function Hero() {
       {/* Image Modal */}
       <ImageModal
         src="/my-profile-pic.png"
-        alt={`${personalData.name} - Professional headshot`}
+        alt={personalData.name}
         isOpen={isImageModalOpen}
         onClose={() => setIsImageModalOpen(false)}
       />
