@@ -23,10 +23,10 @@ export const personalData: PersonalData = {
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
+    "Modernized COBOL, JCL, and Db2 batch systems into Python services, cutting nightly processing time by 60%",
     "Reduced analyst review effort by 85% by building an LLMOps QA platform with AWS Bedrock, LangChain, and FAISS",
-    "Built a production seismic hazard modeling platform with sub-3-second response times",
-    "Automated seismic data pipelines processing 10+ GB/day and cut data retrieval time by 50%",
-    "Fine-tuned multilingual BERT and IndicBERT models to improve accuracy by 8%"
+    "Delivered a production multi-agent GenAI system providing source-cited answers across healthcare and compliance data",
+    "Built a React and TypeScript portal that reduced AI Assessment entry time from 30 to 10 minutes"
   ],
   achievements: [
     "MS in Computer Science from California State University, Sacramento (2025)",

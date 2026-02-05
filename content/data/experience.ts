@@ -12,12 +12,12 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
-      "Reduced analyst review effort by 85% by developing an LLMOps QA pipeline using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
-      "Delivered a production multi-agent GenAI system using React, FastAPI, CrewAI, and Claude, providing source-cited answers across healthcare and compliance data",
       "Increased statewide processing throughput by 30% by designing and deploying 31 REST APIs using HL7 FHIR based data models, enabling interoperability across DDS programs and State Operated Facilities",
       "Achieved 99% uptime for more than 20K daily requests by scaling Dockerized FastAPI services on AWS ECS and Lambda, with Cognito based authentication and EventBridge workflows for DxF ready realtime data exchange",
-      "Built and deployed a React TypeScript portal backed by Express and PostgreSQL on Terraform provisioned AWS, integrated with Azure DevOps CI/CD, cutting AI Initial Assessment entry time from 30 to 10 minutes",
-      "Refactored COBOL, JCL, and Db2 batch jobs into Python services, mapping legacy datasets into FHIR aligned structures and reducing nightly runtimes by 60% while eliminating 200+ manual steps"
+      "Refactored COBOL, JCL, and Db2 batch jobs into Python services, mapping legacy datasets into FHIR aligned structures and reducing nightly runtimes by 60% while eliminating 200+ manual steps",
+      "Reduced analyst review effort by 85% by developing an LLMOps QA pipeline using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
+      "Delivered a production multi-agent GenAI system using React, FastAPI, CrewAI, and Claude, providing source-cited answers across healthcare and compliance data",
+      "Built and deployed a React TypeScript portal backed by Express and PostgreSQL on Terraform provisioned AWS, integrated with Azure DevOps CI/CD, cutting AI Initial Assessment entry time from 30 to 10 minutes"
     ],
     technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "Claude 4.5", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
   },
