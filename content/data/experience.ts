@@ -13,9 +13,9 @@ export const experiences: Experience[] = [
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
       "Reduced analyst review effort by 85% by developing an LLMOps QA pipeline using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
-      "Delivered a GenAI powered multi-agent chatbot using React, FastAPI, CrewAI, and Claude 4.5, enabling realtime, source-cited answers across healthcare and compliance data",
+      "Delivered a production multi-agent GenAI system using React, FastAPI, CrewAI, and Claude, providing source-cited answers across healthcare and compliance data",
       "Increased statewide processing throughput by 30% by designing and deploying 31 REST APIs using HL7 FHIR based data models, enabling interoperability across DDS programs and State Operated Facilities",
-      "Achieved 98% uptime for more than 20K daily requests by scaling Dockerized FastAPI services on AWS ECS and Lambda, with Cognito based authentication and EventBridge workflows for DxF ready realtime data exchange",
+      "Achieved 99% uptime for more than 20K daily requests by scaling Dockerized FastAPI services on AWS ECS and Lambda, with Cognito based authentication and EventBridge workflows for DxF ready realtime data exchange",
       "Built and deployed a React TypeScript portal backed by Express and PostgreSQL on Terraform provisioned AWS, integrated with Azure DevOps CI/CD, cutting AI Initial Assessment entry time from 30 to 10 minutes",
       "Refactored COBOL, JCL, and Db2 batch jobs into Python services, mapping legacy datasets into FHIR aligned structures and reducing nightly runtimes by 60% while eliminating 200+ manual steps"
     ],
@@ -31,12 +31,12 @@ export const experiences: Experience[] = [
     logo: "/logos/doc-logo.png",
     description: "Developed seismic hazard modeling platforms and data processing systems for earthquake monitoring and prediction.",
     achievements: [
-      "Built a production seismic hazard modeling platform using Python, PHP, D3.js, and OpenQuake to deliver ground motion predictions for California fault zones with response times under 3 seconds",
+      "Built a production seismic hazard modeling platform using Python, Perl, PHP, D3.js, and OpenQuake to deliver ground motion predictions for California fault zones with response times under 3 seconds",
       "Automated large scale seismic data pipelines handling 10+ GB/day, streamlining ingestion while cutting data retrieval time by 50% and increasing throughput for detection workflows",
       "Secured 60+ remote monitoring stations by developing a PHP based authentication gateway with AES encryption, AWS IAM roles, and AWS Secrets Manager, passing all audits with zero findings",
       "Improved geospatial service reliability by resolving ArcGIS server issues and enhancing map rendering with GeoServer, Leaflet.js, and custom JavaScript components, reducing downtime incidents"
     ],
-    technologies: ["Python", "PHP", "D3.js", "OpenQuake", "AWS", "AES Encryption", "AWS IAM", "AWS Secrets Manager", "ArcGIS", "GeoServer", "Leaflet.js", "JavaScript"]
+    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "AES Encryption", "AWS IAM", "AWS Secrets Manager", "ArcGIS", "GeoServer", "Leaflet.js", "JavaScript"]
   },
   {
     id: "prc-2023",

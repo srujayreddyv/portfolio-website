@@ -14,6 +14,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "C#", level: "Advanced", yearsOfExperience: 3 },
       { name: "ASP.NET Core", level: "Advanced", yearsOfExperience: 3 },
       { name: "PHP", level: "Intermediate", yearsOfExperience: 2 },
+      { name: "Perl", level: "Intermediate", yearsOfExperience: 1 },
       { name: "Laravel", level: "Intermediate", yearsOfExperience: 2 },
       { name: "REST APIs", level: "Expert", yearsOfExperience: 6 },
       { name: "GraphQL", level: "Advanced", yearsOfExperience: 3 },

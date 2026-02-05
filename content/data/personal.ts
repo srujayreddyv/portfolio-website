@@ -3,8 +3,9 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "Full Stack Software Engineer",
-  bio: "Full Stack Software Engineer with 6+ years of experience building backend APIs, data pipelines, and production applications at scale. Strong in Python with FastAPI, React, and AWS, with deep expertise in system design, distributed architectures, and cloud native services. Known for modernizing legacy platforms, building reliable high throughput systems, and delivering production GenAI solutions including LLM powered workflows that support real users and business critical operations.",
+  bio: "Full Stack Software Engineer with 6+ years of experience building production full stack applications, scalable backend APIs, and cloud native systems. Strong in Python with FastAPI, React, and AWS, with deep expertise in system design, interoperability architectures, and high throughput distributed services. Known for modernizing legacy systems, designing reliable data pipelines, and integrating GenAI into production systems, including LLMOps pipelines, RAG architectures, and multi-agent workflows that automate complex operational and compliance processes.",
   email: "srujayreddyv@icloud.com",
+  phone: "+1 (916) 940-5986",
   location: "Sacramento, CA",
   socialLinks: [
     {
@@ -20,12 +21,12 @@ export const personalData: PersonalData = {
   ],
   resumeUrl: "/SrujayReddyVangoor_Resume.pdf", // Optional - can be removed if no resume available
   careerHighlights: [
-    "Reduced analyst review effort by 85% with LLMOps QA pipeline using AWS Bedrock and LangChain",
-    "Increased statewide processing throughput by 30% by designing 31 REST APIs using HL7 FHIR",
-    "Achieved 98% uptime for 20K+ daily requests with Dockerized FastAPI services on AWS",
-    "Built production seismic hazard modeling platform with sub-3-second response times",
-    "Automated large scale data pipelines handling 10+ GB/day with 50% faster retrieval",
-    "Fine-tuned multilingual BERT models achieving 8% accuracy improvement over baseline"
+    "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
+    "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
+    "Reduced analyst review effort by 85% by building an LLMOps QA platform with AWS Bedrock, LangChain, and FAISS",
+    "Built a production seismic hazard modeling platform with sub-3-second response times",
+    "Automated seismic data pipelines processing 10+ GB/day and cut data retrieval time by 50%",
+    "Fine-tuned multilingual BERT and IndicBERT models to improve accuracy by 8%"
   ],
   achievements: [
     "MS in Computer Science from California State University, Sacramento (2025)",
