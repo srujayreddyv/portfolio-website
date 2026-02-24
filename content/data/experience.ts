@@ -12,12 +12,12 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
-      "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs, enabling cross program interoperability and real time data exchange across State Operated Facilities",
-      "Scaled FastAPI services handling 20K plus daily requests on AWS ECS and Lambda, implementing Cognito based authentication and EventBridge driven workflows to achieve 99% uptime for mission critical healthcare integrations",
-      "Modernized legacy COBOL, JCL, and Db2 batch systems into Python based services, mapping historical datasets to FHIR aligned models, cutting nightly processing time by 60% and eliminating more than 200 manual operational steps",
-      "Reduced analyst review effort by 85% by designing an LLMOps QA platform using AWS Bedrock, LangChain, FAISS, and Titan embeddings to automate claims policy review, utilization summaries, and regulatory document search",
-      "Delivered a production multi agent GenAI system using FastAPI, React, CrewAI, and Claude, providing source grounded answers across healthcare and compliance data for internal users",
-      "Built and deployed a React and TypeScript portal with Express and PostgreSQL on Terraform provisioned AWS infrastructure, reducing AI Assessment entry time from 30 to 10 min through automation and UX optimization"
+      "Built full stack applications serving internal and external users using FastAPI, Express, React, and NextJS on Aurora PostgreSQL, implementing RBAC, Azure AD SSO, and Azure DevOps CI/CD deployments to AWS ECS.",
+      "Scaled FastAPI microservices handling 20K+ daily requests on ECS and Lambda, implementing Cognito based authentication and EventBridge driven workflows to maintain 99% uptime for mission critical healthcare integrations.",
+      "Modernized legacy COBOL, JCL, and Db2 batch systems into Python based event driven services aligned with FHIR models, reducing nightly processing time by 60% and eliminating 200+ manual operational steps.",
+      "Built and deployed a React and TypeScript portal on Terraform provisioned AWS infrastructure, reducing AI Assessment entry time from 30 to 10 min through automation and UX optimization.",
+      "Reduced analyst effort by 85% by engineering a production LLM powered QA platform using Bedrock with document ingestion, semantic retrieval, and grounded query answering for claims and regulatory review workflows.",
+      "Developed a multi agent GenAI chatbot using FastAPI, NextJS, Bedrock, and CrewAI across four knowledge bases, implementing routing logic and delivering source grounded responses for healthcare and compliance use cases."
     ],
     technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "Claude", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
   },
@@ -33,7 +33,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Built a production seismic hazard modeling platform using Python, Perl, PHP, D3.js, and OpenQuake to deliver ground motion predictions for California fault zones with response times under 3 seconds",
       "Designed and automated large scale seismic data pipelines processing 10+ GB per day, improving ingestion efficiency and reducing data retrieval time by 50% to support high throughput detection workflows",
-      "Strengthened system security for 60+ remote monitoring stations by developing an authentication gateway with AES encryption, AWS IAM roles, and AWS Secrets Manager, passing all compliance audits with zero findings",
+      "Strengthened security for 60+ remote monitoring stations by implementing secured API Gateway endpoints with IAM based access control and Secrets Manager driven credential management, passing compliance audits with zero findings.",
       "Improved reliability of geospatial services by resolving ArcGIS server performance issues and enhancing map rendering with GeoServer and Leaflet.js, reducing downtime and improving system stability"
     ],
     technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "AES Encryption", "AWS IAM", "AWS Secrets Manager", "ArcGIS", "GeoServer", "Leaflet.js", "JavaScript"]

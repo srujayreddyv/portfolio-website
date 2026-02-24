@@ -68,6 +68,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Redis", level: "Advanced", yearsOfExperience: 3 },
       { name: "Apache Kafka", level: "Advanced", yearsOfExperience: 3 },
       { name: "Snowflake", level: "Intermediate", yearsOfExperience: 2 },
+      { name: "Amazon Redshift", level: "Intermediate", yearsOfExperience: 2 },
       { name: "Power BI", level: "Advanced", yearsOfExperience: 3 },
       { name: "Apache Airflow", level: "Advanced", yearsOfExperience: 3 },
       { name: "Apache Spark", level: "Intermediate", yearsOfExperience: 2 },

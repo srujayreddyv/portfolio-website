@@ -3,7 +3,7 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "Full Stack Software Engineer",
-  bio: "Full Stack Software Engineer with 6+ years of experience building production full stack applications, scalable backend APIs, and cloud native systems. Strong in Python with FastAPI, React, and AWS, with deep expertise in system design, interoperability architectures, and high throughput distributed services. Known for modernizing legacy systems, designing reliable data pipelines, and integrating GenAI into production systems, including LLMOps pipelines, RAG architectures, and multi-agent workflows that automate complex operational and compliance processes.",
+  bio: "Full Stack Software Engineer with 6+ years of experience building scalable web applications and cloud native backend systems. Strong in Python, FastAPI, React, and AWS, with expertise in system design, interoperability, and resilient distributed architectures. Known for modernizing legacy systems, designing high throughput distributed services, and delivering production GenAI systems including RAG pipelines and multi agent workflows that automate compliance and operational processes.",
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA · Open to Remote",
   socialLinks: [
@@ -18,7 +18,7 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayReddyVangoor_Resume.pdf", // Optional - can be removed if no resume available
+  resumeUrl: "/SrujayReddyVangoor_Resume26.pdf", // Optional - can be removed if no resume available
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
