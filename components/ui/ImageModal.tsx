@@ -2,16 +2,29 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 interface ImageModalProps {
   src: string;
   alt: string;
   isOpen: boolean;
   onClose: () => void;
+  onPrevious?: () => void;
+  onNext?: () => void;
+  hasPrevious?: boolean;
+  hasNext?: boolean;
 }
 
-export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProps) {
+export default function ImageModal({
+  src,
+  alt,
+  isOpen,
+  onClose,
+  onPrevious,
+  onNext,
+  hasPrevious = false,
+  hasNext = false
+}: ImageModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -20,6 +33,14 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+        return;
+      }
+      if (e.key === 'ArrowLeft' && onPrevious && hasPrevious) {
+        onPrevious();
+        return;
+      }
+      if (e.key === 'ArrowRight' && onNext && hasNext) {
+        onNext();
         return;
       }
       if (e.key !== 'Tab') return;
@@ -70,7 +91,7 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
       document.body.style.overflow = 'unset';
       previousFocusRef.current?.focus();
     };
-  }, [isOpen, onClose]);
+  }, [hasNext, hasPrevious, isOpen, onClose, onNext, onPrevious]);
 
   if (!isOpen) return null;
 
@@ -102,6 +123,30 @@ export default function ImageModal({ src, alt, isOpen, onClose }: ImageModalProp
           className="relative bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
+          {onPrevious && hasPrevious && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrevious();
+              }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white hover:bg-black/80 rounded-full p-2 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={22} />
+            </button>
+          )}
+          {onNext && hasNext && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onNext();
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white hover:bg-black/80 rounded-full p-2 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Next image"
+            >
+              <ChevronRight size={22} />
+            </button>
+          )}
           <Image
             src={src}
             alt={alt}

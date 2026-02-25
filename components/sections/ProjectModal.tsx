@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/types';
 import { X, ExternalLink, Github } from 'lucide-react';
+import ImageModal from '@/components/ui/ImageModal';
 
 interface ProjectModalProps {
   project: Project;
@@ -12,6 +13,8 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
   const {
     title,
     longDescription,
@@ -30,6 +33,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     solutions,
     results
   } = project;
+  const allImages = useMemo(() => [imageUrl, ...(images || [])], [imageUrl, images]);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -135,7 +139,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Content */}
         <div className="p-4 sm:p-6">
           {/* Project Image */}
-          <div className="relative h-48 sm:h-64 md:h-80 w-full mb-4 sm:mb-6 rounded-lg overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setSelectedImageIndex(0)}
+            className="relative h-48 sm:h-64 md:h-80 w-full mb-4 sm:mb-6 rounded-lg overflow-hidden cursor-zoom-in block"
+            aria-label={`Expand ${title} preview image`}
+          >
             <Image
               src={imageUrl}
               alt={`${title} preview`}
@@ -143,7 +152,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 80vw"
             />
-          </div>
+          </button>
 
           {/* Proof badges */}
           {proofBadges && proofBadges.length > 0 && (
@@ -326,7 +335,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {images.map((image, index) => (
-                  <div key={index} className="relative h-32 sm:h-48 rounded-lg overflow-hidden">
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => setSelectedImageIndex(index + 1)}
+                    className="relative h-32 sm:h-48 rounded-lg overflow-hidden cursor-zoom-in block w-full"
+                    aria-label={`Expand ${title} screenshot ${index + 1}`}
+                  >
                     <Image
                       src={image}
                       alt={`${title} screenshot ${index + 1}`}
@@ -334,13 +349,34 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
           )}
         </div>
       </div>
+
+      <ImageModal
+        src={selectedImageIndex !== null ? allImages[selectedImageIndex] : imageUrl}
+        alt={
+          selectedImageIndex === null || selectedImageIndex === 0
+            ? `${title} preview`
+            : `${title} screenshot ${selectedImageIndex}`
+        }
+        isOpen={selectedImageIndex !== null}
+        onClose={() => setSelectedImageIndex(null)}
+        hasPrevious={selectedImageIndex !== null && selectedImageIndex > 0}
+        hasNext={selectedImageIndex !== null && selectedImageIndex < allImages.length - 1}
+        onPrevious={() =>
+          setSelectedImageIndex((prev) => (prev !== null ? Math.max(0, prev - 1) : prev))
+        }
+        onNext={() =>
+          setSelectedImageIndex((prev) =>
+            prev !== null ? Math.min(allImages.length - 1, prev + 1) : prev
+          )
+        }
+      />
     </div>
   );
 }
