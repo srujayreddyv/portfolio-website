@@ -6,9 +6,24 @@ technologies: ["Python", "FastAPI", "Streamlit", "FAISS", "sentence-transformers
 category: "AI/ML"
 featured: true
 completedDate: "2026-03-04"
-liveUrl: ""
+liveUrl: "https://ca-dmv-rag-system.streamlit.app/"
+apiDocsUrl: "https://ca-dmv-rag-system.onrender.com/docs"
 githubUrl: "https://github.com/srujayreddyv/ca-dmv-rag-system"
-imageUrl: "/next.svg"
+imageUrl: "/projects/ca-dmv-rag/architecture-dark.svg"
+proofBadges: ["Deployed", "CI/CD", "Tested", "Observability", "RAG"]
+architecture: "Built as a retrieval-augmented QA system with FastAPI services, FAISS vector search, sentence-transformers embeddings, and a Streamlit interface for streaming responses with citations and filtering."
+productionReadiness: "Deployed with Docker on Render, with lockfile-based builds, structured API error handling, request IDs, rate limiting, and automated GitHub Actions CI checks."
+validationChecks: "Covered API, ingestion, retrieval, reranking, and evaluation paths with PyTest to keep regressions controlled while iterating on chunking and ranking behavior."
+images:
+  - "/projects/ca-dmv-rag/architecture-light.svg"
+  - "/projects/ca-dmv-rag/architecture-dark.svg"
+  - "/projects/ca-dmv-rag/1Homepage-Light.png"
+  - "/projects/ca-dmv-rag/1Homepage-Dark.png"
+  - "/projects/ca-dmv-rag/2Example-Light.png"
+  - "/projects/ca-dmv-rag/2Example-Dark.png"
+  - "/projects/ca-dmv-rag/3Example-Light.png"
+  - "/projects/ca-dmv-rag/3Example-Dark.png"
+  - "/projects/ca-dmv-rag/4FastApi-Backend.png"
 ---
 
 - Built and deployed a production-oriented RAG pipeline (Python, FastAPI, Streamlit, FAISS, sentence-transformers) over the California DMV handbook, with streaming Q&A, source citations, confidence gating, reranking, and multi-document filtering.
