@@ -20,7 +20,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     imageUrl,
     images,
     liveUrl,
+    apiDocsUrl,
     githubUrl,
+    proofBadges,
+    architecture,
+    productionReadiness,
+    validationChecks,
     challenges,
     solutions,
     results
@@ -140,6 +145,25 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             />
           </div>
 
+          {/* Proof badges */}
+          {proofBadges && proofBadges.length > 0 && (
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                Production Readiness
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {proofBadges.map((badge, index) => (
+                  <span
+                    key={index}
+                    className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Project Info */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
             <div className="lg:col-span-2 space-y-4 sm:space-y-6">
@@ -193,6 +217,42 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </p>
                 </div>
               )}
+
+              {/* Architecture */}
+              {architecture && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Architecture
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {architecture}
+                  </p>
+                </div>
+              )}
+
+              {/* Production Readiness */}
+              {productionReadiness && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Production Readiness
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {productionReadiness}
+                  </p>
+                </div>
+              )}
+
+              {/* Validation */}
+              {validationChecks && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                    Validation
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {validationChecks}
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}
@@ -240,6 +300,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     >
                       <Github size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
                       <span>View Source Code</span>
+                    </Link>
+                  )}
+                  {apiDocsUrl && (
+                    <Link
+                      href={apiDocsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
+                    >
+                      <ExternalLink size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
+                      <span>View Backend API Docs</span>
                     </Link>
                   )}
                 </div>

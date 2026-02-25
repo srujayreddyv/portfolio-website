@@ -30,9 +30,14 @@ export interface Project {
   imageUrl: string;
   images?: string[];
   liveUrl?: string;
+  apiDocsUrl?: string;
   githubUrl?: string;
   featured: boolean;
   completedDate: string;
+  proofBadges?: string[];
+  architecture?: string;
+  productionReadiness?: string;
+  validationChecks?: string;
   challenges?: string;
   solutions?: string;
   results?: string;

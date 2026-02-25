@@ -1,0 +1,99 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg16" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FAFF"/>
+      <stop offset="1" stop-color="#EEF3FF"/>
+    </linearGradient>
+    <marker id="aB" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L10 6L0 12V0Z" fill="#3B74E6"/></marker>
+    <marker id="aG" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L10 6L0 12V0Z" fill="#2FA862"/></marker>
+    <marker id="aP" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0 0L10 6L0 12V0Z" fill="#8E54E8"/></marker>
+    <style>
+      .h1 { font: 700 44px Inter, Segoe UI, Arial, sans-serif; fill: #1D2E4D; }
+      .h2 { font: 500 19px Inter, Segoe UI, Arial, sans-serif; fill: #486089; }
+      .zone { font: 700 24px Inter, Segoe UI, Arial, sans-serif; fill: #22365B; }
+      .n1 { font: 700 19px Inter, Segoe UI, Arial, sans-serif; fill: #FFFFFF; }
+      .n2 { font: 500 15px Inter, Segoe UI, Arial, sans-serif; fill: #F2F7FF; }
+      .lbl { font: 600 14px Inter, Segoe UI, Arial, sans-serif; fill: #3A537D; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" rx="24" fill="url(#bg16)"/>
+  <text x="60" y="72" class="h1">Buddhira Architecture (16:9)</text>
+  <text x="60" y="104" class="h2">Next.js frontend, FastAPI backend, Supabase auth/data, CI release gates</text>
+
+  <!-- Zones -->
+  <rect x="50" y="140" width="560" height="880" rx="20" fill="#DCEBFF" stroke="#B6D0FF" stroke-width="2.5"/>
+  <text x="76" y="186" class="zone">Frontend</text>
+  <rect x="640" y="140" width="610" height="880" rx="20" fill="#DCF5E6" stroke="#AEE2C3" stroke-width="2.5"/>
+  <text x="666" y="186" class="zone">Backend</text>
+  <rect x="1280" y="140" width="590" height="880" rx="20" fill="#EADFFF" stroke="#CAB0FF" stroke-width="2.5"/>
+  <text x="1306" y="186" class="zone">Supabase + CI</text>
+
+  <!-- FE -->
+  <rect x="80" y="220" width="220" height="84" rx="14" fill="#5E738E"/>
+  <text x="102" y="257" class="n1">User Browser</text>
+  <text x="102" y="283" class="n2">Desktop & mobile</text>
+
+  <rect x="80" y="340" width="500" height="140" rx="16" fill="#447FEA"/>
+  <text x="104" y="382" class="n1">Next.js App Router UI</text>
+  <text x="104" y="410" class="n2">Inbox/new/item/tags/auth pages</text>
+  <text x="104" y="436" class="n2">Mobile filters, FAB, skeletons, a11y</text>
+
+  <rect x="80" y="510" width="500" height="128" rx="16" fill="#447FEA"/>
+  <text x="104" y="550" class="n1">apiFetch Layer</text>
+  <text x="104" y="578" class="n2">Bearer token, retry, 401 redirect</text>
+  <text x="104" y="604" class="n2">Typed request/response contracts</text>
+
+  <rect x="80" y="670" width="500" height="140" rx="16" fill="#447FEA"/>
+  <text x="104" y="712" class="n1">Supabase Auth Client</text>
+  <text x="104" y="740" class="n2">signUp/signIn/reset/callback exchange</text>
+  <text x="104" y="766" class="n2">Session lifecycle in client</text>
+
+  <!-- BE -->
+  <rect x="670" y="230" width="550" height="120" rx="16" fill="#35B66A"/>
+  <text x="694" y="270" class="n1">Middleware</text>
+  <text x="694" y="298" class="n2">CORS, logging, rate limit, health exemptions</text>
+
+  <rect x="670" y="380" width="550" height="120" rx="16" fill="#35B66A"/>
+  <text x="694" y="420" class="n1">JWT Verify (JWKS / ES256)</text>
+  <text x="694" y="448" class="n2">Extract current user from bearer token</text>
+
+  <rect x="670" y="530" width="550" height="170" rx="16" fill="#35B66A"/>
+  <text x="694" y="570" class="n1">Routes + Business Rules</text>
+  <text x="694" y="598" class="n2">/api/items, /api/tags, /api/items/{id}/tags, /me, /health</text>
+  <text x="694" y="624" class="n2">Search/filter/tag/state + pin/archive behavior</text>
+  <text x="694" y="650" class="n2">Strict user_id scoping</text>
+
+  <rect x="670" y="730" width="550" height="96" rx="16" fill="#35B66A"/>
+  <text x="694" y="770" class="n1">Error Contract</text>
+  <text x="694" y="798" class="n2">{ detail, code }</text>
+
+  <!-- SB -->
+  <rect x="1310" y="240" width="530" height="140" rx="16" fill="#9559F0"/>
+  <text x="1334" y="282" class="n1">Supabase Auth</text>
+  <text x="1334" y="310" class="n2">JWT issuing, recovery flow, JWKS endpoint</text>
+  <text x="1334" y="336" class="n2">Token/session management</text>
+
+  <rect x="1310" y="420" width="530" height="190" rx="16" fill="#E97652"/>
+  <text x="1334" y="462" class="n1">Postgres + RLS</text>
+  <text x="1334" y="490" class="n2">items / tags / item_tags tables + indexes</text>
+  <text x="1334" y="516" class="n2">Owner policies, backend service-role access</text>
+  <text x="1334" y="542" class="n2">No direct frontend data access</text>
+
+  <rect x="1310" y="650" width="530" height="140" rx="16" fill="#9559F0"/>
+  <text x="1334" y="692" class="n1">GitHub Actions CI</text>
+  <text x="1334" y="720" class="n2">Frontend lint + build + backend smoke</text>
+  <text x="1334" y="746" class="n2">Smoke skipped on fork PRs</text>
+
+  <!-- Arrows -->
+  <path d="M300 262 C370 262, 370 360, 430 360" stroke="#3B74E6" stroke-width="3.5" marker-end="url(#aB)"/>
+  <text x="340" y="315" class="lbl">UI actions</text>
+  <path d="M580 572 C640 572, 640 290, 670 290" stroke="#2FA862" stroke-width="3.5" marker-end="url(#aG)"/>
+  <text x="600" y="540" class="lbl">API requests</text>
+  <path d="M580 736 C700 736, 900 736, 1310 300" stroke="#8E54E8" stroke-width="3.5" marker-end="url(#aP)"/>
+  <text x="785" y="706" class="lbl">Auth SDK ops</text>
+  <path d="M1220 590 C1270 590, 1270 515, 1310 515" stroke="#2FA862" stroke-width="3.5" marker-end="url(#aG)"/>
+  <text x="1234" y="555" class="lbl">CRUD/query</text>
+  <path d="M1220 438 C1275 438, 1275 330, 1310 330" stroke="#8E54E8" stroke-width="3.5" marker-end="url(#aP)"/>
+  <text x="1234" y="398" class="lbl">JWKS trust</text>
+</svg>
