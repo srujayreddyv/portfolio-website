@@ -33,7 +33,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     solutions,
     results
   } = project;
-  const allImages = useMemo(() => [imageUrl, ...(images || [])], [imageUrl, images]);
+  const allImages = useMemo(
+    () => Array.from(new Set([imageUrl, ...(images || [])])),
+    [imageUrl, images]
+  );
+  const additionalImages = useMemo(() => allImages.slice(1), [allImages]);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -328,13 +332,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Additional Images */}
-          {images && images.length > 0 && (
+          {additionalImages.length > 0 && (
             <div>
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 Additional Screenshots
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {images.map((image, index) => (
+                {additionalImages.map((image, index) => (
                   <button
                     key={index}
                     type="button"
