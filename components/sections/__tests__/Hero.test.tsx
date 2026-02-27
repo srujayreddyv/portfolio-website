@@ -34,11 +34,20 @@ describe('Hero Component', () => {
     // Check for name display
     expect(screen.getByText(personalData.name)).toBeInTheDocument();
     
-    // Check for subtitle and intro bullets
-    expect(screen.getByText(/full stack software engineer building cloud and genai systems/i)).toBeInTheDocument();
-    expect(screen.getByText(/i build full stack applications and scalable backend apis\./i)).toBeInTheDocument();
-    expect(screen.getByText(/i design cloud native systems and high throughput distributed services on aws\./i)).toBeInTheDocument();
-    expect(screen.getByText(/i integrate genai into real workflows using rag, llmops, and multi agent systems\./i)).toBeInTheDocument();
+    // Check for subtitle and intro content
+    expect(screen.getByText(/^ai software engineer$/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/6\+ years building scalable backend systems, full stack applications, and production genai platforms\./i)
+    ).toBeInTheDocument();
+    ['Python', 'FastAPI', 'TypeScript', 'React', 'AWS', 'Bedrock', 'CrewAI', 'LangChain'].forEach((skill) => {
+      expect(screen.getByText(skill)).toBeInTheDocument();
+    });
+    expect(
+      screen.getByText(/i build end to end systems across full stack applications and distributed backend infrastructure on aws\./i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/i bring genai into reliable production workflows using grounded retrieval, guardrails, structured evaluation, and agent orchestration\./i)
+    ).toBeInTheDocument();
   });
   
   test('renders call-to-action buttons', () => {
@@ -120,11 +129,11 @@ describe('Hero Component', () => {
     const mainHeading = screen.getByRole('heading', { level: 1 });
     expect(mainHeading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl', 'lg:text-6xl', 'xl:text-7xl');
     
-    const subtitleText = screen.getByText(/full stack software engineer building cloud and genai systems/i);
+    const subtitleText = screen.getByText(/^ai software engineer$/i);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
-    
-    const bulletList = screen.getByRole('list');
-    expect(bulletList).toHaveClass('text-[clamp(0.95rem,1.55vw,1.5rem)]');
+
+    const introParagraph = screen.getByText(/i build end to end systems across full stack applications and distributed backend infrastructure on aws\./i);
+    expect(introParagraph).toBeInTheDocument();
   });
   
   test.skip('has proper accessibility attributes', () => {

@@ -188,10 +188,10 @@ describe('Footer Component', () => {
       expect(copyrightText).toBeInTheDocument();
     });
 
-    test('displays technology stack information', () => {
+    test('does not display technology stack information', () => {
       render(<Footer />);
-      
-      expect(screen.getByText('Built with Next.js and Tailwind CSS')).toBeInTheDocument();
+
+      expect(screen.queryByText('Built with Next.js and Tailwind CSS')).not.toBeInTheDocument();
     });
   });
 
@@ -203,11 +203,11 @@ describe('Footer Component', () => {
       expect(footerContent).toHaveClass('grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-6', 'sm:gap-8', 'lg:gap-12');
     });
 
-    test('copyright section has responsive flex layout', () => {
+    test('copyright section has centered layout', () => {
       render(<Footer />);
       
       const copyrightSection = screen.getByText(/© \d{4} John Doe/).closest('.flex');
-      expect(copyrightSection).toHaveClass('flex', 'flex-col', 'sm:flex-row', 'justify-between', 'items-center');
+      expect(copyrightSection).toHaveClass('flex', 'justify-center', 'sm:justify-start', 'items-center');
     });
   });
 

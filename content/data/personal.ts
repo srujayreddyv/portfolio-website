@@ -18,7 +18,7 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayReddyVangoor_Resume26.pdf", // Optional - can be removed if no resume available
+  resumeUrl: "/SrujayReddyVangoor_Resume2026.pdf", // Optional - can be removed if no resume available
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { experiences } from '@/content/data/experience';
-import { Calendar, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, MapPin, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
 const Experience: React.FC = () => {
@@ -27,10 +27,7 @@ const Experience: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4 sm:mb-6">
               Work Experience
             </h2>
-            <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Building and scaling production systems across cloud infrastructure, data platforms, and AI-driven workflows.
-            </p>
+            <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto"></div>
           </div>
 
           {/* Experience timeline */}
@@ -48,11 +45,17 @@ const Experience: React.FC = () => {
                     <div className="absolute left-2 sm:left-6 w-4 h-4 bg-black dark:bg-white rounded-full border-4 border-white dark:border-black shadow-lg hidden md:block"></div>
 
                     {/* Experience card */}
-                    <div className="md:ml-16 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    <div
+                      className={`md:ml-16 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300 overflow-hidden ${
+                        exp.id === 'dds-2025'
+                          ? 'border-2 border-gray-300 dark:border-gray-600 shadow-lg hover:shadow-xl'
+                          : 'border border-gray-200 dark:border-gray-700 hover:shadow-lg'
+                      }`}
+                    >
                       {/* Compact Header - Always Visible */}
                       <button
                         type="button"
-                        className="w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                        className="w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/80 transition-colors duration-200"
                         onClick={() => toggleCard(exp.id)}
                         aria-expanded={isExpanded}
                         aria-controls={`experience-panel-${exp.id}`}
@@ -92,7 +95,7 @@ const Experience: React.FC = () => {
                               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium break-words">
                                 {exp.company}
                               </p>
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500/75 dark:text-gray-400/75 mt-1">
                                 <Calendar className="w-4 h-4" />
                                 <span className="break-words">
                                   {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
@@ -108,11 +111,11 @@ const Experience: React.FC = () => {
 
                           {/* Expand/Collapse Button */}
                           <div className="flex-shrink-0 ml-4">
-                            {isExpanded ? (
-                              <ChevronUp className="w-5 h-5 text-gray-400" />
-                            ) : (
-                              <ChevronDown className="w-5 h-5 text-gray-400" />
-                            )}
+                            <ChevronDown
+                              className={`w-6 h-6 p-1 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 transition-all duration-200 ${
+                                isExpanded ? 'rotate-180' : 'rotate-0'
+                              }`}
+                            />
                           </div>
                         </div>
                       </button>
@@ -128,13 +131,6 @@ const Experience: React.FC = () => {
                             <div className="flex items-center text-sm sm:text-base text-gray-600 dark:text-gray-300">
                               <MapPin className="w-4 h-4 mr-2" />
                               <span>{exp.location}</span>
-                            </div>
-
-                            {/* Description */}
-                            <div>
-                              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                {exp.description}
-                              </p>
                             </div>
 
                             {/* Key Achievements */}

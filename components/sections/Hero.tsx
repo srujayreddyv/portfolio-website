@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from 'react';
 import {
   SiPython,
   SiFastapi,
+  SiTypescript,
   SiReact,
   SiAmazonwebservices,
-  SiPostgresql,
-  SiDocker,
-  SiTerraform,
-  SiLangchain
+  SiLangchain,
+  SiGithub,
+  SiLinkedin
 } from 'react-icons/si';
-import { Briefcase } from 'lucide-react';
+import { Bot, Briefcase } from 'lucide-react';
 import { personalData } from '@/content/data/personal';
 import ImageModal from '@/components/ui/ImageModal';
 
@@ -60,7 +60,7 @@ export default function Hero() {
                 src="/my-profile-pic.png"
                 alt={`${personalData.name} - Professional headshot`}
                 fill
-                className="rounded-full object-cover shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                className="rounded-full object-cover shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:scale-105"
                 priority
                 sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
               />
@@ -92,88 +92,97 @@ export default function Hero() {
               {personalData.name}
             </h1>
             <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-gray-600 dark:text-gray-300 font-semibold md:whitespace-nowrap">
-              Full Stack Software Engineer building Cloud and GenAI Systems
+              AI Software Engineer
             </p>
             <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              6+ Years Experience • Backend, Cloud, and GenAI Systems
+              6+ years building scalable backend systems, full stack applications, and production GenAI platforms.
             </p>
           </div>
 
           {/* Introduction */}
           <div className="mb-9 sm:mb-11 lg:mb-14">
-            <div className="flex flex-wrap justify-center gap-2 mb-12 sm:mb-14">
+            <div className="flex flex-wrap justify-center gap-2 mb-16 sm:mb-20">
               {[
                 { name: 'Python', Icon: SiPython, color: '#3776AB' },
                 { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
-                { name: 'React', Icon: SiReact, color: '#61DAFB' },
                 { name: 'AWS', Icon: SiAmazonwebservices, color: '#FF9900' },
-                { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
-                { name: 'Docker', Icon: SiDocker, color: '#2496ED' },
-                { name: 'Terraform', Icon: SiTerraform, color: '#7B42BC' },
+                { name: 'Bedrock', Icon: SiAmazonwebservices, color: '#FF9900' },
+                { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
+                { name: 'React', Icon: SiReact, color: '#61DAFB' },
                 { name: 'LangChain', Icon: SiLangchain, color: '#2B7A78' }
               ].map(({ name, Icon, color }) => (
                 <span
                   key={name}
-                  className="inline-flex items-center gap-2 px-3 py-1 text-xs sm:text-sm rounded-full border border-gray-300/65 dark:border-gray-700/55 text-gray-700/90 dark:text-gray-300/90 bg-gray-100/50 dark:bg-gray-900/30 transition-all duration-150 hover:scale-[1.05] hover:shadow-[0_0_10px_rgba(255,255,255,0.12)] dark:hover:shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+                  className="inline-flex items-center gap-2 px-3 py-1 text-xs sm:text-sm rounded-full border border-gray-300/80 dark:border-gray-600/80 text-gray-800 dark:text-gray-200 bg-gray-100/70 dark:bg-gray-800/55 transition-all duration-150 hover:scale-[1.03] hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]"
                 >
                   <Icon className="h-4 w-4" style={{ color }} aria-hidden="true" />
                   <span>{name}</span>
                 </span>
               ))}
+              <span className="inline-flex items-center gap-2 px-3 py-1 text-xs sm:text-sm rounded-full border border-gray-300/80 dark:border-gray-600/80 text-gray-800 dark:text-gray-200 bg-gray-100/70 dark:bg-gray-800/55 transition-all duration-150 hover:scale-[1.03] hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]">
+                <Bot className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                <span>CrewAI</span>
+              </span>
             </div>
-            <ul className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[700px] mx-auto leading-snug px-4 sm:px-6 space-y-1.5 sm:space-y-2.5 list-disc list-inside">
-              <li className="md:whitespace-nowrap">I build full stack applications and scalable backend APIs.</li>
-              <li className="md:whitespace-nowrap">I design cloud native systems and high throughput distributed services on AWS.</li>
-              <li className="md:whitespace-nowrap">I integrate GenAI into real workflows using RAG, LLMOps, and multi agent systems.</li>
-            </ul>
+            <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
+              <p>I build end to end systems across full stack applications and distributed backend infrastructure on AWS.</p>
+              <p>I bring GenAI into reliable production workflows using grounded retrieval, guardrails, structured evaluation, and agent orchestration.</p>
+            </div>
           </div>
 
           {/* Call-to-action buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center items-center mb-8 sm:mb-10 lg:mb-12">
+            <a
+              href="#projects"
+              className="w-full sm:w-auto bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600 text-white dark:text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-150 shadow-lg hover:shadow-xl hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)] transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
+            >
+              View My Work
+            </a>
             {personalData.resumeUrl && (
               <a
                 href={personalData.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600 text-white dark:text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-150 shadow-lg hover:shadow-xl hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)] transform hover:scale-[1.03] text-center min-h-[48px] flex items-center justify-center"
+                className="w-full sm:w-auto border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-150 transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
               >
                 Download Resume
               </a>
             )}
             <a
-              href="#projects"
-              className="w-full sm:w-auto border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-150 transform hover:scale-[1.03] text-center min-h-[48px] flex items-center justify-center"
-            >
-              View My Work
-            </a>
-            <a
               href="#contact"
-              className="w-full sm:w-auto text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-150 underline transform hover:scale-[1.03] text-center min-h-[48px] flex items-center justify-center"
+              className="w-full sm:w-auto text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-150 underline transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
             >
               Get In Touch
             </a>
           </div>
 
           {/* Social links */}
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8">
-            {personalData.socialLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                aria-label={`Visit ${link.platform} profile`}
-              >
-                <span className="sr-only">{link.platform}</span>
-                {/* Simple text representation for now - can be replaced with icons later */}
-                <span className="text-sm sm:text-base font-medium">{link.platform}</span>
-              </a>
+          <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+            {personalData.socialLinks.map((link, index) => (
+              <div key={link.platform} className="flex items-center gap-2">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 font-medium transition-colors duration-200"
+                  aria-label={`Visit ${link.platform} profile`}
+                >
+                  {link.platform === 'GitHub' ? (
+                    <SiGithub className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <SiLinkedin className="h-4 w-4" aria-hidden="true" />
+                  )}
+                  {link.platform}
+                </a>
+                {index < personalData.socialLinks.length - 1 && (
+                  <span className="text-gray-400 dark:text-gray-500" aria-hidden="true">·</span>
+                )}
+              </div>
             ))}
           </div>
           <p className="mt-6 text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium inline-flex items-center gap-2">
             <Briefcase className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
-            Open to Full Stack &amp; GenAI Engineering Roles
+            Open to AI Software Engineering Roles
           </p>
         </div>
       </div>

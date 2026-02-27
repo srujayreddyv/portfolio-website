@@ -1,8 +1,23 @@
+'use client';
+
+import { useState } from 'react';
 import { Mail, MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { personalData } from '@/content/data/personal';
 
 export default function Contact() {
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied'>('idle');
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalData.email);
+      setCopyStatus('copied');
+      setTimeout(() => setCopyStatus('idle'), 2000);
+    } catch {
+      setCopyStatus('idle');
+    }
+  };
+
   const getIconForPlatform = (platform: string) => {
     switch (platform.toLowerCase()) {
       case 'github':
@@ -25,11 +40,14 @@ export default function Contact() {
             </h2>
             <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Open to engineering roles, system design discussions, and AI driven platform work. If you&apos;re building serious systems or hiring for impactful teams, let&apos;s talk.
+              Interested in building production AI systems, backend platforms, or discussing system design challenges. If you&apos;re hiring or collaborating on meaningful engineering work, let&apos;s connect.
+            </p>
+            <p className="mt-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+              Currently building production GenAI systems on AWS infrastructure.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-8 sm:gap-12 lg:gap-16">
             {/* Contact Information */}
             <div className="space-y-6 sm:space-y-8 lg:space-y-10">
               <div>
@@ -39,18 +57,28 @@ export default function Contact() {
                 
                 <div className="space-y-4 sm:space-y-6">
                   {/* Email */}
-                  <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex items-start space-x-3 sm:space-x-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg p-4 sm:p-5">
                     <div className="flex-shrink-0 mt-1">
                       <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-black dark:text-white" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Email</p>
-                      <a 
-                        href={`mailto:${personalData.email}`}
-                        className="text-sm sm:text-base lg:text-lg text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
-                      >
-                        {personalData.email}
-                      </a>
+                      <div className="flex items-center gap-3">
+                        <a
+                          href={`mailto:${personalData.email}`}
+                          className="text-sm sm:text-base lg:text-lg font-semibold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
+                        >
+                          {personalData.email}
+                        </a>
+                        <button
+                          type="button"
+                          onClick={handleCopyEmail}
+                          className="text-xs sm:text-sm px-2.5 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-colors"
+                          aria-label="Copy email address"
+                        >
+                          {copyStatus === 'copied' ? 'Copied' : 'Copy'}
+                        </button>
+                      </div>
                     </div>
                   </div>
 
@@ -101,15 +129,15 @@ export default function Contact() {
                   Response Time
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  I typically respond within 24–48 hours. For urgent matters, include URGENT in the subject line.
+                  Typically respond within 24 to 48 hours. For urgent matters, include URGENT in the subject line.
                 </p>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 sm:p-8 lg:p-10 rounded-lg shadow-sm border border-gray-300 dark:border-gray-600">
+            <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white p-6 sm:p-8 lg:p-10 rounded-lg border border-gray-200 dark:border-gray-700">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white mb-4 sm:mb-6">
-                Send Me a Message
+                Send a Message (Optional)
               </h3>
               <ContactForm />
             </div>

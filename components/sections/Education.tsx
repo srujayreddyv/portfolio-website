@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { education } from '@/content/data/education';
-import { Calendar, MapPin, GraduationCap, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, GraduationCap, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 
 const Education: React.FC = () => {
@@ -73,7 +73,7 @@ const Education: React.FC = () => {
                         {/* Basic Info */}
                         <div className="flex-1 min-w-0">
                           <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
-                            {edu.degree}
+                            {edu.degree} in {edu.field}
                           </h3>
                           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium">
                             {edu.institution}
@@ -109,18 +109,6 @@ const Education: React.FC = () => {
                       className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700"
                     >
                       <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
-                        {/* Field of Study & Location */}
-                        <div className="space-y-2">
-                          <div>
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Field of Study:</span>
-                            <p className="text-base text-gray-900 dark:text-white font-medium">{edu.field}</p>
-                          </div>
-                          <div className="flex items-center text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                            <MapPin className="w-4 h-4 mr-2" />
-                            <span>{edu.location}</span>
-                          </div>
-                        </div>
-
                         {/* Honors & Recognition */}
                         {edu.honors && edu.honors.length > 0 && (
                           <div>

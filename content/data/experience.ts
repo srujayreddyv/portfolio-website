@@ -23,7 +23,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "doc-2024",
-    title: "Software Engineer – Data & Platform Systems",
+    title: "Software Engineer",
     company: "California Department of Conservation (DOC)",
     location: "Sacramento, CA (Remote)",
     startDate: "Jan 2024",
@@ -57,7 +57,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "hsrg-2021",
-    title: "Software Engineer – AI & Distributed Systems",
+    title: "Software Engineer",
     company: "Human Sciences Research Group (HSRG), IIIT-H",
     location: "Hyderabad, IN",
     startDate: "Jan 2021",
@@ -74,7 +74,7 @@ export const experiences: Experience[] = [
   },
   {
     id: "spiti-2018",
-    title: "Software Engineer – Full Stack & GIS Systems",
+    title: "Software Engineer",
     company: "Change and Continuity in Spiti Valley, ICSSR Sponsored Project",
     location: "Hyderabad, IN",
     startDate: "Jul 2018",

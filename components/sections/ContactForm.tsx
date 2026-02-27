@@ -197,7 +197,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           className={`w-full px-4 py-3 sm:py-4 text-white dark:text-black font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:ring-offset-2 transition-all duration-200 min-h-[48px] text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${
             isSubmitting
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600'
+              : 'bg-blue-700 hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-500'
           }`}
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}

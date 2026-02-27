@@ -69,12 +69,12 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Brand and Contact Info */}
-          <div className="space-y-3 sm:space-y-4 lg:space-y-6 sm:col-span-2 lg:col-span-1">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-black dark:text-white">
+          <div className="space-y-2 sm:space-y-3 lg:space-y-4 sm:col-span-2 lg:col-span-1">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-black dark:text-white/90">
               {personalData.name}
             </h3>
             <div className="space-y-2">
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+              <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
                 <a 
                   href={`mailto:${personalData.email}`}
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
@@ -83,7 +83,7 @@ export default function Footer() {
                 </a>
               </p>
               {personalData.phone && (
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
                   <a 
                     href={`tel:${personalData.phone}`}
                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -93,7 +93,7 @@ export default function Footer() {
                 </p>
               )}
               {personalData.location && (
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
                   {personalData.location}
                 </p>
               )}
@@ -143,12 +143,9 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-6 sm:mt-8 lg:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 text-center sm:text-left">
+          <div className="flex justify-center sm:justify-start items-center text-center sm:text-left">
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               © {currentYear} {personalData.name}
-            </p>
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Built with Next.js and Tailwind CSS
             </p>
           </div>
         </div>
