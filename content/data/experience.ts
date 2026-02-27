@@ -3,7 +3,7 @@ import { Experience } from '@/types'
 export const experiences: Experience[] = [
   {
     id: "dds-2025",
-    title: "Software Engineer – Cloud & GenAI Systems",
+    title: "AI Software Engineer",
     company: "California Department of Developmental Services (DDS)",
     location: "Sacramento, CA (Hybrid)",
     startDate: "Feb 2025",
@@ -12,14 +12,14 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
-      "Built full stack applications serving internal and external users using FastAPI, Express, React, and NextJS on Aurora PostgreSQL, implementing RBAC, Azure AD SSO, and Azure DevOps CI/CD deployments to AWS ECS.",
-      "Scaled FastAPI microservices handling 20K+ daily requests on ECS and Lambda, implementing Cognito based authentication and EventBridge driven workflows to maintain 99% uptime for mission critical healthcare integrations.",
-      "Modernized legacy COBOL, JCL, and Db2 batch systems into Python based event driven services aligned with FHIR models, reducing nightly processing time by 60% and eliminating 200+ manual operational steps.",
-      "Built and deployed a React and TypeScript portal on Terraform provisioned AWS infrastructure, reducing AI Assessment entry time from 30 to 10 min through automation and UX optimization.",
-      "Reduced analyst effort by 85% by engineering a production LLM powered QA platform using Bedrock with document ingestion, semantic retrieval, and grounded query answering for claims and regulatory review workflows.",
-      "Developed a multi agent GenAI chatbot using FastAPI, NextJS, Bedrock, and CrewAI across four knowledge bases, implementing routing logic and delivering source grounded responses for healthcare and compliance use cases."
+      "Built a reusable conversational RAG framework on AWS Bedrock, reducing analysis time by 85%, latency by 30%, and hallucinations by 45% through grounded retrieval, guardrails, and structured evaluation loops.",
+      "Engineered a CrewAI multi agent orchestration layer with deterministic execution, structured output validation, and persistent memory across four knowledge bases, reducing multi step failures by 25%.",
+      "Deployed a knowledge graph driven semantic retrieval layer with subgraph expansion, narrative aware embeddings, and relevance pruning, increasing hit@1 accuracy by 78% (0.358 to 0.639) over baseline vector search.",
+      "Scaled FastAPI microservices handling 20K+ daily requests across distributed ECS and Lambda infrastructure with Cognito and EventBridge, sustaining 99% uptime for healthcare integrations.",
+      "Developed a React and TypeScript AI workflow intake portal on AWS provisioned via Terraform, reducing submission time from 30 to 10 minutes through automated review pipelines.",
+      "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, reducing nightly processing time by 60% and eliminating 200+ manual steps."
     ],
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "Claude", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "MCP", "Claude", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
   },
   {
     id: "doc-2024",
@@ -31,12 +31,12 @@ export const experiences: Experience[] = [
     logo: "/logos/doc-logo.png",
     description: "Developed seismic hazard modeling platforms and data processing systems for earthquake monitoring and prediction.",
     achievements: [
-      "Built a production seismic hazard modeling platform using Python, Perl, PHP, D3.js, and OpenQuake to deliver ground motion predictions for California fault zones with response times under 3 seconds",
-      "Designed and automated large scale seismic data pipelines processing 10+ GB per day, improving ingestion efficiency and reducing data retrieval time by 50% to support high throughput detection workflows",
-      "Strengthened security for 60+ remote monitoring stations by implementing secured API Gateway endpoints with IAM based access control and Secrets Manager driven credential management, passing compliance audits with zero findings.",
-      "Improved reliability of geospatial services by resolving ArcGIS server performance issues and enhancing map rendering with GeoServer and Leaflet.js, reducing downtime and improving system stability"
+      "Engineered a seismic modeling service on AWS integrating a PHP application layer, Python OpenQuake, and Perl services, generating ground motion prediction curves with under 3 second compute time per request.",
+      "Architected Kafka ingestion pipelines processing 10+ GB daily from earthquake monitoring stations, routing time series to InfluxDB and migrating analytics workloads from PostgreSQL to Druid, reducing retrieval latency by 50%.",
+      "Implemented two factor authentication and RBAC for 60+ monitoring stations using Azure Entra ID and IAM integrated API Gateway, passing compliance audits with zero findings.",
+      "Resolved React frontend rendering and performance issues in geospatial applications, optimizing Leaflet and GeoServer integration to improve stability and reduce downtime."
     ],
-    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "AES Encryption", "AWS IAM", "AWS Secrets Manager", "ArcGIS", "GeoServer", "Leaflet.js", "JavaScript"]
+    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "Apache Kafka", "InfluxDB", "Druid", "PostgreSQL", "Azure Entra ID", "AWS IAM", "API Gateway", "GeoServer", "Leaflet.js", "React", "JavaScript"]
   },
   {
     id: "prc-2023",
