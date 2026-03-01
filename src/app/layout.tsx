@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         url: "/my-profile-pic.png",
         width: 1200,
         height: 630,
-        alt: "Srujay Reddy Vangoor - Full Stack Software Engineer",
+        alt: "Srujay Reddy Vangoor - AI Software Engineer",
       },
     ],
   },

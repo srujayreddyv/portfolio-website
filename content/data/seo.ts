@@ -1,20 +1,23 @@
 import { SEOData } from '@/types';
 
 export const seoData: SEOData = {
-  title: "Srujay Reddy Vangoor - Full Stack Software Engineer",
-  description: "Full Stack Software Engineer with 6+ years building backend APIs, data pipelines, and production apps. Expert in Python, FastAPI, React, AWS, GenAI.",
+  title: "Srujay Reddy Vangoor - AI Software Engineer",
+  description: "AI Software Engineer with 6+ years building scalable backend systems, full stack applications, and production GenAI platforms on AWS.",
   keywords: [
-    "full stack software engineer",
-    "python developer",
-    "fastapi",
-    "react developer",
-    "aws cloud engineer",
+    "ai software engineer",
+    "ai engineer",
     "genai engineer",
-    "machine learning",
+    "backend engineer",
+    "software engineer",
+    "software development engineer",
+    "full stack developer",
     "data engineer",
     "backend developer",
-    "frontend developer",
+    "python",
+    "fastapi",
+    "django",
     "typescript",
+    "react",
     "postgresql",
     "docker",
     "kubernetes",
@@ -26,16 +29,17 @@ export const seoData: SEOData = {
     "llm engineer",
     "rag systems",
     "langchain",
+    "crewai",
     "hugging face",
     "vector databases"
   ],
   ogImage: "/my-profile-pic.png",
-  canonicalUrl: "https://srujayreddyv.com",
+  canonicalUrl: "https://srujays-portfolio.vercel.app",
   structuredData: {
     "@type": "Person",
     name: "Srujay Reddy Vangoor",
-    jobTitle: "Full Stack Software Engineer",
-    url: "https://srujayreddyv.com",
+    jobTitle: "AI Software Engineer",
+    url: "https://srujays-portfolio.vercel.app",
     sameAs: [
       "https://github.com/srujayreddyv",
       "https://www.linkedin.com/in/srujayreddyv"

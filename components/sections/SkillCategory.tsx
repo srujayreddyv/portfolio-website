@@ -81,6 +81,7 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
     'Express': { Icon: SiExpress, color: '#000000' },
     'Go': { Icon: SiGo, color: '#00ADD8' },
     'C#': { Icon: SiDotnet, color: '#512BD4' },
+    'ASP.NET': { Icon: SiDotnet, color: '#512BD4' },
     'ASP.NET Core': { Icon: SiDotnet, color: '#512BD4' },
     'PHP': { Icon: SiPhp, color: '#777BB4' },
     'REST APIs': { Icon: SiSwagger, color: '#85EA2D' },
@@ -99,12 +100,14 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
     'CrewAI': { Icon: SiCrewai, color: SiCrewaiHex },
     'Hugging Face Transformers': { Icon: SiHuggingface, color: '#FFD21E' },
     'RAG Pipelines': { Icon: SiMeta, color: '#0668E1' },
+    'Vector Search (FAISS, Pinecone, OpenSearch)': { Icon: SiMeta, color: '#0668E1' },
     'FAISS': { Icon: SiMeta, color: '#0668E1' },
     'Pinecone': { Icon: SiPinetwork, color: '#0F766E' },
     'OpenSearch': { Icon: SiOpensearch, color: '#005EB8' },
     'PyTorch': { Icon: SiPytorch, color: '#EE4C2C' },
     'TensorFlow': { Icon: SiTensorflow, color: '#FF6F00' },
     'MLflow': { Icon: SiMlflow, color: '#1E88E5' },
+    'Scikit learn': { Icon: SiScikitlearn, color: '#F7931E' },
     'Scikit-learn': { Icon: SiScikitlearn, color: '#F7931E' },
 
     // Cloud & Infrastructure
@@ -123,9 +126,13 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
 
     // Data Platforms
     'PostgreSQL': { Icon: SiPostgresql, color: '#4169E1' },
+    'Microsoft SQL Server': { Icon: Database, color: '#CC2927' },
     'MS SQL Server': { Icon: Database, color: '#CC2927' },
     'DynamoDB': { Icon: SiAmazonwebservices, color: '#4053D6' },
     'Redis': { Icon: SiRedis, color: '#DC382D' },
+    'Kafka': { Icon: SiApachekafka, color: '#231F20' },
+    'Airflow': { Icon: SiApacheairflow, color: '#017CEE' },
+    'Spark': { Icon: SiApachespark, color: '#E25A1C' },
     'Snowflake': { Icon: SiSnowflake, color: '#29B5E8' },
     'Apache Airflow': { Icon: SiApacheairflow, color: '#017CEE' },
     'Apache Spark': { Icon: SiApachespark, color: '#E25A1C' },

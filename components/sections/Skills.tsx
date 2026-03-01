@@ -4,7 +4,7 @@ import { skillCategories } from '@/content/data/skills';
 
 const Skills: React.FC = () => {
   // Define primary skill areas (can be configured based on requirements)
-  const primaryCategories = ['Backend & APIs', 'AI Systems & GenAI Engineering'];
+  const primaryCategories = ['Backend & APIs', 'AI & LLM Systems'];
   
   return (
     <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-950">

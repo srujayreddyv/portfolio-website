@@ -35,8 +35,12 @@ const requiredEnvVars = {
 };
 
 function validateEnvironment() {
-  if (process.env.CI === 'true') {
-    console.log('⚪ Skipping environment validation in CI');
+  const isVercelProduction = process.env.VERCEL === '1' && process.env.VERCEL_ENV === 'production';
+  const isStrictOverride = process.env.STRICT_ENV_VALIDATION === 'true';
+
+  if (!isVercelProduction && !isStrictOverride) {
+    console.log('⚪ Skipping strict environment validation (enforced only for production deployments)');
+    console.log('💡 Set STRICT_ENV_VALIDATION=true to enforce this check locally/CI.');
     return;
   }
 
