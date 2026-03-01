@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Leading development of GenAI solutions and API systems for healthcare claims processing and regulatory compliance.",
     achievements: [
-      "Built a reusable conversational RAG framework on AWS Bedrock, reducing analysis time by 85%, latency by 30%, and hallucinations by 45% through grounded retrieval, guardrails, and structured evaluation loops.",
+      "Reduced report analysis time by 85% and hallucinations by 45% by building a reusable conversational RAG framework on AWS Bedrock with grounded retrieval and structured evaluation loops.",
       "Engineered a CrewAI multi agent orchestration layer with deterministic execution, structured output validation, and persistent memory across four knowledge bases, reducing multi step failures by 25%.",
       "Deployed a knowledge graph driven semantic retrieval layer with subgraph expansion, narrative aware embeddings, and relevance pruning, increasing hit@1 accuracy by 78% (0.358 to 0.639) over baseline vector search.",
       "Scaled FastAPI microservices handling 20K+ daily requests across distributed ECS and Lambda infrastructure with Cognito and EventBridge, sustaining 99% uptime for healthcare integrations.",

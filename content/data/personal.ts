@@ -2,7 +2,7 @@ import { PersonalData } from '@/types'
 
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
-  title: "Full Stack Software Engineer",
+  title: "AI Software Engineer",
   bio: "Software Engineer with 6+ years of experience building scalable web applications and cloud native systems. Specialized in Python, FastAPI, TypeScript, React, and AWS, with deep expertise in system design and resilient distributed architectures. Known for modernizing legacy platforms, designing high throughput microservices, and building reusable production GenAI systems including RAG pipelines, multi agent orchestration, and evaluation frameworks.",
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA · Open to Remote",
