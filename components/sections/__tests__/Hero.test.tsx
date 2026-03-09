@@ -98,17 +98,14 @@ describe('Hero Component', () => {
     }
   });
   
-  test.skip('renders professional headshot placeholder', () => {
+  test('renders professional headshot image with accessible label', () => {
     render(<Hero />);
-    
-    // This test expects a placeholder with initials, but the component uses an actual image
-    // Check for headshot container (currently a placeholder div)
-    const headshotContainer = screen.getByText(personalData.name.split(' ').map(n => n[0]).join(''));
-    expect(headshotContainer).toBeInTheDocument();
-    
-    // Verify it has proper styling classes
-    const headshotDiv = headshotContainer.closest('div');
-    expect(headshotDiv).toHaveClass('bg-gradient-to-br', 'from-blue-400', 'to-purple-500', 'rounded-full');
+
+    const imageButton = screen.getByRole('button', { name: /click to view larger image/i });
+    expect(imageButton).toBeInTheDocument();
+
+    const profileImage = screen.getByAltText(`${personalData.name} - Professional headshot`);
+    expect(profileImage).toBeInTheDocument();
   });
   
   test('has proper semantic structure', () => {
@@ -137,7 +134,7 @@ describe('Hero Component', () => {
     expect(introParagraph).toBeInTheDocument();
   });
   
-  test.skip('has proper accessibility attributes', () => {
+  test('has proper accessibility attributes', () => {
     render(<Hero />);
     
     // Check that social links have proper aria-labels
@@ -146,9 +143,7 @@ describe('Hero Component', () => {
       expect(socialLink).toHaveAttribute('aria-label', `Visit ${link.platform} profile`);
     });
     
-    // This test expects initials placeholder but component uses actual image
-    // Check that headshot has proper alt text structure ready
-    const headshotInitials = screen.getByText(personalData.name.split(' ').map(n => n[0]).join(''));
-    expect(headshotInitials).toBeInTheDocument();
+    // Check that headshot trigger has accessible label
+    expect(screen.getByRole('button', { name: /click to view larger image/i })).toBeInTheDocument();
   });
 });

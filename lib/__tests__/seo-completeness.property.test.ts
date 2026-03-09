@@ -158,28 +158,19 @@ describe('Property 8: SEO completeness', () => {
     const property = fc.asyncProperty(
       fc.constant('sitemap'),
       async (testType) => {
-        // Test sitemap.xml exists and is properly formatted
-        const sitemapPath = path.join(process.cwd(), 'public/sitemap.xml');
-        expect(fs.existsSync(sitemapPath)).toBe(true);
-        
-        const sitemapContent = fs.readFileSync(sitemapPath, 'utf-8');
-        
-        // Validate XML structure
-        expect(sitemapContent).toMatch(/<\?xml version="1\.0" encoding="UTF-8"\?>/);
-        expect(sitemapContent).toMatch(/<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
-        expect(sitemapContent).toMatch(/<\/urlset>/);
-        
-        // Validate URL entries
-        expect(sitemapContent).toMatch(/<url>/);
-        expect(sitemapContent).toMatch(/<loc>https:\/\/srujays-portfolio\.vercel\.app<\/loc>/);
-        expect(sitemapContent).toMatch(/<lastmod>/);
-        expect(sitemapContent).toMatch(/<changefreq>/);
-        expect(sitemapContent).toMatch(/<priority>/);
+        const { default: getSitemap } = await import('@/app/sitemap');
+        const sitemapEntries = getSitemap();
+
+        expect(Array.isArray(sitemapEntries)).toBe(true);
+        expect(sitemapEntries.length).toBeGreaterThan(0);
+        expect(sitemapEntries[0].url).toBe(seoData.canonicalUrl);
+        expect(sitemapEntries[0].changeFrequency).toBe('monthly');
+        expect(sitemapEntries[0].priority).toBe(1);
         
         // Sitemap should not include fragment URLs (search engines ignore them)
         const disallowedFragments = ['#about', '#projects', '#skills', '#experience', '#education', '#publications', '#contact'];
         disallowedFragments.forEach(fragment => {
-          expect(sitemapContent).not.toMatch(new RegExp(`<loc>https://srujays-portfolio\\.vercel\\.app/${fragment}</loc>`));
+          expect(sitemapEntries.some(entry => entry.url?.includes(fragment))).toBe(false);
         });
       }
     );
@@ -191,29 +182,20 @@ describe('Property 8: SEO completeness', () => {
     const property = fc.asyncProperty(
       fc.constant('robots'),
       async (testType) => {
-        // Test robots.txt exists and is properly configured
-        const robotsPath = path.join(process.cwd(), 'public/robots.txt');
-        expect(fs.existsSync(robotsPath)).toBe(true);
-        
-        const robotsContent = fs.readFileSync(robotsPath, 'utf-8');
-        
-        // Validate basic robots.txt structure
-        expect(robotsContent).toMatch(/User-agent: \*/);
-        expect(robotsContent).toMatch(/Allow: \//);
-        expect(robotsContent).toMatch(/Sitemap: https:\/\/srujays-portfolio\.vercel\.app\/sitemap\.xml/);
-        
-        // Validate that API routes are disallowed
-        expect(robotsContent).toMatch(/Disallow: \/api\//);
-        
-        // Validate that Next.js internal files are disallowed
-        expect(robotsContent).toMatch(/Disallow: \/_next\//);
-        expect(robotsContent).toMatch(/Disallow: \/\.next\//);
-        
-        // Validate that static assets are allowed
-        expect(robotsContent).toMatch(/Allow: \/\*\.css/);
-        expect(robotsContent).toMatch(/Allow: \/\*\.js/);
-        expect(robotsContent).toMatch(/Allow: \/\*\.png/);
-        expect(robotsContent).toMatch(/Allow: \/\*\.pdf/);
+        const { default: getRobots } = await import('@/app/robots');
+        const robots = getRobots();
+
+        expect(robots.sitemap).toBe(`${seoData.canonicalUrl}/sitemap.xml`);
+        expect(Array.isArray(robots.rules)).toBe(true);
+        expect(robots.rules.length).toBeGreaterThan(0);
+
+        const primaryRule = robots.rules[0];
+        expect(primaryRule.userAgent).toBe('*');
+        expect(primaryRule.allow).toBe('/');
+        expect(Array.isArray(primaryRule.disallow)).toBe(true);
+        expect(primaryRule.disallow).toContain('/api/');
+        expect(primaryRule.disallow).toContain('/_next/');
+        expect(primaryRule.disallow).toContain('/.next/');
       }
     );
 

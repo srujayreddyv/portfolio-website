@@ -5,6 +5,12 @@ import { Project, ContentValidator } from '@/types';
 
 const projectsDirectory = path.join(process.cwd(), 'content', 'projects');
 
+function logInfo(message: string): void {
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(message);
+  }
+}
+
 /**
  * Create a new project MDX file
  */
@@ -47,7 +53,7 @@ export function createProject(project: Omit<Project, 'longDescription'>, content
     const filePath = path.join(projectsDirectory, `${project.id}.mdx`);
     fs.writeFileSync(filePath, mdxContent, 'utf8');
     
-    console.log(`Project ${project.id} created successfully`);
+    logInfo(`Project ${project.id} created successfully`);
     return true;
   } catch (error) {
     console.error(`Error creating project ${project.id}:`, error);
@@ -88,7 +94,7 @@ export function updateProject(projectId: string, updates: Partial<Project>, cont
     // Write file
     fs.writeFileSync(filePath, mdxContent, 'utf8');
     
-    console.log(`Project ${projectId} updated successfully`);
+    logInfo(`Project ${projectId} updated successfully`);
     return true;
   } catch (error) {
     console.error(`Error updating project ${projectId}:`, error);
@@ -109,7 +115,7 @@ export function deleteProject(projectId: string): boolean {
     }
     
     fs.unlinkSync(filePath);
-    console.log(`Project ${projectId} deleted successfully`);
+    logInfo(`Project ${projectId} deleted successfully`);
     return true;
   } catch (error) {
     console.error(`Error deleting project ${projectId}:`, error);
@@ -129,6 +135,6 @@ export function importProjects(projects: Array<{ project: Omit<Project, 'longDes
     }
   }
   
-  console.log(`Successfully imported ${successCount} out of ${projects.length} projects`);
+  logInfo(`Successfully imported ${successCount} out of ${projects.length} projects`);
   return successCount;
 }
