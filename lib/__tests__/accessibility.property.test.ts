@@ -197,6 +197,8 @@ describe('Accessibility Property Tests', () => {
         fc.boolean(), // localStorage throws error
         fc.boolean(), // matchMedia unavailable
         async (storageError, matchMediaError) => {
+          const originalLocalStorage = window.localStorage;
+          const originalMatchMedia = window.matchMedia;
           try {
             // Mock error conditions
             if (storageError) {
@@ -231,8 +233,8 @@ describe('Accessibility Property Tests', () => {
             // Should always have a valid theme, even with errors
             expect(['light', 'dark']).toContain(fallbackTheme);
             
-            // If errors occurred, should fallback to light
-            if (storageError || matchMediaError) {
+            // Storage failures should always fall back to light
+            if (storageError) {
               expect(fallbackTheme).toBe('light');
             }
             
@@ -240,6 +242,15 @@ describe('Accessibility Property Tests', () => {
           } catch (error) {
             console.error('Theme script error handling test failed:', error);
             return false;
+          } finally {
+            Object.defineProperty(window, 'localStorage', {
+              value: originalLocalStorage,
+              writable: true
+            });
+            Object.defineProperty(window, 'matchMedia', {
+              value: originalMatchMedia,
+              writable: true
+            });
           }
         }
       );

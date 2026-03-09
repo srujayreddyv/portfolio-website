@@ -5,7 +5,7 @@ export const personalData: PersonalData = {
   title: "AI Software Engineer",
   bio: "Software Engineer with 6+ years of experience building scalable backend systems and cloud native applications. Currently building high throughput microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at the California Department of Developmental Services on AWS. Specializing in Python, FastAPI, TypeScript, and React, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale.",
   email: "srujayreddyv@icloud.com",
-  location: "Sacramento, CA · Open to Remote",
+  location: "Sacramento, CA · Open to Relocate",
   socialLinks: [
     {
       platform: "GitHub",

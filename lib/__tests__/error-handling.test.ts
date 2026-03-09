@@ -40,8 +40,11 @@ const setLocalStorage = (storage: Storage | any) => {
 };
 
 describe('Error Handling Unit Tests', () => {
+  let consoleWarnSpy: jest.SpyInstance;
+
   beforeEach(() => {
     jest.clearAllMocks();
+    consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
     
     // Reset global mocks (avoid redefining window)
     const baseStorage = {
@@ -59,6 +62,10 @@ describe('Error Handling Unit Tests', () => {
       addEventListener: jest.fn(),
       removeEventListener: jest.fn()
     }));
+  });
+
+  afterEach(() => {
+    consoleWarnSpy.mockRestore();
   });
 
   describe('localStorage Error Handling', () => {
@@ -83,10 +90,8 @@ describe('Error Handling Unit Tests', () => {
       expect(() => storeTheme('dark')).not.toThrow();
       
       // Should log warning but continue
-      const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
       storeTheme('light');
-      expect(consoleSpy).toHaveBeenCalled();
-      consoleSpy.mockRestore();
+      expect(consoleWarnSpy).toHaveBeenCalled();
     });
 
     test('should handle invalid stored theme values', () => {
