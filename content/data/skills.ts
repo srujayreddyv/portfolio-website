@@ -39,6 +39,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Docker", level: "Expert", yearsOfExperience: 4 },
       { name: "Kubernetes", level: "Advanced", yearsOfExperience: 3 },
       { name: "Terraform", level: "Advanced", yearsOfExperience: 3 },
+      { name: "GitHub Actions", level: "Expert", yearsOfExperience: 4 },
       { name: "CloudWatch", level: "Advanced", yearsOfExperience: 3 },
       { name: "Grafana", level: "Intermediate", yearsOfExperience: 2 },
       { name: "Prometheus", level: "Intermediate", yearsOfExperience: 2 }

@@ -95,7 +95,7 @@ export default function Hero() {
               AI Software Engineer
             </p>
             <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              6+ years building scalable backend systems, full stack applications, and production GenAI platforms.
+              6+ years building scalable backend systems and cloud native applications.
             </p>
           </div>
 
@@ -125,8 +125,8 @@ export default function Hero() {
               </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              <p>I build end to end systems across full stack applications and distributed backend infrastructure on AWS.</p>
-              <p>I bring GenAI into reliable production workflows using grounded retrieval, guardrails, structured evaluation, and agent orchestration.</p>
+              <p>Currently building high throughput microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at the California Department of Developmental Services on AWS.</p>
+              <p>Specializing in Python, FastAPI, TypeScript, and React, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale.</p>
             </div>
           </div>
 
