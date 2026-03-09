@@ -34,7 +34,7 @@ describe('Skills Component', () => {
     render(<Skills />);
     
     // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    const primaryCategories = ['Backend & APIs', 'AI Systems & GenAI Engineering'];
+    const primaryCategories = ['Backend & APIs', 'AI & LLM Systems'];
     
     primaryCategories.forEach((categoryName) => {
       const categoryElement = screen.getByText(categoryName);

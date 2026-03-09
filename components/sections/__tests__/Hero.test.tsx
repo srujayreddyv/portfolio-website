@@ -37,16 +37,17 @@ describe('Hero Component', () => {
     // Check for subtitle and intro content
     expect(screen.getByText(/^ai software engineer$/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/6\+ years building scalable backend systems, full stack applications, and production genai platforms\./i)
+      screen.getByText(/6\+ years building scalable backend systems and cloud native applications\./i)
     ).toBeInTheDocument();
-    ['Python', 'FastAPI', 'TypeScript', 'React', 'AWS', 'Bedrock', 'CrewAI', 'LangChain'].forEach((skill) => {
+    ['Python', 'FastAPI', 'TypeScript', 'React', 'AWS', 'CrewAI', 'LangChain'].forEach((skill) => {
       expect(screen.getByText(skill)).toBeInTheDocument();
     });
+    expect(screen.queryByText('Bedrock')).not.toBeInTheDocument();
     expect(
-      screen.getByText(/i build end to end systems across full stack applications and distributed backend infrastructure on aws\./i)
+      screen.getByText(/currently building high throughput microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at the california department of developmental services on aws\./i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/i bring genai into reliable production workflows using grounded retrieval, guardrails, structured evaluation, and agent orchestration\./i)
+      screen.getByText(/specializing in python, fastapi, typescript, and react, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale\./i)
     ).toBeInTheDocument();
   });
   
@@ -132,7 +133,7 @@ describe('Hero Component', () => {
     const subtitleText = screen.getByText(/^ai software engineer$/i);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
 
-    const introParagraph = screen.getByText(/i build end to end systems across full stack applications and distributed backend infrastructure on aws\./i);
+    const introParagraph = screen.getByText(/currently building high throughput microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at the california department of developmental services on aws\./i);
     expect(introParagraph).toBeInTheDocument();
   });
   

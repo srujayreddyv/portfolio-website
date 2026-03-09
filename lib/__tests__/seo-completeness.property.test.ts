@@ -171,7 +171,7 @@ describe('Property 8: SEO completeness', () => {
         
         // Validate URL entries
         expect(sitemapContent).toMatch(/<url>/);
-        expect(sitemapContent).toMatch(/<loc>https:\/\/srujayreddyv\.com<\/loc>/);
+        expect(sitemapContent).toMatch(/<loc>https:\/\/srujays-portfolio\.vercel\.app<\/loc>/);
         expect(sitemapContent).toMatch(/<lastmod>/);
         expect(sitemapContent).toMatch(/<changefreq>/);
         expect(sitemapContent).toMatch(/<priority>/);
@@ -179,7 +179,7 @@ describe('Property 8: SEO completeness', () => {
         // Sitemap should not include fragment URLs (search engines ignore them)
         const disallowedFragments = ['#about', '#projects', '#skills', '#experience', '#education', '#publications', '#contact'];
         disallowedFragments.forEach(fragment => {
-          expect(sitemapContent).not.toMatch(new RegExp(`<loc>https://srujayreddyv\\.com/${fragment}</loc>`));
+          expect(sitemapContent).not.toMatch(new RegExp(`<loc>https://srujays-portfolio\\.vercel\\.app/${fragment}</loc>`));
         });
       }
     );
@@ -200,7 +200,7 @@ describe('Property 8: SEO completeness', () => {
         // Validate basic robots.txt structure
         expect(robotsContent).toMatch(/User-agent: \*/);
         expect(robotsContent).toMatch(/Allow: \//);
-        expect(robotsContent).toMatch(/Sitemap: https:\/\/srujayreddyv\.com\/sitemap\.xml/);
+        expect(robotsContent).toMatch(/Sitemap: https:\/\/srujays-portfolio\.vercel\.app\/sitemap\.xml/);
         
         // Validate that API routes are disallowed
         expect(robotsContent).toMatch(/Disallow: \/api\//);

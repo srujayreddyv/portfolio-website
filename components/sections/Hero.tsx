@@ -106,7 +106,6 @@ export default function Hero() {
                 { name: 'Python', Icon: SiPython, color: '#3776AB' },
                 { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
                 { name: 'AWS', Icon: SiAmazonwebservices, color: '#FF9900' },
-                { name: 'Bedrock', Icon: SiAmazonwebservices, color: '#FF9900' },
                 { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
                 { name: 'React', Icon: SiReact, color: '#61DAFB' },
                 { name: 'LangChain', Icon: SiLangchain, color: '#2B7A78' }
