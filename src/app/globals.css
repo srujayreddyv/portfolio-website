@@ -136,21 +136,6 @@ section {
   }
 }
 
-/* Smooth theme transitions */
-* {
-  transition: background-color 300ms ease-in-out, 
-              color 300ms ease-in-out, 
-              border-color 300ms ease-in-out, 
-              box-shadow 300ms ease-in-out;
-}
-
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-  }
-}
-
 /* Improved focus styles for accessibility */
 *:focus-visible {
   outline: 2px solid var(--accent);
