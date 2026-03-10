@@ -24,7 +24,7 @@ export function ThemeProvider({
   // Prevent hydration mismatch by not rendering theme-dependent content until mounted
   if (!mounted) {
     return (
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+      <div className="text-gray-900 dark:text-white min-h-screen" style={{ background: 'var(--sky-bg)' }}>
         {children}
       </div>
     );

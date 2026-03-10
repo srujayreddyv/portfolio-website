@@ -43,7 +43,7 @@ export default function Hero() {
     <section
       id="about"
       ref={sectionRef}
-      className={`min-h-[85vh] flex items-center justify-center bg-white dark:bg-black transition-all duration-700 ease-out ${
+      className={`min-h-[85vh] flex items-center justify-center transition-all duration-700 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
     >

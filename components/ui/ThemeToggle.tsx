@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Monitor } from 'lucide-react';
+import { Circle, CircleDot, Monitor } from 'lucide-react';
 import { useReducedMotion } from '@/lib/accessibility-utils';
 
 interface ThemeToggleProps {
@@ -88,9 +88,9 @@ export function ThemeToggle({
     
     switch (currentTheme) {
       case 'light':
-        return <Sun className={iconSize} aria-hidden="true" />;
+        return <Circle className={iconSize} aria-hidden="true" />;
       case 'dark':
-        return <Moon className={iconSize} aria-hidden="true" />;
+        return <CircleDot className={iconSize} aria-hidden="true" />;
       default:
         return <Monitor className={iconSize} aria-hidden="true" />;
     }

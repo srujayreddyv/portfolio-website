@@ -24,8 +24,8 @@ jest.mock('next-themes', () => ({
 
 // Mock Lucide React icons
 jest.mock('lucide-react', () => ({
-  Sun: ({ className, ...props }: any) => <div data-testid="sun-icon" className={className} {...props} />,
-  Moon: ({ className, ...props }: any) => <div data-testid="moon-icon" className={className} {...props} />,
+  Circle: ({ className, ...props }: any) => <div data-testid="light-icon" className={className} {...props} />,
+  CircleDot: ({ className, ...props }: any) => <div data-testid="dark-icon" className={className} {...props} />,
   Monitor: ({ className, ...props }: any) => <div data-testid="monitor-icon" className={className} {...props} />
 }));
 
@@ -44,7 +44,7 @@ describe('ThemeToggle', () => {
     
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('aria-label', 'Switch to dark mode');
-    expect(screen.getByTestId('sun-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('light-icon')).toBeInTheDocument();
   });
 
   it('shows loading state when not mounted', () => {
@@ -102,7 +102,7 @@ describe('ThemeToggle', () => {
     render(<ThemeToggle />);
     
     await waitFor(() => {
-      expect(screen.getByTestId('moon-icon')).toBeInTheDocument();
+      expect(screen.getByTestId('dark-icon')).toBeInTheDocument();
     });
     
     const button = screen.getByRole('button');
