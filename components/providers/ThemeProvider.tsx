@@ -1,12 +1,35 @@
 'use client';
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
 export interface ThemeProviderProps {
   children: React.ReactNode;
   defaultTheme?: string;
   storageKey?: string;
+}
+
+function SkyDarkSync() {
+  const { theme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'sky') {
+      const enforceSkyDark = () => {
+        if (!root.classList.contains('sky')) root.classList.add('sky');
+        if (!root.classList.contains('dark')) root.classList.add('dark');
+      };
+
+      enforceSkyDark();
+      const observer = new MutationObserver(enforceSkyDark);
+      observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+      return () => observer.disconnect();
+    }
+
+    root.classList.toggle('dark', resolvedTheme === 'dark');
+  }, [theme, resolvedTheme]);
+
+  return null;
 }
 
 export function ThemeProvider({ 
@@ -37,7 +60,9 @@ export function ThemeProvider({
       enableSystem
       disableTransitionOnChange
       storageKey={storageKey}
+      themes={['light', 'dark', 'system', 'sky']}
     >
+      <SkyDarkSync />
       {children}
     </NextThemesProvider>
   );

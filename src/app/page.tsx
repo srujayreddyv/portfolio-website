@@ -12,7 +12,7 @@ export default async function Home() {
   const projects = await getAllProjects();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-700 dark:text-gray-300">
+    <div className="app-shell min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-700 dark:text-gray-300">
       <Header />
       <main className="pt-14 sm:pt-16 lg:pt-20">
         <Hero />

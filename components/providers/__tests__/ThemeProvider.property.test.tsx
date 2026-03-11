@@ -13,7 +13,13 @@ import { propertyTestConfig, generators } from '../../../lib/property-test-utils
 jest.mock('next-themes', () => {
   const mockNextThemesProvider = jest.fn(({ children }) => <div data-testid="next-themes-provider">{children}</div>);
   return {
-    ThemeProvider: mockNextThemesProvider
+    ThemeProvider: mockNextThemesProvider,
+    useTheme: () => ({
+      theme: 'light',
+      setTheme: jest.fn(),
+      resolvedTheme: 'light',
+      systemTheme: 'light'
+    })
   };
 });
 

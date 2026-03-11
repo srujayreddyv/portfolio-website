@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Circle, CircleDot, Monitor } from 'lucide-react';
+import { Sun, Moon, Monitor, Star } from 'lucide-react';
 import { useReducedMotion } from '@/lib/accessibility-utils';
 
 interface ThemeToggleProps {
@@ -52,6 +52,9 @@ export function ThemeToggle({
       } else if (currentTheme === 'dark') {
         newTheme = 'system';
         announcement = 'Switched to system theme';
+      } else if (currentTheme === 'system') {
+        newTheme = 'sky';
+        announcement = 'Switched to sky theme';
       } else {
         newTheme = 'light';
         announcement = 'Switched to light theme';
@@ -88,9 +91,11 @@ export function ThemeToggle({
     
     switch (currentTheme) {
       case 'light':
-        return <Circle className={iconSize} aria-hidden="true" />;
+        return <Sun className={iconSize} aria-hidden="true" />;
       case 'dark':
-        return <CircleDot className={iconSize} aria-hidden="true" />;
+        return <Moon className={iconSize} aria-hidden="true" />;
+      case 'sky':
+        return <Star className={iconSize} aria-hidden="true" />;
       default:
         return <Monitor className={iconSize} aria-hidden="true" />;
     }
@@ -110,11 +115,17 @@ export function ThemeToggle({
           next: 'system theme',
           action: 'Switch to system theme'
         };
+      case 'sky':
+        return {
+          current: 'sky theme',
+          next: 'light theme',
+          action: 'Switch to light mode'
+        };
       default:
         return {
           current: 'system theme',
-          next: 'light theme',
-          action: 'Switch to light mode'
+          next: 'sky theme',
+          action: 'Switch to sky mode'
         };
     }
   };
@@ -163,7 +174,7 @@ export function ThemeToggle({
         
         {showLabel && (
           <span className="ml-2 font-medium">
-            {currentTheme === 'light' ? 'Light' : currentTheme === 'dark' ? 'Dark' : 'Auto'}
+            {currentTheme === 'light' ? 'Light' : currentTheme === 'dark' ? 'Dark' : currentTheme === 'sky' ? 'Sky' : 'Auto'}
           </span>
         )}
       </button>

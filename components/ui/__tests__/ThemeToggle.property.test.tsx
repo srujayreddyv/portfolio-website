@@ -125,14 +125,14 @@ describe('ThemeToggle Property Tests', () => {
       await fc.assert(property, { ...propertyTestConfig, numRuns: 10 });
     });
 
-    test('Theme cycle consistency - should cycle through light -> dark -> system -> light', async () => {
+    test('Theme cycle consistency - should cycle through light -> dark -> system -> sky -> light', async () => {
       const property = fc.asyncProperty(
         fc.constantFrom('sm', 'md', 'lg'),
         async (size) => {
           try {
             // Test complete cycle
-            const themes = ['light', 'dark', 'system'] as const;
-            const expectedCycle = ['dark', 'system', 'light'] as const;
+            const themes = ['light', 'dark', 'system', 'sky'] as const;
+            const expectedCycle = ['dark', 'system', 'sky', 'light'] as const;
 
             for (let i = 0; i < themes.length; i++) {
               const currentTheme = themes[i];
@@ -399,6 +399,7 @@ function getExpectedIcon(theme: string): string {
   switch (theme) {
     case 'light': return 'sun';
     case 'dark': return 'moon';
+    case 'sky': return 'star';
     case 'system': return 'monitor';
     default: return 'monitor';
   }
@@ -408,7 +409,8 @@ function getNextTheme(currentTheme: string): string {
   switch (currentTheme) {
     case 'light': return 'dark';
     case 'dark': return 'system';
-    case 'system': return 'light';
+    case 'system': return 'sky';
+    case 'sky': return 'light';
     default: return 'light';
   }
 }
