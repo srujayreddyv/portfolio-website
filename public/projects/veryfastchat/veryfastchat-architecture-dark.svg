@@ -1,0 +1,76 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="28" fill="#F8FAFC"/>
+  <text x="64" y="92" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="48" font-weight="800">VeryFastChat Architecture (Light)</text>
+  <text x="64" y="132" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="500">Next.js + FastAPI + Supabase + GitHub Actions monitoring</text>
+
+  <rect x="48" y="168" width="490" height="684" rx="26" fill="#EFF6FF" stroke="#3B82F6" stroke-width="3"/>
+  <text x="80" y="226" fill="#1E3A8A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800">Frontend</text>
+
+  <rect x="84" y="268" width="402" height="108" rx="18" fill="#D9E8FF"/>
+  <text x="112" y="316" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">User Browser</text>
+  <text x="112" y="350" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Desktop + mobile sessions</text>
+
+  <rect x="84" y="438" width="402" height="164" rx="18" fill="#C9DDFF"/>
+  <text x="112" y="486" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Next.js App Router UI</text>
+  <text x="112" y="522" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Landing, room, auth, settings, my rooms</text>
+  <text x="112" y="556" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Share links, join flow, host controls</text>
+  <text x="112" y="590" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">PWA shell, offline fallback, pending flush</text>
+
+  <rect x="84" y="650" width="402" height="142" rx="18" fill="#D6E6FF"/>
+  <text x="112" y="698" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">API + Realtime Clients</text>
+  <text x="112" y="734" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Typed fetch layer, auth token forwarding</text>
+  <text x="112" y="768" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Supabase auth session + realtime subscriptions</text>
+
+  <rect x="554" y="168" width="490" height="684" rx="26" fill="#ECFDF5" stroke="#16A34A" stroke-width="3"/>
+  <text x="586" y="226" fill="#166534" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800">Backend</text>
+
+  <rect x="590" y="300" width="402" height="118" rx="18" fill="#CFF7DE"/>
+  <text x="618" y="348" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">FastAPI Middleware</text>
+  <text x="618" y="382" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">CORS, security headers, request logging, health</text>
+
+  <rect x="590" y="470" width="402" height="150" rx="18" fill="#BEEBCF"/>
+  <text x="618" y="518" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Room + Message APIs</text>
+  <text x="618" y="554" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Create room, join room, message send/list/delete</text>
+  <text x="618" y="588" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Host moderation, profile endpoints, auth-aware flows</text>
+
+  <rect x="590" y="682" width="402" height="110" rx="18" fill="#D7F6E1"/>
+  <text x="618" y="730" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Reliability Layer</text>
+  <text x="618" y="764" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Rate limits, metrics, optional Sentry, startup validation</text>
+
+  <rect x="1060" y="168" width="492" height="684" rx="26" fill="#FAF5FF" stroke="#A855F7" stroke-width="3"/>
+  <text x="1092" y="226" fill="#6B21A8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800">Supabase + Ops</text>
+
+  <rect x="1096" y="286" width="404" height="118" rx="18" fill="#E9D5FF"/>
+  <text x="1124" y="334" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Auth + Profiles</text>
+  <text x="1124" y="368" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Email/password, Google OAuth, JWT sessions, profiles</text>
+
+  <rect x="1096" y="454" width="404" height="154" rx="18" fill="#FED7AA"/>
+  <text x="1124" y="502" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Postgres + Realtime</text>
+  <text x="1124" y="538" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">rooms, participants, messages, profiles</text>
+  <text x="1124" y="572" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">RLS, indexes, persistent history, room presence</text>
+  <text x="1124" y="606" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Message fanout to subscribed clients</text>
+
+  <rect x="1096" y="674" width="404" height="118" rx="18" fill="#E9D5FF"/>
+  <text x="1124" y="722" fill="#0F172A" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Deploy + Monitor</text>
+  <text x="1124" y="756" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Vercel, Render, GitHub Actions CI, uptime checks</text>
+
+  <path d="M486 322 C530 322 520 350 554 372" stroke="#3B82F6" stroke-width="5" fill="none"/>
+  <polygon points="554,372 530,358 530,386" fill="#3B82F6"/>
+  <text x="405" y="336" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">UI interactions</text>
+
+  <path d="M486 520 C540 520 520 544 554 565" stroke="#22C55E" stroke-width="5" fill="none"/>
+  <polygon points="554,565 530,551 530,579" fill="#22C55E"/>
+  <text x="448" y="510" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">HTTP API calls</text>
+
+  <path d="M486 716 C590 716 612 516 1096 345" stroke="#A855F7" stroke-width="5" fill="none"/>
+  <polygon points="1096,345 1072,331 1072,359" fill="#A855F7"/>
+  <text x="662" y="702" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Auth session + token lifecycle</text>
+
+  <path d="M992 565 C1038 565 1046 565 1096 531" stroke="#22C55E" stroke-width="5" fill="none"/>
+  <polygon points="1096,531 1072,517 1072,545" fill="#22C55E"/>
+  <text x="932" y="548" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">CRUD + moderation</text>
+
+  <path d="M1096 590 C980 640 820 640 486 710" stroke="#8B5CF6" stroke-width="5" fill="none"/>
+  <polygon points="486,710 510,724 510,696" fill="#8B5CF6"/>
+  <text x="786" y="654" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Realtime subscriptions + presence sync</text>
+</svg>

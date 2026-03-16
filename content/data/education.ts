@@ -26,7 +26,7 @@ export const education: Education[] = [
     institution: "International Institute of Information Technology (IIIT-H)",
     location: "Hyderabad, India",
     startDate: "Aug 2015",
-    endDate: "July 2019",
+    endDate: "Jul 2019",
     logo: "/logos/iiith-logo.png", // Add your IIIT-H logo file here
     relevantCoursework: [
       "Data Structures and Algorithms",

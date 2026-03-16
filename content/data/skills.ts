@@ -27,8 +27,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Hugging Face Transformers", level: "Advanced", yearsOfExperience: 3 },
       { name: "Vector Search (FAISS, Pinecone, OpenSearch)", level: "Advanced", yearsOfExperience: 2 },
       { name: "PyTorch", level: "Advanced", yearsOfExperience: 3 },
-      { name: "TensorFlow", level: "Intermediate", yearsOfExperience: 2 },
-      { name: "Scikit learn", level: "Advanced", yearsOfExperience: 4 }
+      { name: "Scikit-learn", level: "Advanced", yearsOfExperience: 4 }
     ]
   },
   {
@@ -49,7 +48,7 @@ export const skillCategories: SkillCategory[] = [
     category: "Data Platforms",
     skills: [
       { name: "PostgreSQL", level: "Expert", yearsOfExperience: 6 },
-      { name: "Microsoft SQL Server", level: "Advanced", yearsOfExperience: 4 },
+      { name: "MS SQL", level: "Advanced", yearsOfExperience: 4 },
       { name: "DynamoDB", level: "Advanced", yearsOfExperience: 3 },
       { name: "Redis", level: "Advanced", yearsOfExperience: 3 },
       { name: "Kafka", level: "Advanced", yearsOfExperience: 3 },

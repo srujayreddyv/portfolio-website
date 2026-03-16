@@ -67,7 +67,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Architected a cloud native archival and analytics platform for social media and news streams, enabling real time analysis of 1M+ data points during the Indian Farmers' Protests.",
       "Fine tuned multilingual BERT and IndicBERT models using Hugging Face Transformers for sentiment classification and topic modeling, improving accuracy by 8% over baseline models.",
-      "Built 13 secure REST API endpoints with C# and ASP.NET Core supporting high volume social media and news data ingestion and metadata management, with React based dashboards for exploratory analysis."
+      "Delivered 13 secure REST API endpoints with C# and ASP.NET Core supporting high volume social media and news data ingestion and metadata management, with React based dashboards for exploratory analysis."
     ],
     technologies: ["Python", "C#", "ASP.NET Core", "React", "Docker", "GitHub Actions", "Hugging Face Transformers", "BERT", "IndicBERT", "Machine Learning", "NLP"]
   },
@@ -81,9 +81,9 @@ export const experiences: Experience[] = [
     logo: "/logos/iiith-logo.png",
     description: "Engineered cross-platform GIS systems for mapping Buddhist heritage sites and developed mobile applications for field data collection.",
     achievements: [
-      "Engineered a cross platform GIS system using Python, Django, PostgreSQL, and PostGIS to map 280+ heritage sites across 25 villages, enabling spatial search, analytics, and interactive visualization.",
+      "Created a cross platform GIS system using Python, Django, PostgreSQL, and PostGIS to map 280+ heritage sites across 25 villages, enabling spatial search, analytics, and interactive visualization.",
       "Built responsive React web and offline first React Native mobile clients with Leaflet, achieving 60% faster load times in low bandwidth field environments.",
-      "Developed Python based ETL and spatial processing workflows integrating survey, census, and archival datasets into a unified geospatial repository, improving metadata accuracy by 40% and enabling near real time updates."
+      "Automated Python based ETL and spatial processing workflows integrating survey, census, and archival datasets into a unified geospatial repository, improving metadata accuracy by 40% and enabling near real time updates."
     ],
     technologies: ["Python", "Django", "PostgreSQL", "PostGIS", "React", "React Native", "Leaflet.js", "Django REST Framework", "GIS", "Spatial Analysis"]
   }
