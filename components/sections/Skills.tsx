@@ -3,8 +3,13 @@ import SkillCategory from './SkillCategory';
 import { skillCategories } from '@/content/data/skills';
 
 const Skills: React.FC = () => {
-  // Define primary skill areas (can be configured based on requirements)
-  const primaryCategories = ['Backend & APIs', 'AI & LLM Systems'];
+  const primaryCategoryNames = ['Backend & APIs', 'AI & LLM Systems', 'Cloud & DevOps'];
+  const primaryCategories = skillCategories.filter((category) =>
+    primaryCategoryNames.includes(category.category)
+  );
+  const secondaryCategories = skillCategories.filter(
+    (category) => !primaryCategoryNames.includes(category.category)
+  );
   
   return (
     <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-950">
@@ -20,15 +25,36 @@ const Skills: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {skillCategories.map((category) => (
-            <SkillCategory
-              key={category.category}
-              category={category}
-              isPrimary={primaryCategories.includes(category.category)}
-            />
-          ))}
-        </div>
+          <div className="mb-6 sm:mb-8 lg:mb-10">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 mb-4 sm:mb-5">
+              Core Stack
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              {primaryCategories.map((category) => (
+                <SkillCategory
+                  key={category.category}
+                  category={category}
+                  isPrimary
+                />
+              ))}
+            </div>
+          </div>
+
+          {secondaryCategories.length > 0 && (
+            <div>
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 mb-4 sm:mb-5">
+                Supporting Stack
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                {secondaryCategories.map((category) => (
+                  <SkillCategory
+                    key={category.category}
+                    category={category}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

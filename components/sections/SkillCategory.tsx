@@ -67,7 +67,7 @@ interface SkillCategoryProps {
 
 const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = false }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const maxInitialSkills = 7;
+  const maxInitialSkills = isPrimary ? 9 : 7;
   const hasMoreSkills = category.skills.length > maxInitialSkills;
   const displayedSkills = isExpanded ? category.skills : category.skills.slice(0, maxInitialSkills);
 
@@ -161,27 +161,40 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
   return (
     <div className={`p-4 sm:p-6 lg:p-8 rounded-lg border transition-all duration-200 hover:shadow-md ${
       isPrimary 
-        ? 'border-black dark:border-white bg-white dark:bg-gray-800 text-gray-800 dark:text-white' 
+        ? 'border-black dark:border-white bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow-md lg:min-h-[28rem]' 
         : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white'
     } shadow-sm`}>
-      <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-6 ${
-        isPrimary 
-          ? 'text-gray-800 dark:text-white' 
-          : 'text-gray-800 dark:text-white'
-      }`}>
-        {category.category}
-      </h3>
+      <div className="mb-3 sm:mb-4 lg:mb-6">
+        {isPrimary && (
+          <span className="inline-flex items-center rounded-full border border-gray-300 dark:border-gray-600 px-2.5 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400 mb-3">
+            Core
+          </span>
+        )}
+        <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-800 dark:text-white">
+          {category.category}
+        </h3>
+      </div>
       
       <div className="space-y-3 sm:space-y-4">
         {displayedSkills.map((skill) => (
           <div key={skill.name} className="space-y-2">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-              <span className="font-medium text-sm sm:text-base text-gray-700 dark:text-gray-200 inline-flex items-center gap-2">
+              <span className={`font-medium inline-flex items-center gap-2 ${
+                isPrimary
+                  ? 'text-sm sm:text-base lg:text-[1.05rem] text-gray-800 dark:text-gray-100'
+                  : 'text-sm sm:text-base text-gray-700 dark:text-gray-200'
+              }`}>
                 {(() => {
                   const iconEntry = skillIcons[skill.name];
                   const IconComponent = iconEntry?.Icon || Code;
                   const color = iconEntry?.color;
-                  return <IconComponent className="h-4 w-4" style={color ? { color } : undefined} aria-hidden="true" />;
+                  return (
+                    <IconComponent
+                      className={isPrimary ? 'h-[1.05rem] w-[1.05rem]' : 'h-4 w-4'}
+                      style={color ? { color } : undefined}
+                      aria-hidden="true"
+                    />
+                  );
                 })()}
                 {skill.name}
               </span>

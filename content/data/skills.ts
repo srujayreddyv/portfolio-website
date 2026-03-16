@@ -31,7 +31,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    category: "Cloud & Infrastructure",
+    category: "Cloud & DevOps",
     skills: [
       { name: "AWS", level: "Expert", yearsOfExperience: 5 },
       { name: "Azure", level: "Advanced", yearsOfExperience: 3 },
@@ -45,7 +45,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    category: "Data Platforms",
+    category: "Data & Analytics",
     skills: [
       { name: "PostgreSQL", level: "Expert", yearsOfExperience: 6 },
       { name: "MS SQL", level: "Advanced", yearsOfExperience: 4 },
@@ -60,7 +60,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    category: "Frontend",
+    category: "Frontend & Mobile",
     skills: [
       { name: "React", level: "Expert", yearsOfExperience: 5 },
       { name: "Next.js", level: "Advanced", yearsOfExperience: 3 },
