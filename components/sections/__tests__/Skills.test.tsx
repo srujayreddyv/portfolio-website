@@ -34,7 +34,7 @@ describe('Skills Component', () => {
     render(<Skills />);
     
     // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    const primaryCategories = ['Backend & APIs', 'AI & LLM Systems'];
+    const primaryCategories = ['Backend & APIs', 'AI & LLM Systems', 'Cloud & DevOps'];
     
     primaryCategories.forEach((categoryName) => {
       const categoryElement = screen.getByText(categoryName);
@@ -45,11 +45,11 @@ describe('Skills Component', () => {
     expect(primaryCategories.length).toBeGreaterThan(0);
   });
 
-  test('does not render a primary/secondary legend in current design', () => {
+  test('renders core and supporting stack labels', () => {
     render(<Skills />);
     
-    expect(screen.queryByText('Primary Skills')).not.toBeInTheDocument();
-    expect(screen.queryByText('Secondary Skills')).not.toBeInTheDocument();
+    expect(screen.getByText('Core Stack')).toBeInTheDocument();
+    expect(screen.getByText('Supporting Stack')).toBeInTheDocument();
   });
 
   test('has proper semantic structure', () => {
@@ -64,12 +64,12 @@ describe('Skills Component', () => {
     expect(mainHeading).toBeInTheDocument();
   });
 
-  test('has responsive grid layout', () => {
+  test('has responsive grid layout for core stack', () => {
     const { container } = render(<Skills />);
     
-    // Check that responsive grid classes are applied
-    const gridContainer = container.querySelector('.grid');
-    expect(gridContainer).toHaveClass('grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3');
+    const gridContainers = container.querySelectorAll('.grid');
+    expect(gridContainers.length).toBeGreaterThan(0);
+    expect(gridContainers[0]).toHaveClass('grid-cols-1', 'lg:grid-cols-3');
   });
 });
 
@@ -113,11 +113,10 @@ describe('SkillCategory Component', () => {
     expect(screen.queryByText('3 years of experience')).not.toBeInTheDocument();
   });
 
-  test('does not render primary labels even when isPrimary is true', () => {
+  test('renders core badge when isPrimary is true', () => {
     render(<SkillCategory category={mockCategory} isPrimary={true} />);
     
-    // Primary label is intentionally removed from the UI
-    expect(screen.queryByText('(Primary)')).not.toBeInTheDocument();
+    expect(screen.getByText('Core')).toBeInTheDocument();
   });
 
   test('renders category header with default styling', () => {
