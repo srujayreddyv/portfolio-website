@@ -44,10 +44,10 @@ describe('Hero Component', () => {
     });
     expect(screen.queryByText('Bedrock')).not.toBeInTheDocument();
     expect(
-      screen.getByText(/currently building high throughput microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at the california department of developmental services on aws\./i)
+      screen.getByText(/currently building microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at california dds, with measurable improvements in retrieval accuracy, latency, and reliability\./i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/specializing in python, fastapi, typescript, and react, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale\./i)
+      screen.getByText(/strong focus on evaluation driven ai, distributed systems, and modernizing legacy platforms into cloud native architectures using python, fastapi, typescript, react, and aws\./i)
     ).toBeInTheDocument();
   });
   
@@ -130,7 +130,7 @@ describe('Hero Component', () => {
     const subtitleText = screen.getByText(/^ai software engineer$/i);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
 
-    const introParagraph = screen.getByText(/currently building high throughput microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at the california department of developmental services on aws\./i);
+    const introParagraph = screen.getByText(/currently building microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at california dds, with measurable improvements in retrieval accuracy, latency, and reliability\./i);
     expect(introParagraph).toBeInTheDocument();
   });
   
