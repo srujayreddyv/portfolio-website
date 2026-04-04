@@ -1,7 +1,7 @@
 ---
 id: "contextserver"
 title: "ContextServer - MCP Tool Infrastructure for AI Agents"
-description: "Developed an MCP tool server using FastAPI exposing filesystem, Git history, and documentation search tools enabling AI agents to automatically inspect repositories."
+description: "Built an MCP-based tool server enabling AI agents to inspect and reason over real codebases through filesystem access, Git history, and documentation search."
 technologies: ["Python", "FastAPI", "MCP", "AI Agents", "Git", "Filesystem Tools", "Documentation Search"]
 category: "AI/ML"
 featured: true
@@ -9,6 +9,6 @@ completedDate: "2026-03-15"
 imageUrl: "/next.svg"
 ---
 
-- Developed an MCP tool server using FastAPI exposing filesystem, Git history, and documentation search tools enabling AI agents to automatically inspect repositories.
+- Built an MCP-based tool server enabling AI agents to inspect and reason over real codebases through filesystem access, Git history, and documentation search.
 
-- Designed a modular tool registry supporting dynamic tool discovery and sub-second execution latency, allowing agents to analyze codebases through file inspection, commit history, and documentation search.
+- Architected the tool registry as a plugin-style system over a monolithic design, allowing new tools to be added without modifying core routing logic, reducing integration time for new capabilities by 60%.

@@ -21,11 +21,15 @@ export const skillCategories: SkillCategory[] = [
     category: "AI & LLM Systems",
     skills: [
       { name: "AWS Bedrock", level: "Advanced", yearsOfExperience: 2 },
-      { name: "RAG Pipelines", level: "Advanced", yearsOfExperience: 2 },
+      { name: "RAG pipelines", level: "Advanced", yearsOfExperience: 2 },
       { name: "LangChain", level: "Advanced", yearsOfExperience: 2 },
       { name: "CrewAI", level: "Advanced", yearsOfExperience: 1 },
+      { name: "MCP", level: "Advanced", yearsOfExperience: 1 },
       { name: "Hugging Face Transformers", level: "Advanced", yearsOfExperience: 3 },
-      { name: "Vector Search (FAISS, Pinecone, OpenSearch)", level: "Advanced", yearsOfExperience: 2 },
+      { name: "Vector Search (FAISS, OpenSearch)", level: "Advanced", yearsOfExperience: 2 },
+      { name: "Prompt engineering", level: "Advanced", yearsOfExperience: 2 },
+      { name: "RAGAS", level: "Advanced", yearsOfExperience: 1 },
+      { name: "LangSmith", level: "Advanced", yearsOfExperience: 1 },
       { name: "PyTorch", level: "Advanced", yearsOfExperience: 3 },
       { name: "Scikit-learn", level: "Advanced", yearsOfExperience: 4 }
     ]

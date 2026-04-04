@@ -3,7 +3,7 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "AI Software Engineer",
-  bio: "Software Engineer with 6+ years of experience building scalable backend systems and cloud native applications. Currently building high throughput microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at the California Department of Developmental Services on AWS. Specializing in Python, FastAPI, TypeScript, and React, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale.",
+  bio: "Software Engineer with 6+ years of experience building scalable backend systems and cloud native applications. Currently building microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at California DDS, with measurable improvements in retrieval accuracy, latency, and reliability. Strong focus on evaluation driven AI, distributed systems, and modernizing legacy platforms into cloud native architectures using Python, FastAPI, TypeScript, React, and AWS.",
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA · Open to Relocate",
   socialLinks: [
@@ -18,7 +18,7 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayResume2026.pdf", // Optional - can be removed if no resume available
+  resumeUrl: "/SrujayResume26.pdf", // Optional - can be removed if no resume available
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",

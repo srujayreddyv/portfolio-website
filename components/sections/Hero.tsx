@@ -124,8 +124,8 @@ export default function Hero() {
               </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              <p>Currently building high throughput microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at the California Department of Developmental Services on AWS.</p>
-              <p>Specializing in Python, FastAPI, TypeScript, and React, with deep expertise in distributed architecture, event driven systems, and modernizing legacy platforms at scale.</p>
+              <p>Currently building microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at California DDS, with measurable improvements in retrieval accuracy, latency, and reliability.</p>
+              <p>Strong focus on evaluation driven AI, distributed systems, and modernizing legacy platforms into cloud native architectures using Python, FastAPI, TypeScript, React, and AWS.</p>
             </div>
           </div>
 
