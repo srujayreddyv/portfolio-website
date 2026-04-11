@@ -20,12 +20,12 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "AI & LLM Systems",
     skills: [
-      { name: "AWS Bedrock", level: "Advanced", yearsOfExperience: 2 },
       { name: "RAG pipelines", level: "Advanced", yearsOfExperience: 2 },
+      { name: "Multi-Agent Systems", level: "Advanced", yearsOfExperience: 2 },
+      { name: "LangGraph", level: "Advanced", yearsOfExperience: 1 },
       { name: "LangChain", level: "Advanced", yearsOfExperience: 2 },
       { name: "CrewAI", level: "Advanced", yearsOfExperience: 1 },
       { name: "MCP", level: "Advanced", yearsOfExperience: 1 },
-      { name: "Hugging Face Transformers", level: "Advanced", yearsOfExperience: 3 },
       { name: "Vector Search (FAISS, OpenSearch)", level: "Advanced", yearsOfExperience: 2 },
       { name: "Prompt engineering", level: "Advanced", yearsOfExperience: 2 },
       { name: "RAGAS", level: "Advanced", yearsOfExperience: 1 },
@@ -42,14 +42,14 @@ export const skillCategories: SkillCategory[] = [
       { name: "Docker", level: "Expert", yearsOfExperience: 4 },
       { name: "Kubernetes", level: "Advanced", yearsOfExperience: 3 },
       { name: "Terraform", level: "Advanced", yearsOfExperience: 3 },
-      { name: "GitHub Actions", level: "Expert", yearsOfExperience: 4 },
+      { name: "CI/CD", level: "Expert", yearsOfExperience: 4 },
       { name: "CloudWatch", level: "Advanced", yearsOfExperience: 3 },
       { name: "Grafana", level: "Intermediate", yearsOfExperience: 2 },
       { name: "Prometheus", level: "Intermediate", yearsOfExperience: 2 }
     ]
   },
   {
-    category: "Data & Analytics",
+    category: "Data Systems",
     skills: [
       { name: "PostgreSQL", level: "Expert", yearsOfExperience: 6 },
       { name: "MS SQL", level: "Advanced", yearsOfExperience: 4 },

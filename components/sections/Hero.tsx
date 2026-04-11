@@ -95,7 +95,7 @@ export default function Hero() {
               AI Software Engineer
             </p>
             <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              6+ years building scalable backend systems and cloud native applications.
+              6+ years building scalable backend systems and production AI platforms.
             </p>
           </div>
 
@@ -124,8 +124,8 @@ export default function Hero() {
               </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              <p>Currently building microservices, RAG pipelines, multi agent orchestration, and knowledge graph retrieval systems at California DDS, with measurable improvements in retrieval accuracy, latency, and reliability.</p>
-              <p>Strong focus on evaluation driven AI, distributed systems, and modernizing legacy platforms into cloud native architectures using Python, FastAPI, TypeScript, React, and AWS.</p>
+              <p>Specialized in designing and deploying LLM-based systems including RAG pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability.</p>
+              <p>Experienced in building distributed microservices on AWS using Python and FastAPI, with a focus on evaluation-driven AI, system performance, and modernizing legacy platforms into cloud-native architectures.</p>
             </div>
           </div>
 

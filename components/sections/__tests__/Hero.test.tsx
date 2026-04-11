@@ -37,17 +37,17 @@ describe('Hero Component', () => {
     // Check for subtitle and intro content
     expect(screen.getByText(/^ai software engineer$/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/6\+ years building scalable backend systems and cloud native applications\./i)
+      screen.getByText(/6\+ years building scalable backend systems and production ai platforms\./i)
     ).toBeInTheDocument();
     ['Python', 'FastAPI', 'TypeScript', 'React', 'AWS', 'CrewAI', 'LangChain'].forEach((skill) => {
       expect(screen.getByText(skill)).toBeInTheDocument();
     });
     expect(screen.queryByText('Bedrock')).not.toBeInTheDocument();
     expect(
-      screen.getByText(/currently building microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at california dds, with measurable improvements in retrieval accuracy, latency, and reliability\./i)
+      screen.getByText(/specialized in designing and deploying llm-based systems including rag pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability\./i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/strong focus on evaluation driven ai, distributed systems, and modernizing legacy platforms into cloud native architectures using python, fastapi, typescript, react, and aws\./i)
+      screen.getByText(/experienced in building distributed microservices on aws using python and fastapi, with a focus on evaluation-driven ai, system performance, and modernizing legacy platforms into cloud-native architectures\./i)
     ).toBeInTheDocument();
   });
   
@@ -130,7 +130,7 @@ describe('Hero Component', () => {
     const subtitleText = screen.getByText(/^ai software engineer$/i);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
 
-    const introParagraph = screen.getByText(/currently building microservices, rag pipelines, multi agent orchestration, and knowledge graph retrieval systems at california dds, with measurable improvements in retrieval accuracy, latency, and reliability\./i);
+    const introParagraph = screen.getByText(/specialized in designing and deploying llm-based systems including rag pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability\./i);
     expect(introParagraph).toBeInTheDocument();
   });
   
