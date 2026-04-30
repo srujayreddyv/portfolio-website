@@ -1,159 +1,152 @@
 /**
- * Theme utilities for preventing FOUC and managing theme state
+ * Theme utilities for preventing FOUC and managing theme state.
+ *
+ * Default surface is dark (System Architect direction). Users can opt
+ * into light or sky via the theme toggle; preferences persist in
+ * localStorage under the key `portfolio-theme`.
  */
 
 /**
- * Script to prevent FOUC by setting theme class before hydration
- * This should be injected into the document head
+ * Script to prevent FOUC by setting theme class before hydration.
+ * Injected synchronously into <head>.
+ *
+ * Resolution order:
+ *   1. Stored preference (`portfolio-theme` in localStorage)
+ *   2. Falls through to dark — System Architect is dark by default.
+ *
+ * Note: legacy users with `theme=system` are honored; otherwise we
+ * intentionally do NOT consult prefers-color-scheme — the design is
+ * dark-first.
  */
 export const themeScript = `
 (function() {
   try {
-    var theme = localStorage.getItem('theme');
-    var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    var activeTheme = theme === 'system' || !theme ? systemTheme : theme;
-    
-    if (activeTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    var stored = localStorage.getItem('portfolio-theme');
+    var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var resolved;
+
+    if (stored === 'light') {
+      resolved = 'light';
+    } else if (stored === 'sky') {
+      resolved = 'sky';
+    } else if (stored === 'system') {
+      resolved = systemPrefersDark ? 'dark' : 'light';
     } else {
-      document.documentElement.classList.remove('dark');
+      // No preference (or stored === 'dark') → dark default.
+      resolved = 'dark';
     }
-    
-    // Prevent flash by ensuring theme is applied before content renders
-    document.documentElement.style.colorScheme = activeTheme;
+
+    var root = document.documentElement;
+    root.classList.remove('light', 'dark', 'sky');
+
+    if (resolved === 'sky') {
+      root.classList.add('sky', 'dark');
+      root.style.colorScheme = 'dark';
+    } else if (resolved === 'light') {
+      root.classList.add('light');
+      root.style.colorScheme = 'light';
+    } else {
+      root.classList.add('dark');
+      root.style.colorScheme = 'dark';
+    }
   } catch (e) {
-    // Fallback to light theme if there's any error
-    document.documentElement.classList.remove('dark');
-    document.documentElement.style.colorScheme = 'light';
+    // Fail safe to dark — matches the default visual.
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
   }
 })();
 `;
 
+export type ThemePreference = 'light' | 'dark' | 'sky' | 'system';
+export type ResolvedTheme = 'light' | 'dark' | 'sky';
+
+const STORAGE_KEY = 'portfolio-theme';
+const VALID_THEMES: ThemePreference[] = ['light', 'dark', 'sky', 'system'];
+
 /**
- * Get the current theme from storage or system preference
+ * Get the current theme preference from storage.
+ * Returns 'dark' when nothing is stored — System Architect is dark-first.
  */
-export function getInitialTheme(): 'light' | 'dark' | 'system' {
-  if (typeof window === 'undefined') return 'system';
-  
+export function getInitialTheme(): ThemePreference {
+  if (typeof window === 'undefined') return 'dark';
+
   try {
-    const stored = localStorage.getItem('theme');
-    if (stored && ['light', 'dark', 'system'].includes(stored)) {
-      return stored as 'light' | 'dark' | 'system';
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && VALID_THEMES.includes(stored as ThemePreference)) {
+      return stored as ThemePreference;
     }
   } catch (error) {
     console.warn('Failed to read theme from localStorage:', error);
   }
-  
-  return 'system';
+
+  return 'dark';
 }
 
 /**
- * Get the resolved theme (light or dark) from preference
+ * Resolve a preference to a concrete applied theme.
+ * 'system' resolves via prefers-color-scheme; everything else is identity.
  */
-export function getResolvedTheme(preference: 'light' | 'dark' | 'system'): 'light' | 'dark' {
-  if (preference !== 'system') return preference;
-  
-  if (typeof window === 'undefined') return 'light';
-  
+export function getResolvedTheme(preference: ThemePreference): ResolvedTheme {
+  if (preference === 'light' || preference === 'dark' || preference === 'sky') {
+    return preference;
+  }
+
+  // preference === 'system'
+  if (typeof window === 'undefined') return 'dark';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
- * Apply theme classes to document element
+ * Apply theme classes to the document element.
  */
-export function applyTheme(theme: 'light' | 'dark'): void {
+export function applyTheme(theme: ResolvedTheme): void {
   if (typeof document === 'undefined') return;
-  
+
   const root = document.documentElement;
-  
-  if (theme === 'dark') {
-    root.classList.add('dark');
+  root.classList.remove('light', 'dark', 'sky');
+
+  if (theme === 'sky') {
+    root.classList.add('sky', 'dark');
+    root.style.colorScheme = 'dark';
+  } else if (theme === 'light') {
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
   } else {
-    root.classList.remove('dark');
+    root.classList.add('dark');
+    root.style.colorScheme = 'dark';
   }
-  
-  root.style.colorScheme = theme;
 }
 
 /**
- * Store theme preference in localStorage
+ * Persist theme preference to localStorage.
  */
-export function storeTheme(theme: 'light' | 'dark' | 'system'): void {
+export function storeTheme(theme: ThemePreference): void {
   if (typeof window === 'undefined') return;
-  
+
   try {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem(STORAGE_KEY, theme);
   } catch (error) {
     console.warn('Failed to store theme in localStorage:', error);
   }
 }
 
 /**
- * Listen for system theme changes
+ * Subscribe to system theme changes. Returns an unsubscribe fn.
  */
 export function watchSystemTheme(callback: (isDark: boolean) => void): () => void {
   if (typeof window === 'undefined') return () => {};
-  
+
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const handler = (e: MediaQueryListEvent) => callback(e.matches);
-  
+
   mediaQuery.addEventListener('change', handler);
-  
+
   return () => mediaQuery.removeEventListener('change', handler);
 }
 
 /**
- * Validate theme value
+ * Type guard for theme preference values.
  */
-export function isValidTheme(value: unknown): value is 'light' | 'dark' | 'system' {
-  return typeof value === 'string' && ['light', 'dark', 'system'].includes(value);
-}
-
-/**
- * Get theme-aware CSS custom properties
- */
-export function getThemeProperties(theme: 'light' | 'dark'): Record<string, string> {
-  const lightTheme = {
-    '--background': '255 255 255',
-    '--foreground': '0 0 0',
-    '--primary': '59 130 246',
-    '--primary-foreground': '255 255 255',
-    '--secondary': '243 244 246',
-    '--secondary-foreground': '17 24 39',
-    '--muted': '243 244 246',
-    '--muted-foreground': '107 114 128',
-    '--border': '229 231 235',
-    '--input': '229 231 235',
-    '--ring': '59 130 246'
-  };
-  
-  const darkTheme = {
-    '--background': '17 24 39',
-    '--foreground': '255 255 255',
-    '--primary': '96 165 250',
-    '--primary-foreground': '17 24 39',
-    '--secondary': '31 41 55',
-    '--secondary-foreground': '243 244 246',
-    '--muted': '31 41 55',
-    '--muted-foreground': '156 163 175',
-    '--border': '55 65 81',
-    '--input': '55 65 81',
-    '--ring': '96 165 250'
-  };
-  
-  return theme === 'dark' ? darkTheme : lightTheme;
-}
-
-/**
- * Apply CSS custom properties to document
- */
-export function applyThemeProperties(theme: 'light' | 'dark'): void {
-  if (typeof document === 'undefined') return;
-  
-  const properties = getThemeProperties(theme);
-  const root = document.documentElement;
-  
-  Object.entries(properties).forEach(([property, value]) => {
-    root.style.setProperty(property, value);
-  });
+export function isValidTheme(value: unknown): value is ThemePreference {
+  return typeof value === 'string' && VALID_THEMES.includes(value as ThemePreference);
 }

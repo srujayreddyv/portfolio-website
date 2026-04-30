@@ -2,74 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==================================================================
+   System Architect -- design tokens
+   Direction 01: Vercel/Linear school. Restrained, technical, dark-first.
+   Single chromatic accent: electric cyan (#22D3EE).
+   ================================================================== */
+
 :root {
-  --sky-bg: linear-gradient(180deg, #d9ecff 0%, #e9f4ff 52%, #f7fbff 100%);
+  /* Surfaces */
+  --bg-base: #0A0A0A;
+  --bg-panel: #0F0F10;
+  --bg-elev: #16161A;
 
-  /* Base colors */
-  --background: #ffffff;
-  --background-secondary: #f9fafb;
-  --foreground: #374151;
-  --foreground-secondary: #6b7280;
-  
-  /* Card and component backgrounds */
-  --card: #f3f4f6;
-  --card-secondary: #e5e7eb;
-  --card-foreground: #374151;
-  
-  /* Primary brand colors */
-  --primary: #000000;
-  --primary-foreground: #ffffff;
-  
-  /* Consistent accent colors */
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-foreground: #ffffff;
-  
-  /* Muted colors */
-  --muted: #6b7280;
-  --muted-foreground: #9ca3af;
-  
-  /* Border colors */
-  --border: #e5e7eb;
-  --border-secondary: #d1d5db;
-}
+  /* Ink */
+  --ink: #FAFAFA;
+  --ink-muted: #A1A1AA;
+  --ink-subtle: #71717A;
 
-.light {
-  --sky-bg: linear-gradient(180deg, #d9ecff 0%, #e9f4ff 52%, #f7fbff 100%);
-}
+  /* Hairlines */
+  --line: #27272A;
+  --line-subtle: #1F1F23;
+  --line-strong: #3F3F46;
 
-.dark {
+  /* Signal -- single accent */
+  --signal: #22D3EE;
+  --signal-rgb: 34, 211, 238;
+  --signal-dim: rgba(34, 211, 238, 0.12);
+  --signal-glow: rgba(34, 211, 238, 0.35);
+
+  /* ---- Legacy compatibility tokens ----------------------------- */
+  /* Mapped to System Architect equivalents so unmigrated components */
+  /* render correctly during the rebuild. Will be removed.           */
+  --background: var(--bg-base);
+  --background-secondary: var(--bg-panel);
+  --foreground: var(--ink);
+  --foreground-secondary: var(--ink-muted);
+  --card: var(--bg-panel);
+  --card-secondary: var(--bg-elev);
+  --card-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--bg-base);
+  --accent: var(--signal);
+  --accent-hover: #67E8F9;
+  --accent-foreground: var(--bg-base);
+  --muted: var(--ink-subtle);
+  --muted-foreground: var(--ink-subtle);
+  --border: var(--line);
+  --border-secondary: var(--line-strong);
+
+  /* Header offset (preserved from prior CSS). */
+  --header-offset: 56px;
+
+  /* Sky-mode background (preserved so the theme keeps working). */
   --sky-bg: linear-gradient(180deg, #0f223f 0%, #16335c 52%, #224b80 100%);
-
-  /* Base colors */
-  --background: #000000;
-  --background-secondary: #111827;
-  --foreground: #f9fafb;
-  --foreground-secondary: #d1d5db;
-  
-  /* Card and component backgrounds */
-  --card: #1f2937;
-  --card-secondary: #374151;
-  --card-foreground: #ffffff;
-  
-  /* Primary brand colors */
-  --primary: #ffffff;
-  --primary-foreground: #000000;
-  
-  /* Consistent accent colors */
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-foreground: #ffffff;
-  
-  /* Muted colors */
-  --muted: #9ca3af;
-  --muted-foreground: #6b7280;
-  
-  /* Border colors */
-  --border: #374151;
-  --border-secondary: #4b5563;
 }
 
+/* ==================================================================
+   .dark -- same as :root. Explicit so Tailwind's dark: variants and
+   any code that toggles `dark` keeps working.
+   ================================================================== */
+.dark {
+  --background: var(--bg-base);
+  --background-secondary: var(--bg-panel);
+  --foreground: var(--ink);
+  --foreground-secondary: var(--ink-muted);
+  --card: var(--bg-panel);
+  --card-secondary: var(--bg-elev);
+  --card-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--bg-base);
+  --accent: var(--signal);
+  --accent-hover: #67E8F9;
+  --accent-foreground: var(--bg-base);
+  --muted: var(--ink-subtle);
+  --muted-foreground: var(--ink-subtle);
+  --border: var(--line);
+  --border-secondary: var(--line-strong);
+}
+
+/* ==================================================================
+   .light -- opt-in light variant. Inverted ink/surface; signal stays.
+   ================================================================== */
+.light {
+  --background: #FAFAFA;
+  --background-secondary: #F4F4F5;
+  --foreground: #0A0A0A;
+  --foreground-secondary: #3F3F46;
+  --card: #FFFFFF;
+  --card-secondary: #F4F4F5;
+  --card-foreground: #0A0A0A;
+  --primary: #0A0A0A;
+  --primary-foreground: #FFFFFF;
+  --accent: #0891B2;            /* deeper cyan, AA on white */
+  --accent-hover: #0E7490;
+  --accent-foreground: #FFFFFF;
+  --muted: #71717A;
+  --muted-foreground: #A1A1AA;
+  --border: #E4E4E7;
+  --border-secondary: #D4D4D8;
+}
+
+/* ==================================================================
+   .sky -- preserved starry-night theme. Renders alongside .dark so
+   Tailwind dark: utilities continue to apply.
+   ================================================================== */
 .sky {
   --sky-bg:
     radial-gradient(circle at 8% 10%, rgba(255, 255, 255, 1) 0 1.3px, transparent 1.9px),
@@ -98,30 +134,38 @@
     radial-gradient(circle at 52% 72%, rgba(96, 165, 250, 0.2), transparent 42%);
 }
 
-body {
-  background: var(--sky-bg);
-  background-attachment: fixed;
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-}
-
-:root {
-  --header-offset: 56px;
-}
+/* ==================================================================
+   Base
+   ================================================================== */
 
 @media (min-width: 640px) {
-  :root {
-    --header-offset: 64px;
-  }
+  :root { --header-offset: 64px; }
 }
 
 @media (min-width: 1024px) {
-  :root {
-    --header-offset: 80px;
-  }
+  :root { --header-offset: 80px; }
 }
 
-/* In sky mode, show continuous star sky from below header to footer */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+/* Sky mode: render the starfield as a fixed background between the
+   header and footer. */
+.sky body {
+  background: var(--sky-bg);
+  background-attachment: fixed;
+}
+
 .sky .app-shell {
   position: relative;
   isolation: isolate;
@@ -144,277 +188,243 @@ body {
   animation: skyGlowPulse 4.5s ease-in-out infinite;
 }
 
-/* In sky mode, make the full content area (between header and footer) use hero-like sky surface */
 .sky .app-shell main,
 .sky .app-shell main section {
   background: transparent !important;
 }
 
 @keyframes skyGlowPulse {
-  0%, 100% {
-    filter: brightness(1);
-    opacity: 0.96;
-  }
-  50% {
-    filter: brightness(1.08);
-    opacity: 1;
-  }
+  0%, 100% { filter: brightness(1); opacity: 0.96; }
+  50%      { filter: brightness(1.08); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sky .app-shell::before {
-    animation: none;
-  }
+  .sky .app-shell::before { animation: none; }
 }
 
-/* Smooth scrolling for navigation */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Responsive base styles for sections */
-section {
-  scroll-margin-top: 4rem; /* Account for fixed header */
-}
+section { scroll-margin-top: 4rem; }
+@media (min-width: 640px)  { section { scroll-margin-top: 4.5rem; } }
+@media (min-width: 1024px) { section { scroll-margin-top: 5rem; } }
 
-@media (min-width: 640px) {
-  section {
-    scroll-margin-top: 4.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  section {
-    scroll-margin-top: 5rem;
-  }
-}
-
-/* Responsive container with better padding */
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Touch-friendly interactive elements */
+/* ==================================================================
+   Focus -- cyan ring, restrained
+   ================================================================== */
+*:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ==================================================================
+   System Architect utilities
+   ================================================================== */
+
+/**
+ * .mono-label -- the "secret weapon".
+ * Small uppercase mono labels above section titles, beside metrics,
+ * inside cards. Tracks the technical aesthetic without shouting.
+ */
+.mono-label {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;       /* 11px */
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  font-weight: 500;
+}
+
+.mono-label--signal { color: var(--signal); }
+.mono-label--ink    { color: var(--ink); }
+
+/**
+ * .status-dot -- small live indicator.
+ * Use beside "Available for work", "Currently shipping", etc.
+ */
+.status-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-dim);
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+.status-dot--idle {
+  background-color: var(--ink-subtle);
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--signal-dim); }
+  50%      { box-shadow: 0 0 0 6px rgba(var(--signal-rgb), 0.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot { animation: none; }
+}
+
+/**
+ * .ambient-glow -- soft radial cyan wash.
+ * Use sparingly: behind hero text, around a featured project card.
+ * Decorative; keep aria-hidden on the host element.
+ */
+.ambient-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.ambient-glow::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 50% 40%, var(--signal-glow), transparent 70%);
+  opacity: 0.35;
+  filter: blur(40px);
+}
+
+/**
+ * .hairline -- 1px divider that respects the design's restraint.
+ * Horizontal by default; add .hairline--vert for vertical.
+ */
+.hairline {
+  border: 0;
+  height: 1px;
+  background-color: var(--line);
+  margin: 0;
+}
+
+.hairline--subtle { background-color: var(--line-subtle); }
+.hairline--strong { background-color: var(--line-strong); }
+
+.hairline--vert {
+  height: auto;
+  width: 1px;
+  align-self: stretch;
+}
+
+/* ==================================================================
+   Touch / a11y baselines (preserved)
+   ================================================================== */
 @media (hover: none) and (pointer: coarse) {
-  /* Mobile touch targets should be at least 44px */
-  button, 
-  a[role="button"], 
-  input[type="button"], 
-  input[type="submit"], 
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"],
   .touch-target {
     min-height: 44px;
     min-width: 44px;
   }
-  
-  /* Increase tap targets for mobile */
-  .mobile-tap-target {
-    padding: 12px;
-  }
-  
-  /* Improve mobile navigation */
+
+  .mobile-tap-target { padding: 12px; }
+
   nav a {
     min-height: 48px;
     display: flex;
     align-items: center;
   }
-  
-  /* Better mobile form elements */
+
   input, textarea, select {
     min-height: 44px;
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px; /* prevent iOS zoom */
   }
 }
 
-/* Improved focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Enhanced button and interactive element styles */
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-  border: 1px solid var(--primary);
-  transition: all 300ms ease-in-out;
-}
-
-.btn-primary:hover {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  transition: all 300ms ease-in-out;
-}
-
-.btn-secondary:hover {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
-
-/* Enhanced card styles */
-.card-enhanced {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  transition: all 300ms ease-in-out;
-}
-
-.card-enhanced:hover {
-  border-color: var(--accent);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.dark .card-enhanced:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* Status indicators */
-.status-success {
-  background-color: #10b981;
-  color: white;
-}
-
-.status-warning {
-  background-color: #f59e0b;
-  color: white;
-}
-
-.status-error {
-  background-color: var(--destructive);
-  color: var(--destructive-foreground);
-}
-
-/* Responsive typography scaling */
-@media (max-width: 640px) {
-  .responsive-text-scale {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .responsive-text-scale {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width: 1025px) {
-  .responsive-text-scale {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-}
-
-/* Prevent horizontal scroll on mobile */
-html, body {
-  overflow-x: hidden;
-}
-
-/* Improve mobile viewport handling */
-@media (max-width: 640px) {
-  .mobile-full-width {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-}
-
-/* Better responsive images */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Responsive spacing utilities */
-.responsive-padding {
-  padding: 1rem;
-}
+/* ==================================================================
+   Legacy responsive utilities (preserved during transition)
+   These are referenced by existing components. They will be removed
+   once the rebuild is complete.
+   ================================================================== */
 
-@media (min-width: 640px) {
-  .responsive-padding {
-    padding: 1.5rem;
-  }
-}
+.responsive-padding { padding: 1rem; }
+@media (min-width: 640px)  { .responsive-padding { padding: 1.5rem; } }
+@media (min-width: 1024px) { .responsive-padding { padding: 2rem; } }
 
-@media (min-width: 1024px) {
-  .responsive-padding {
-    padding: 2rem;
-  }
-}
+.responsive-margin-y { margin-top: 2rem; margin-bottom: 2rem; }
+@media (min-width: 640px)  { .responsive-margin-y { margin-top: 3rem; margin-bottom: 3rem; } }
+@media (min-width: 1024px) { .responsive-margin-y { margin-top: 4rem; margin-bottom: 4rem; } }
 
-/* Mobile-first responsive margins */
-.responsive-margin-y {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
+.responsive-heading { font-size: 1.5rem; line-height: 2rem; }
+@media (min-width: 640px) { .responsive-heading { font-size: 1.875rem; line-height: 2.25rem; } }
+@media (min-width: 768px) { .responsive-heading { font-size: 2.25rem; line-height: 2.5rem; } }
+@media (min-width: 1024px) { .responsive-heading { font-size: 3rem; line-height: 1; } }
 
-@media (min-width: 640px) {
-  .responsive-margin-y {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .responsive-margin-y {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-  }
-}
-
-/* Responsive text sizing for better readability */
-.responsive-heading {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-@media (min-width: 640px) {
-  .responsive-heading {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .responsive-heading {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .responsive-heading {
-    font-size: 3rem;
-    line-height: 1;
-  }
-}
-
-/* Responsive grid improvements */
 @media (max-width: 640px) {
-  .responsive-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+  .responsive-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
-
 @media (min-width: 641px) and (max-width: 1024px) {
-  .responsive-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
+  .responsive-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+@media (min-width: 1025px) {
+  .responsive-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 }
 
-@media (min-width: 1025px) {
-  .responsive-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
+@media (max-width: 640px) {
+  .responsive-text-scale { font-size: 0.875rem; line-height: 1.25rem; }
 }
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-text-scale { font-size: 1rem; line-height: 1.5rem; }
+}
+@media (min-width: 1025px) {
+  .responsive-text-scale { font-size: 1.125rem; line-height: 1.75rem; }
+}
+
+@media (max-width: 640px) {
+  .mobile-full-width { width: 100vw; margin-left: calc(-50vw + 50%); }
+}
+
+/* Legacy button & card classes -- mapped to System Architect tokens. */
+.btn-primary {
+  background-color: var(--signal);
+  color: var(--bg-base);
+  border: 1px solid var(--signal);
+  transition: all 200ms ease-out;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 0 3px var(--signal-dim);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  transition: all 200ms ease-out;
+}
+.btn-secondary:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+.card-enhanced {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--line);
+  transition: border-color 200ms ease-out, background-color 200ms ease-out;
+}
+.card-enhanced:hover {
+  border-color: var(--line-strong);
+  background-color: var(--bg-elev);
+}
+
+.status-success { background-color: #10b981; color: #FAFAFA; }
+.status-warning { background-color: #f59e0b; color: #0A0A0A; }
+.status-error   { background-color: #ef4444; color: #FAFAFA; }

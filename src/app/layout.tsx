@@ -79,7 +79,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{ __html: themeScript }}
@@ -90,10 +90,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base text-ink`}
       >
         <ThemeProvider
-          defaultTheme="system"
+          defaultTheme="dark"
           storageKey="portfolio-theme"
         >
           {children}
