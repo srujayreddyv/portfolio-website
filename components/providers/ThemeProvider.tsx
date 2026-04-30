@@ -9,6 +9,11 @@ export interface ThemeProviderProps {
   storageKey?: string;
 }
 
+/**
+ * Keeps the `dark` class applied alongside `sky`, since the sky theme
+ * is a stylized dark variant. Without this, Tailwind's dark: variants
+ * stop firing the moment the user picks Sky.
+ */
 function SkyDarkSync() {
   const { theme, resolvedTheme } = useTheme();
 
@@ -32,10 +37,18 @@ function SkyDarkSync() {
   return null;
 }
 
-export function ThemeProvider({ 
-  children, 
-  defaultTheme = 'system', 
-  storageKey = 'theme' 
+/**
+ * Wraps next-themes with System Architect defaults.
+ *
+ * - `defaultTheme` is `dark` by default (overridable for per-page tests).
+ * - Themes: light | dark | sky | system.
+ * - Storage key defaults to `portfolio-theme` to match the FOUC script
+ *   in `lib/theme-utils.ts`.
+ */
+export function ThemeProvider({
+  children,
+  defaultTheme = 'dark',
+  storageKey = 'portfolio-theme',
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -44,10 +57,11 @@ export function ThemeProvider({
     setMounted(true);
   }, []);
 
-  // Prevent hydration mismatch by not rendering theme-dependent content until mounted
+  // Pre-hydration shell — bg-base matches the dark default so there is
+  // no flash between the FOUC script and React's first paint.
   if (!mounted) {
     return (
-      <div className="text-gray-900 dark:text-white min-h-screen" style={{ background: 'var(--sky-bg)' }}>
+      <div className="min-h-screen bg-base text-ink">
         {children}
       </div>
     );
