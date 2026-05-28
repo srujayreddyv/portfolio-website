@@ -1,7 +1,7 @@
 import { SEOData } from '@/types';
 
 export const seoData: SEOData = {
-  title: "Srujay Reddy Vangoor | AI Software Engineer, RAG & LLM Platforms",
+  title: "Srujay Reddy | AI Software Engineer, RAG & LLM Platforms",
   description: "Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems.",
   keywords: [
     "ai software engineer",
