@@ -47,7 +47,7 @@
 }
 
 .dark {
-  --page-bg: linear-gradient(180deg, #0f223f 0%, #16335c 52%, #224b80 100%);
+  --page-bg: linear-gradient(180deg, #020202 0%, #0a0a0a 52%, #141414 100%);
 
   /* Base colors */
   --background: #000000;
