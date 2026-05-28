@@ -75,7 +75,7 @@ describe('Header Component', () => {
     test('renders mobile menu button', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       expect(mobileMenuButton).toBeInTheDocument();
       expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'false');
     });
@@ -84,7 +84,7 @@ describe('Header Component', () => {
       render(<Header />);
       
       // Mobile menu should have 'hidden' class initially
-      const mobileMenuContainer = screen.getByRole('button', { name: /toggle navigation menu/i })
+      const mobileMenuContainer = screen.getByRole('button', { name: /open navigation menu/i })
         .closest('header')
         ?.querySelector('.md\\:hidden:not(button)');
       
@@ -97,10 +97,12 @@ describe('Header Component', () => {
     test('opens mobile menu when hamburger button is clicked', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       
       // Click to open menu
       fireEvent.click(mobileMenuButton);
+      expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'true');
+      expect(mobileMenuButton).toHaveAttribute('aria-label', 'Close navigation menu');
       
       // The test passes if we can find the mobile navigation links
       // Since the component renders both desktop and mobile links, 
@@ -117,13 +119,16 @@ describe('Header Component', () => {
     test('closes mobile menu when hamburger button is clicked again', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       
       // Open menu
       fireEvent.click(mobileMenuButton);
+      expect(mobileMenuButton).toHaveAttribute('aria-label', 'Close navigation menu');
       
       // Close menu
       fireEvent.click(mobileMenuButton);
+      expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'false');
+      expect(mobileMenuButton).toHaveAttribute('aria-label', 'Open navigation menu');
       
       // Menu should be hidden again
       const mobileMenuContainer = mobileMenuButton
@@ -137,7 +142,7 @@ describe('Header Component', () => {
     test('displays correct hamburger/close icons based on menu state', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       
       // Initially should show hamburger icon (first svg should be visible)
       let svgElements = mobileMenuButton.querySelectorAll('svg');
@@ -155,7 +160,7 @@ describe('Header Component', () => {
     test('mobile menu contains all navigation links', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       fireEvent.click(mobileMenuButton);
       
       const expectedLinks = ['About', 'Projects', 'Skills', 'Contact'];
@@ -191,7 +196,7 @@ describe('Header Component', () => {
       render(<Header />);
       
       // Open mobile menu
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       fireEvent.click(mobileMenuButton);
       
       // Click a mobile navigation link
@@ -240,10 +245,11 @@ describe('Header Component', () => {
     test('mobile menu button has proper ARIA attributes', () => {
       render(<Header />);
       
-      const mobileMenuButton = screen.getByRole('button', { name: /toggle navigation menu/i });
+      const mobileMenuButton = screen.getByRole('button', { name: /open navigation menu/i });
       
       expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'false');
-      expect(mobileMenuButton).toHaveAttribute('aria-label', 'Toggle navigation menu');
+      expect(mobileMenuButton).toHaveAttribute('aria-label', 'Open navigation menu');
+      expect(mobileMenuButton).toHaveAttribute('aria-controls', 'mobile-navigation');
     });
 
     test('navigation links have proper href attributes', () => {

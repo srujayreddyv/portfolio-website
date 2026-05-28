@@ -174,9 +174,10 @@ export default function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600 min-h-[44px] min-w-[44px]"
               aria-expanded={isMenuOpen}
-              aria-label="Toggle navigation menu"
+              aria-controls="mobile-navigation"
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{isMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
               {/* Hamburger icon */}
               <svg
                 className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
@@ -214,7 +215,10 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden transition-all duration-200 ease-in-out ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div
+          id="mobile-navigation"
+          className={`md:hidden transition-all duration-200 ease-in-out ${isMenuOpen ? 'block' : 'hidden'}`}
+        >
           <div className="site-header-panel px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigationItems.map((item) => (
               <a

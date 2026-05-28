@@ -90,7 +90,7 @@ describe('Header Navigation Consistency Properties', () => {
           render(<Header />);
           
           // Open mobile menu - use getAllByLabelText to handle multiple buttons
-          const mobileMenuButtons = screen.getAllByLabelText(/toggle navigation menu/i);
+          const mobileMenuButtons = screen.getAllByLabelText(/open navigation menu/i);
           const mobileMenuButton = mobileMenuButtons[0]; // Take the first one
           fireEvent.click(mobileMenuButton);
           
@@ -137,7 +137,7 @@ describe('Header Navigation Consistency Properties', () => {
           });
           
           // Open mobile menu - use getAllByLabelText to handle multiple buttons
-          const mobileMenuButtons = screen.getAllByLabelText(/toggle navigation menu/i);
+          const mobileMenuButtons = screen.getAllByLabelText(/open navigation menu/i);
           const mobileMenuButton = mobileMenuButtons[0]; // Take the first one
           fireEvent.click(mobileMenuButton);
           
@@ -164,7 +164,7 @@ describe('Header Navigation Consistency Properties', () => {
           render(<Header />);
           
           // Open mobile menu - use getAllByLabelText to handle multiple buttons
-          const mobileMenuButtons = screen.getAllByLabelText(/toggle navigation menu/i);
+          const mobileMenuButtons = screen.getAllByLabelText(/open navigation menu/i);
           const mobileMenuButton = mobileMenuButtons[0]; // Take the first one
           fireEvent.click(mobileMenuButton);
           

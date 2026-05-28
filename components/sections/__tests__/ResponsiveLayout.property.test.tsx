@@ -37,7 +37,7 @@ describe('Responsive Layout Adaptation Property Tests', () => {
   test('header navigation and mobile toggle render', () => {
     render(<Header />);
     expect(screen.getByRole('navigation')).toBeInTheDocument();
-    expect(screen.getByLabelText(/toggle navigation menu/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/open navigation menu/i)).toBeInTheDocument();
   });
 
   test('project gallery section uses responsive spacing and grid classes', () => {

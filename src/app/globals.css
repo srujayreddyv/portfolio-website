@@ -51,7 +51,7 @@
 
   /* Base colors */
   --background: #000000;
-  --background-secondary: #111827;
+  --background-secondary: #050505;
   --foreground: #f9fafb;
   --foreground-secondary: #d1d5db;
   
@@ -79,9 +79,9 @@
 
   /* Surface colors */
   --surface-primary: #000000;
-  --surface-secondary: #111827;
+  --surface-secondary: #050505;
   --surface-overlay-primary: rgba(0, 0, 0, 0.9);
-  --surface-overlay-secondary: rgba(17, 24, 39, 0.9);
+  --surface-overlay-secondary: rgba(5, 5, 5, 0.9);
   --header-active-bg: #e5e7eb;
   --header-active-foreground: #000000;
 }

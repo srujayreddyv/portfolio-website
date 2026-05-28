@@ -78,7 +78,7 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
             </h2>
             <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              A showcase of my recent work and technical projects, demonstrating various skills and technologies.
+              Production-focused AI, RAG, and backend platform projects with real deployment, observability, and API design considerations.
             </p>
           </div>
 
@@ -88,6 +88,8 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
               <button
                 onClick={() => setShowFilters(!showFilters)}
+                aria-expanded={showFilters}
+                aria-controls="project-filters"
                 className="flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 min-h-[44px] text-sm sm:text-base"
               >
                 <Filter size={16} />
@@ -112,14 +114,18 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
 
           {/* Filter Options */}
           {showFilters && (
-            <div className="mt-4 p-4 sm:p-6 bg-gray-300 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg">
+            <div
+              id="project-filters"
+              className="mt-4 p-4 sm:p-6 bg-gray-300 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {/* Category Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                  <label htmlFor="project-category-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     Category
                   </label>
                   <select
+                    id="project-category-filter"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-400 dark:border-gray-600 rounded-md bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] text-sm sm:text-base"
@@ -134,10 +140,11 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
 
                 {/* Technology Filter */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                  <label htmlFor="project-technology-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                     Technology
                   </label>
                   <select
+                    id="project-technology-filter"
                     value={selectedTechnology}
                     onChange={(e) => setSelectedTechnology(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-400 dark:border-gray-600 rounded-md bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] text-sm sm:text-base"

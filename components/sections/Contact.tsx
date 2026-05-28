@@ -40,10 +40,10 @@ export default function Contact() {
             </h2>
             <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Interested in building production AI systems, backend platforms, or discussing system design challenges. If you&apos;re hiring or collaborating on meaningful engineering work, let&apos;s connect.
+              Reach out for AI software engineering, backend platform roles, consulting conversations, or technical discussions around production LLM and RAG systems.
             </p>
             <p className="mt-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-              Currently building production GenAI systems on AWS infrastructure.
+              Best for hiring conversations, system design discussions, and production AI platform collaboration.
             </p>
           </div>
 

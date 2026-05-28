@@ -10,7 +10,7 @@ export const personalData: PersonalData = {
     "Experienced in building distributed microservices on AWS using Python and modernizing legacy platforms into cloud native architectures."
   ],
   email: "srujayreddyv@icloud.com",
-  location: "Sacramento, CA · Open to Relocate",
+  location: "Sacramento, CA",
   socialLinks: [
     {
       platform: "GitHub",
@@ -24,7 +24,7 @@ export const personalData: PersonalData = {
     }
   ],
   resumeUrl: "/SrujayResume2026.pdf", // Optional - can be removed if no resume available
-  availabilityNote: "Open to AI Software Engineer, AI Engineer, and backend focused AI engineering roles.",
+  availabilityNote: "Open to AI software engineering, AI engineer, and backend engineering roles.",
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
