@@ -12,10 +12,10 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Building GenAI systems and cloud native backend workflows for healthcare report analysis and operational modernization.",
     achievements: [
-      "Built a conversational RAG system for internal report analysis, reducing processing time by 65% and lowering hallucinations by 35% using grounded retrieval and evaluation driven pipelines.",
+      "Built a conversational RAG system for internal report analysis, reducing processing time by 65% and improving grounded response accuracy by 35% using retrieval augmented evaluation pipelines.",
       "Improved retrieval quality (hit@1 from 0.35 to 0.63) by designing a knowledge graph augmented retrieval layer with subgraph expansion, hybrid embeddings, and relevance pruning.",
       "Engineered a multi agent orchestration system (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
-      "Designed and scaled FastAPI microservices handling 200K+ daily requests with P99 latency under 500ms on ECS and Lambda, integrating Cognito and EventBridge for secure healthcare workflows.",
+      "Designed and scaled FastAPI microservices supporting 200K+ daily API requests with sub second P99 latency on ECS and Lambda, integrating Cognito and EventBridge for secure healthcare workflows.",
       "Built a React and TypeScript AI workflow intake portal on AWS provisioned via Terraform, reducing submission time from 30 to 10 minutes through automated validation and review.",
       "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, reducing nightly processing time by 60% and eliminating 200+ manual steps."
     ],
@@ -32,7 +32,7 @@ export const experiences: Experience[] = [
     description: "Engineered seismic modeling and real time geospatial data systems for earthquake monitoring and prediction.",
     achievements: [
       "Engineered a seismic modeling service on AWS, integrating Python (OpenQuake) with legacy PHP and Perl systems, delivering ground motion predictions in under 3 seconds per request.",
-      "Reduced data pipeline latency by 50% by optimizing Kafka-based ingestion of 10+ GB/day from earthquake monitoring stations and migrating analytics from PostgreSQL to Druid for real time querying.",
+      "Reduced data pipeline latency by 50% by optimizing Kafka-based ingestion of 10+ GB/day from earthquake monitoring stations and migrating analytics from PostgreSQL to Druid for real time analytics.",
       "Implemented RBAC and two factor authentication for 60+ monitoring stations, integrating Azure Entra ID for SSO and IAM authorization with session authentication, supporting compliance audit requirements.",
       "Improved geospatial applications performance by 40% by optimizing Leaflet rendering and GeoServer integration for large geospatial datasets, eliminating recurring downtime."
     ],
@@ -65,7 +65,7 @@ export const experiences: Experience[] = [
     logo: "/logos/iiith-logo.png",
     description: "Architected cloud native analytics systems and ML pipelines for large scale social media analysis.",
     achievements: [
-      "Architected a cloud native archival and analytics platform for social media and news streams, enabling near real time analysis of 1M+ data points during the Indian Farmers' Protests.",
+      "Architected a cloud-native archival and analytics platform for social media and news streams, enabling near real time analysis of 1M+ data points during the Indian Farmers' Protests.",
       "Achieved 8% accuracy improvement over baseline by fine-tuning multilingual BERT and IndicBERT using Hugging Face Transformers for sentiment classification and topic modeling.",
       "Built 13 secure REST API endpoints using C# and ASP.NET Core for high volume data ingestion and metadata management, with React based dashboards supporting exploratory analysis."
     ],
