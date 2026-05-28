@@ -91,11 +91,11 @@ export default function Hero() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black dark:text-white mb-3 sm:mb-4 lg:mb-6 leading-tight">
               {personalData.name}
             </h1>
-            <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-gray-600 dark:text-gray-300 font-semibold md:whitespace-nowrap">
-              AI Software Engineer
+            <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-gray-600 dark:text-gray-300 font-semibold">
+              {personalData.title}
             </p>
             <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              6+ years building scalable backend systems and production AI platforms.
+              Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems.
             </p>
           </div>
 
@@ -124,8 +124,8 @@ export default function Hero() {
               </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              <p>Specialized in designing and deploying LLM-based systems including RAG pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability.</p>
-              <p>Experienced in building distributed microservices on AWS using Python and FastAPI, with a focus on evaluation-driven AI, system performance, and modernizing legacy platforms into cloud-native architectures.</p>
+              <p>Specialized in designing and deploying LLM based systems including RAG pipelines, multi agent orchestration, evaluation driven workflows, and knowledge graph augmented retrieval.</p>
+              <p>Experienced in building distributed microservices on AWS using Python and modernizing legacy platforms into cloud native architectures.</p>
             </div>
           </div>
 
