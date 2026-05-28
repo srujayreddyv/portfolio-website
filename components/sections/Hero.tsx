@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   SiPython,
   SiFastapi,
@@ -18,34 +18,11 @@ import ImageModal from '@/components/ui/ImageModal';
 
 export default function Hero() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
       id="about"
-      ref={sectionRef}
-      className={`min-h-[85vh] flex items-center justify-center transition-all duration-700 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      }`}
+      className="min-h-[85vh] flex items-center justify-center"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-9 sm:py-12 lg:py-14">
         <div className="max-w-4xl mx-auto text-center">
@@ -95,7 +72,7 @@ export default function Hero() {
               {personalData.title}
             </p>
             <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems.
+              {personalData.heroLead}
             </p>
           </div>
 
@@ -124,8 +101,9 @@ export default function Hero() {
               </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              <p>Specialized in designing and deploying LLM based systems including RAG pipelines, multi agent orchestration, evaluation driven workflows, and knowledge graph augmented retrieval.</p>
-              <p>Experienced in building distributed microservices on AWS using Python and modernizing legacy platforms into cloud native architectures.</p>
+              {personalData.heroDescription?.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </div>
 
@@ -135,7 +113,7 @@ export default function Hero() {
               href="#projects"
               className="w-full sm:w-auto bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600 text-white dark:text-black px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-150 shadow-lg hover:shadow-xl hover:shadow-[0_8px_24px_rgba(59,130,246,0.25)] transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
             >
-              View My Work
+              Explore Projects
             </a>
             {personalData.resumeUrl && (
               <a
@@ -151,7 +129,7 @@ export default function Hero() {
               href="#contact"
               className="w-full sm:w-auto text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-150 underline transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
             >
-              Get In Touch
+              Discuss Opportunities
             </a>
           </div>
 
@@ -181,7 +159,7 @@ export default function Hero() {
           </div>
           <p className="mt-6 text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium inline-flex items-center gap-2">
             <Briefcase className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
-            Open to AI Software Engineering Roles
+            {personalData.availabilityNote}
           </p>
         </div>
       </div>

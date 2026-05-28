@@ -104,11 +104,14 @@ export interface PersonalData {
   name: string;
   title: string;
   bio: string;
+  heroLead?: string;
+  heroDescription?: string[];
   email: string;
   phone?: string;
   location?: string;
   socialLinks: SocialLink[];
   resumeUrl?: string;
+  availabilityNote?: string;
   careerHighlights?: string[];
   achievements?: string[];
   publications?: Publication[];

@@ -35,32 +35,27 @@ describe('Hero Component', () => {
     expect(screen.getByText(personalData.name)).toBeInTheDocument();
     
     // Check for subtitle and intro content
-    expect(screen.getByText(/^ai software engineer$/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/6\+ years building scalable backend systems and production ai platforms\./i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(personalData.title)).toBeInTheDocument();
+    expect(screen.getByText(personalData.heroLead ?? '')).toBeInTheDocument();
     ['Python', 'FastAPI', 'TypeScript', 'React', 'AWS', 'CrewAI', 'LangChain'].forEach((skill) => {
       expect(screen.getByText(skill)).toBeInTheDocument();
     });
     expect(screen.queryByText('Bedrock')).not.toBeInTheDocument();
-    expect(
-      screen.getByText(/specialized in designing and deploying llm-based systems including rag pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability\./i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/experienced in building distributed microservices on aws using python and fastapi, with a focus on evaluation-driven ai, system performance, and modernizing legacy platforms into cloud-native architectures\./i)
-    ).toBeInTheDocument();
+    (personalData.heroDescription ?? []).forEach((paragraph) => {
+      expect(screen.getByText(paragraph)).toBeInTheDocument();
+    });
   });
   
   test('renders call-to-action buttons', () => {
     render(<Hero />);
     
     // Check for primary CTA button
-    const viewWorkButton = screen.getByRole('link', { name: /view my work/i });
+    const viewWorkButton = screen.getByRole('link', { name: /explore projects/i });
     expect(viewWorkButton).toBeInTheDocument();
     expect(viewWorkButton).toHaveAttribute('href', '#projects');
     
     // Check for secondary CTA button
-    const contactButton = screen.getByRole('link', { name: /get in touch/i });
+    const contactButton = screen.getByRole('link', { name: /discuss opportunities/i });
     expect(contactButton).toBeInTheDocument();
     expect(contactButton).toHaveAttribute('href', '#contact');
   });
@@ -127,10 +122,10 @@ describe('Hero Component', () => {
     const mainHeading = screen.getByRole('heading', { level: 1 });
     expect(mainHeading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl', 'lg:text-6xl', 'xl:text-7xl');
     
-    const subtitleText = screen.getByText(/^ai software engineer$/i);
+    const subtitleText = screen.getByText(personalData.title);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
 
-    const introParagraph = screen.getByText(/specialized in designing and deploying llm-based systems including rag pipelines, multi-agent orchestration, and knowledge graph retrieval, with measurable improvements in accuracy, latency, and reliability\./i);
+    const introParagraph = screen.getByText(personalData.heroDescription?.[0] ?? '');
     expect(introParagraph).toBeInTheDocument();
   });
   
