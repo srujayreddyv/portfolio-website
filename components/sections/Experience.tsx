@@ -6,7 +6,9 @@ import { Calendar, MapPin, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
 const Experience: React.FC = () => {
-  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
+  const [expandedCards, setExpandedCards] = useState<Set<string>>(
+    () => new Set(['dds-2025'])
+  );
 
   const toggleCard = (id: string) => {
     const newExpanded = new Set(expandedCards);

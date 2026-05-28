@@ -5,10 +5,7 @@ import { useState } from 'react';
 import {
   SiPython,
   SiFastapi,
-  SiTypescript,
-  SiReact,
   SiAmazonwebservices,
-  SiLangchain,
   SiGithub,
   SiLinkedin
 } from 'react-icons/si';
@@ -82,10 +79,10 @@ export default function Hero() {
               {[
                 { name: 'Python', Icon: SiPython, color: '#3776AB' },
                 { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
+                { name: 'TypeScript', Icon: Bot, color: '#3178C6' },
                 { name: 'AWS', Icon: SiAmazonwebservices, color: '#FF9900' },
-                { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
-                { name: 'React', Icon: SiReact, color: '#61DAFB' },
-                { name: 'LangChain', Icon: SiLangchain, color: '#2B7A78' }
+                { name: 'RAG', Icon: Bot, color: '#2563EB' },
+                { name: 'Multi-Agent Systems', Icon: Bot, color: '#2563EB' }
               ].map(({ name, Icon, color }) => (
                 <span
                   key={name}
@@ -95,13 +92,11 @@ export default function Hero() {
                   <span>{name}</span>
                 </span>
               ))}
-              <span className="inline-flex items-center gap-2 px-3 py-1 text-xs sm:text-sm rounded-full border border-gray-300/80 dark:border-gray-600/80 text-gray-800 dark:text-gray-200 bg-gray-100/70 dark:bg-gray-800/55 transition-all duration-150 hover:scale-[1.03] hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]">
-                <Bot className="h-4 w-4 text-blue-500" aria-hidden="true" />
-                <span>CrewAI</span>
-              </span>
             </div>
             <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              {personalData.heroDescription?.map((paragraph) => (
+              {personalData.heroDescription
+                ?.filter((paragraph) => paragraph !== personalData.heroLead)
+                .map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -129,7 +124,7 @@ export default function Hero() {
               href="#contact"
               className="w-full sm:w-auto text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-all duration-150 underline transform hover:scale-[1.03] hover:-translate-y-0.5 text-center min-h-[48px] flex items-center justify-center"
             >
-              Discuss Opportunities
+              Let&apos;s Connect
             </a>
           </div>
 
