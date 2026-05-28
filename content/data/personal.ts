@@ -2,7 +2,7 @@ import { PersonalData } from '@/types'
 
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
-  title: "AI Software Engineer · LLM Platforms · RAG · Multi-Agent Systems · FastAPI · AWS",
+  title: "AI Software Engineer",
   bio: "Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems. Specialized in designing and deploying LLM based systems including RAG pipelines, multi agent orchestration, evaluation driven workflows, and knowledge graph augmented retrieval. Experienced in building distributed microservices on AWS using Python and modernizing legacy platforms into cloud native architectures.",
   heroLead: "Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems.",
   heroDescription: [
@@ -24,7 +24,7 @@ export const personalData: PersonalData = {
     }
   ],
   resumeUrl: "/SrujayResume2026.pdf", // Optional - can be removed if no resume available
-  availabilityNote: "Open to AI software engineering and backend platform roles.",
+  availabilityNote: "Open to AI Software Engineer, AI Engineer, and backend focused AI engineering roles.",
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
     "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
