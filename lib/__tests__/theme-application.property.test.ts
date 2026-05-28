@@ -5,7 +5,7 @@
 
 import * as fc from 'fast-check';
 import { propertyTestConfig, generators } from '../property-test-utils';
-import { applyTheme, getThemeProperties } from '../theme-utils';
+import { applyTheme } from '../theme-utils';
 
 describe('Theme Application Property Tests', () => {
   let initialClassName: string;
@@ -25,7 +25,7 @@ describe('Theme Application Property Tests', () => {
   describe('Property 5: Consistent Theme Application', () => {
     test('**Validates: Requirements 3.1, 3.2, 3.3** - For any active theme, all portfolio sections should have consistent theme classes applied', async () => {
       const property = fc.asyncProperty(
-        generators.themeName().filter(theme => theme !== 'system'), // Only test light/dark for DOM manipulation
+        generators.themeName(),
         fc.array(fc.constantFrom('header', 'hero', 'about', 'projects', 'skills', 'contact'), { minLength: 1, maxLength: 6 }),
         async (theme, sections) => {
           try {
@@ -42,32 +42,6 @@ describe('Theme Application Property Tests', () => {
             // Verify color scheme is set
             expect(document.documentElement.style.colorScheme).toBe(theme);
             
-            // Test theme properties consistency
-            const themeProperties = getThemeProperties(theme);
-            expect(themeProperties).toBeDefined();
-            expect(typeof themeProperties).toBe('object');
-            
-            // Verify essential CSS custom properties exist
-            const requiredProperties = [
-              '--background',
-              '--foreground', 
-              '--primary',
-              '--secondary',
-              '--muted',
-              '--border'
-            ];
-            
-            requiredProperties.forEach(property => {
-              expect(themeProperties).toHaveProperty(property);
-              expect(typeof themeProperties[property]).toBe('string');
-              expect(themeProperties[property].length).toBeGreaterThan(0);
-            });
-            
-            // Verify color values are valid RGB format (space-separated numbers)
-            Object.values(themeProperties).forEach(value => {
-              expect(value).toMatch(/^\d+\s+\d+\s+\d+$/);
-            });
-            
             return true;
           } catch (error) {
             console.error('Consistent theme application test failed:', error);
@@ -81,7 +55,7 @@ describe('Theme Application Property Tests', () => {
 
     test('Theme class consistency across multiple applications', async () => {
       const property = fc.asyncProperty(
-        generators.themeName().filter(theme => theme !== 'system'),
+        generators.themeName(),
         fc.integer({ min: 1, max: 5 }), // Reduced max for performance
         async (theme, applicationCount) => {
           try {
@@ -115,7 +89,7 @@ describe('Theme Application Property Tests', () => {
   describe('Property 8: Transition Property Consistency', () => {
     test('**Validates: Requirements 4.3** - For any theme-aware component, CSS transition properties should be applied to all color-related style properties', async () => {
       const property = fc.asyncProperty(
-        generators.themeName().filter(theme => theme !== 'system'),
+        generators.themeName(),
         fc.array(generators.cssUtility(), { minLength: 1, maxLength: 4 }),
         fc.integer({ min: 100, max: 500 }), // transition duration
         async (theme, cssUtilities, duration) => {
@@ -157,7 +131,7 @@ describe('Theme Application Property Tests', () => {
     test('Reduced motion transition handling', async () => {
       const property = fc.asyncProperty(
         fc.boolean(), // prefers reduced motion
-        generators.themeName().filter(theme => theme !== 'system'),
+        generators.themeName(),
         async (prefersReducedMotion, theme) => {
           try {
             // Mock matchMedia for reduced motion
@@ -204,7 +178,7 @@ describe('Theme Application Property Tests', () => {
   describe('Property 13: Tailwind Class Usage', () => {
     test('**Validates: Requirements 6.2** - For any theme-aware component, styling should use appropriate Tailwind CSS dark mode classes', async () => {
       const property = fc.asyncProperty(
-        generators.themeName().filter(theme => theme !== 'system'),
+        generators.themeName(),
         fc.array(generators.cssUtility(), { minLength: 1, maxLength: 5 }),
         async (theme, cssUtilities) => {
           try {

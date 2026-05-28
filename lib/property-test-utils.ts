@@ -15,10 +15,10 @@ export const generators = {
   hexColor: () => fc.string({ minLength: 6, maxLength: 6 }).filter(s => /^[0-9a-fA-F]{6}$/.test(s)),
   
   // Generate theme names
-  themeName: () => fc.constantFrom('light', 'dark', 'system'),
+  themeName: () => fc.constantFrom('light', 'dark'),
   
   // Generate storage keys
-  storageKey: () => fc.constantFrom('theme', 'color-scheme', 'ui-theme'),
+  storageKey: () => fc.constantFrom('portfolio-theme', 'color-scheme', 'ui-theme'),
   
   // Generate skill names
   skillName: () => fc.constantFrom(

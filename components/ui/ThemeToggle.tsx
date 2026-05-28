@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Monitor, Star } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { useReducedMotion } from '@/lib/accessibility-utils';
 
 interface ThemeToggleProps {
@@ -18,13 +18,19 @@ export function ThemeToggle({
 }: ThemeToggleProps) {
   const [mounted, setMounted] = useState(false);
   const [announceText, setAnnounceText] = useState('');
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const clearAnnouncementTimeoutRef = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+
+    return () => {
+      if (clearAnnouncementTimeoutRef.current !== null) {
+        window.clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
   }, []);
 
   if (!mounted) {
@@ -39,36 +45,28 @@ export function ThemeToggle({
     );
   }
 
-  const currentTheme = theme ?? 'system';
+  const currentTheme = resolvedTheme === 'dark' ? 'dark' : 'light';
 
   const toggleTheme = () => {
     try {
-      let newTheme: string;
-      let announcement: string;
-      
-      if (currentTheme === 'light') {
-        newTheme = 'dark';
-        announcement = 'Switched to dark theme';
-      } else if (currentTheme === 'dark') {
-        newTheme = 'system';
-        announcement = 'Switched to system theme';
-      } else if (currentTheme === 'system') {
-        newTheme = 'sky';
-        announcement = 'Switched to sky theme';
-      } else {
-        newTheme = 'light';
-        announcement = 'Switched to light theme';
-      }
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const announcement = `Switched to ${newTheme} theme`;
       
       setTheme(newTheme);
       setAnnounceText(announcement);
       
       // Clear announcement after screen reader has time to read it
-      setTimeout(() => setAnnounceText(''), 1000);
+      if (clearAnnouncementTimeoutRef.current !== null) {
+        window.clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+      clearAnnouncementTimeoutRef.current = window.setTimeout(() => setAnnounceText(''), 1000);
     } catch (error) {
       console.error('Failed to toggle theme:', error);
       setAnnounceText('Theme toggle failed');
-      setTimeout(() => setAnnounceText(''), 1000);
+      if (clearAnnouncementTimeoutRef.current !== null) {
+        window.clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+      clearAnnouncementTimeoutRef.current = window.setTimeout(() => setAnnounceText(''), 1000);
     }
   };
 
@@ -89,45 +87,23 @@ export function ThemeToggle({
     
     const iconSize = sizeClasses[size];
     
-    switch (currentTheme) {
-      case 'light':
-        return <Sun className={iconSize} aria-hidden="true" />;
-      case 'dark':
-        return <Moon className={iconSize} aria-hidden="true" />;
-      case 'sky':
-        return <Star className={iconSize} aria-hidden="true" />;
-      default:
-        return <Monitor className={iconSize} aria-hidden="true" />;
-    }
+    return currentTheme === 'dark'
+      ? <Moon className={iconSize} aria-hidden="true" />
+      : <Sun className={iconSize} aria-hidden="true" />;
   };
 
   const getThemeInfo = () => {
-    switch (currentTheme) {
-      case 'light':
-        return {
+    return currentTheme === 'dark'
+      ? {
+          current: 'dark theme',
+          next: 'light theme',
+          action: 'Switch to light mode'
+        }
+      : {
           current: 'light theme',
           next: 'dark theme',
           action: 'Switch to dark mode'
         };
-      case 'dark':
-        return {
-          current: 'dark theme',
-          next: 'system theme',
-          action: 'Switch to system theme'
-        };
-      case 'sky':
-        return {
-          current: 'sky theme',
-          next: 'light theme',
-          action: 'Switch to light mode'
-        };
-      default:
-        return {
-          current: 'system theme',
-          next: 'sky theme',
-          action: 'Switch to sky mode'
-        };
-    }
   };
 
   const themeInfo = getThemeInfo();
@@ -150,7 +126,6 @@ export function ThemeToggle({
   return (
     <div className={`relative ${className}`}>
       <button
-        ref={buttonRef}
         onClick={toggleTheme}
         onKeyDown={handleKeyDown}
         className={`
@@ -164,8 +139,6 @@ export function ThemeToggle({
         aria-label={themeInfo.action}
         aria-describedby={showLabel ? 'theme-description' : undefined}
         aria-pressed={currentTheme === 'dark'}
-        role="button"
-        tabIndex={0}
         title={`Current: ${themeInfo.current}. Click to switch to ${themeInfo.next}.`}
       >
         <span className={`text-gray-700 dark:text-gray-300 ${colorTransitionClasses}`}>
@@ -174,7 +147,7 @@ export function ThemeToggle({
         
         {showLabel && (
           <span className="ml-2 font-medium">
-            {currentTheme === 'light' ? 'Light' : currentTheme === 'dark' ? 'Dark' : currentTheme === 'sky' ? 'Sky' : 'Auto'}
+            {currentTheme === 'dark' ? 'Dark' : 'Light'}
           </span>
         )}
       </button>

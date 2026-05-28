@@ -22,7 +22,7 @@ describe('Accessibility Property Tests', () => {
   describe('Property 6: Color Contrast Compliance', () => {
     test('**Validates: Requirements 3.4, 5.5** - For any theme and text element, color contrast ratio should meet or exceed WCAG 2.1 AA standards', async () => {
       const property = fc.asyncProperty(
-        generators.themeName().filter(theme => theme !== 'system'),
+        generators.themeName(),
         fc.constantFrom('normal', 'large'),
         async (theme, textSize) => {
           try {
@@ -136,18 +136,6 @@ describe('Accessibility Property Tests', () => {
               writable: true
             });
             
-            // Mock matchMedia for system preference
-            const systemPrefersDark = initialTheme === 'dark' || (initialTheme === 'system' && Math.random() > 0.5);
-            Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => ({
-                matches: systemPrefersDark,
-                media: '(prefers-color-scheme: dark)',
-                addEventListener: jest.fn(),
-                removeEventListener: jest.fn()
-              })),
-              writable: true
-            });
-            
             // Test theme script execution (FOUC prevention)
             const mockDocumentElement = {
               classList: {
@@ -161,9 +149,8 @@ describe('Accessibility Property Tests', () => {
             };
             
             // Simulate theme script execution
-            const storedTheme = mockStorage.getItem('theme');
-            const systemTheme = systemPrefersDark ? 'dark' : 'light';
-            const activeTheme = storedTheme === 'system' || !storedTheme ? systemTheme : storedTheme;
+            const storedTheme = mockStorage.getItem('portfolio-theme');
+            const activeTheme = storedTheme === 'dark' ? 'dark' : 'light';
             
             // Apply theme before content renders (FOUC prevention)
             if (activeTheme === 'dark') {
@@ -222,9 +209,8 @@ describe('Accessibility Property Tests', () => {
             let fallbackTheme = 'light';
             
             try {
-              const theme = window.localStorage?.getItem('theme');
-              const systemTheme = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-              const activeTheme = theme === 'system' || !theme ? systemTheme : theme;
+              const theme = window.localStorage?.getItem('portfolio-theme');
+              const activeTheme = theme === 'dark' ? 'dark' : 'light';
               fallbackTheme = activeTheme;
             } catch (e) {
               fallbackTheme = 'light'; // Fallback to light theme

@@ -26,14 +26,14 @@ export default function Header() {
   // Get background class based on section
   const getSectionBackground = (section: string) => {
     const sectionBackgrounds: { [key: string]: string } = {
-      'about': 'bg-white/90 dark:bg-black/90',
-      'experience': 'bg-gray-50/90 dark:bg-gray-950/90',
-      'projects': 'bg-white/90 dark:bg-black/90',
-      'skills': 'bg-gray-50/90 dark:bg-gray-950/90',
-      'education': 'bg-white/90 dark:bg-black/90',
-      'contact': 'bg-gray-50/90 dark:bg-gray-950/90'
+      'about': 'site-header-surface-primary',
+      'experience': 'site-header-surface-secondary',
+      'projects': 'site-header-surface-primary',
+      'skills': 'site-header-surface-secondary',
+      'education': 'site-header-surface-primary',
+      'contact': 'site-header-surface-secondary'
     };
-    return sectionBackgrounds[section] || 'bg-white/90 dark:bg-black/90';
+    return sectionBackgrounds[section] || 'site-header-surface-primary';
   };
 
   // Get header background based on previous section
@@ -41,7 +41,7 @@ export default function Header() {
     if (previousSection) {
       return getSectionBackground(previousSection);
     }
-    return 'bg-white/90 dark:bg-black/90'; // Default
+    return 'site-header-surface-primary'; // Default
   };
 
   // Handle smooth scroll navigation
@@ -122,7 +122,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} backdrop-blur-sm border-b border-gray-200 dark:border-gray-700`}>
+    <header className={`site-header fixed top-0 left-0 right-0 z-50 ${getHeaderBackground()} backdrop-blur-sm`}>
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
           {/* Logo/Brand */}
@@ -152,7 +152,7 @@ export default function Header() {
                     item.section === 'contact'
                       ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
                       : activeSection === item.section
-                        ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
+                        ? 'site-header-link-active'
                         : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
@@ -215,7 +215,7 @@ export default function Header() {
 
         {/* Mobile Navigation Menu */}
         <div className={`md:hidden transition-all duration-200 ease-in-out ${isMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
+          <div className="site-header-panel px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigationItems.map((item) => (
               <a
                 key={item.name}
@@ -225,7 +225,7 @@ export default function Header() {
                   item.section === 'contact'
                     ? 'text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300'
                     : activeSection === item.section
-                      ? 'text-white dark:text-black bg-gray-800 dark:bg-gray-200'
+                      ? 'site-header-link-active'
                       : 'text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >

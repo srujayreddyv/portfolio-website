@@ -8,7 +8,6 @@ import {
   getResolvedTheme, 
   applyTheme, 
   storeTheme, 
-  watchSystemTheme,
   isValidTheme
 } from '../theme-utils';
 import { 
@@ -16,8 +15,6 @@ import {
   validateThemeColors,
   prefersReducedMotion
 } from '../accessibility-utils';
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
 
 jest.mock('next-themes', () => ({
   useTheme: jest.fn(() => ({
@@ -82,9 +79,9 @@ describe('Error Handling Unit Tests', () => {
 
       setLocalStorage(mockStorage);
 
-      // getInitialTheme should fallback to 'system'
+      // getInitialTheme should fallback to 'light'
       const theme = getInitialTheme();
-      expect(theme).toBe('system');
+      expect(theme).toBe('light');
 
       // storeTheme should not throw
       expect(() => storeTheme('dark')).not.toThrow();
@@ -106,9 +103,9 @@ describe('Error Handling Unit Tests', () => {
 
       setLocalStorage(mockStorage);
 
-      // Should fallback to 'system' for invalid values
+      // Should fallback to 'light' for invalid values
       const theme = getInitialTheme();
-      expect(theme).toBe('system');
+      expect(theme).toBe('light');
     });
 
     test('should handle storage quota exceeded errors', () => {
@@ -134,39 +131,24 @@ describe('Error Handling Unit Tests', () => {
     });
   });
 
-  describe('System Preference Detection Errors', () => {
+  describe('Theme Resolution Errors', () => {
     test('should handle matchMedia not supported', () => {
       // Remove matchMedia
       (window as any).matchMedia = undefined;
 
-      // Should throw when matchMedia is unavailable
-      expect(() => getResolvedTheme('system')).toThrow();
+      // Theme resolution should not depend on matchMedia
+      expect(getResolvedTheme('light')).toBe('light');
+      expect(getResolvedTheme('dark')).toBe('dark');
       expect(prefersReducedMotion()).toBe(false);
     });
 
     test('should handle matchMedia throwing errors', () => {
       (window as any).matchMedia = jest.fn(() => { throw new Error('Permission denied'); });
 
-      // Should throw when matchMedia errors
-      expect(() => getResolvedTheme('system')).toThrow();
+      // Theme resolution should remain independent from matchMedia
+      expect(getResolvedTheme('light')).toBe('light');
+      expect(getResolvedTheme('dark')).toBe('dark');
       expect(() => prefersReducedMotion()).toThrow();
-    });
-
-    test('should handle system theme change listener errors', () => {
-      const mockMediaQuery = {
-        matches: false,
-        media: '(prefers-color-scheme: dark)',
-        addEventListener: jest.fn(() => { throw new Error('Listener error'); }),
-        removeEventListener: jest.fn(() => { throw new Error('Listener error'); })
-      };
-
-      (window as any).matchMedia = jest.fn(() => mockMediaQuery);
-
-      // Should throw when listener errors occur
-      expect(() => {
-        const cleanup = watchSystemTheme(() => {});
-        cleanup();
-      }).toThrow();
     });
   });
 
@@ -228,7 +210,7 @@ describe('Error Handling Unit Tests', () => {
       // Valid themes
       expect(isValidTheme('light')).toBe(true);
       expect(isValidTheme('dark')).toBe(true);
-      expect(isValidTheme('system')).toBe(true);
+      expect(isValidTheme('system')).toBe(false);
 
       // Invalid themes
       expect(isValidTheme('invalid')).toBe(false);
@@ -240,50 +222,10 @@ describe('Error Handling Unit Tests', () => {
     });
 
     test('should handle theme resolution with invalid inputs', () => {
-      // Should fallback to light for invalid inputs
+      // Resolution now returns the provided value; validation is separate
       expect(getResolvedTheme('invalid' as any)).toBe('invalid');
       expect(getResolvedTheme(null as any)).toBe(null);
       expect(getResolvedTheme(undefined as any)).toBe(undefined);
-    });
-  });
-
-  describe('Component Error Boundaries', () => {
-    test('should handle ThemeProvider missing context gracefully', () => {
-      // This would be tested in component tests, but we can test the hook fallback
-      const { useThemeWithGracefulDegradation } = require('../hooks/useThemeWithFallback');
-      
-      const TestComponent = () => {
-        const result = useThemeWithGracefulDegradation();
-        return React.createElement('div', {
-          'data-theme': result.theme,
-          'data-mounted': String(result.mounted)
-        });
-      };
-
-      expect(() => render(React.createElement(TestComponent))).not.toThrow();
-      cleanup();
-    });
-
-    test('should handle theme hook errors gracefully', () => {
-      // Mock useTheme to throw error
-      const nextThemes = require('next-themes');
-      nextThemes.useTheme.mockImplementation(() => { throw new Error('Theme hook error'); });
-      const { useThemeWithGracefulDegradation } = require('../hooks/useThemeWithFallback');
-      
-      const TestComponent = () => {
-        const result = useThemeWithGracefulDegradation();
-        return React.createElement('div', { 'data-theme': result.theme });
-      };
-
-      expect(() => render(React.createElement(TestComponent))).not.toThrow();
-      cleanup();
-
-      nextThemes.useTheme.mockImplementation(() => ({
-        theme: 'light',
-        setTheme: jest.fn(),
-        resolvedTheme: 'light',
-        systemTheme: 'light'
-      }));
     });
   });
 
@@ -315,7 +257,7 @@ describe('Error Handling Unit Tests', () => {
       const duration = Date.now() - start;
       
       expect(duration).toBeLessThan(50); // Should be fast
-      expect(theme).toBe('system'); // Should fallback
+      expect(theme).toBe('light'); // Should fallback
     });
 
     test('should handle memory pressure scenarios', () => {

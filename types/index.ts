@@ -2,12 +2,11 @@
 
 // Theme-related types
 export type Theme = 'light' | 'dark';
-export type ThemePreference = 'light' | 'dark' | 'system';
+export type ThemePreference = Theme;
 
 export interface ThemeState {
   current: Theme;
   preference: ThemePreference;
-  systemTheme: Theme;
   mounted: boolean;
 }
 
@@ -15,8 +14,6 @@ export interface UseThemeReturn {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
-  systemTheme: Theme;
-  isSystemTheme: boolean;
   mounted: boolean;
 }
 

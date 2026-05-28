@@ -12,7 +12,7 @@ const mockUseTheme = {
   theme: 'light',
   setTheme: mockSetTheme,
   systemTheme: 'light',
-  themes: ['light', 'dark', 'system', 'sky'],
+  themes: ['light', 'dark'],
   forcedTheme: undefined,
   resolvedTheme: 'light'
 };
@@ -25,15 +25,14 @@ jest.mock('next-themes', () => ({
 // Mock Lucide React icons
 jest.mock('lucide-react', () => ({
   Sun: ({ className, ...props }: any) => <div data-testid="light-icon" className={className} {...props} />,
-  Moon: ({ className, ...props }: any) => <div data-testid="dark-icon" className={className} {...props} />,
-  Monitor: ({ className, ...props }: any) => <div data-testid="monitor-icon" className={className} {...props} />,
-  Star: ({ className, ...props }: any) => <div data-testid="sky-icon" className={className} {...props} />
+  Moon: ({ className, ...props }: any) => <div data-testid="dark-icon" className={className} {...props} />
 }));
 
 describe('ThemeToggle', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockUseTheme.theme = 'light';
+    mockUseTheme.resolvedTheme = 'light';
   });
 
   it('renders correctly when mounted', async () => {
@@ -99,6 +98,7 @@ describe('ThemeToggle', () => {
 
   it('displays correct icon for dark theme', async () => {
     mockUseTheme.theme = 'dark';
+    mockUseTheme.resolvedTheme = 'dark';
     
     render(<ThemeToggle />);
     
@@ -106,32 +106,6 @@ describe('ThemeToggle', () => {
       expect(screen.getByTestId('dark-icon')).toBeInTheDocument();
     });
     
-    const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Switch to system theme');
-  });
-
-  it('displays correct icon for system theme', async () => {
-    mockUseTheme.theme = 'system';
-    
-    render(<ThemeToggle />);
-    
-    await waitFor(() => {
-      expect(screen.getByTestId('monitor-icon')).toBeInTheDocument();
-    });
-    
-    const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Switch to sky mode');
-  });
-
-  it('displays correct icon for sky theme', async () => {
-    mockUseTheme.theme = 'sky';
-
-    render(<ThemeToggle />);
-
-    await waitFor(() => {
-      expect(screen.getByTestId('sky-icon')).toBeInTheDocument();
-    });
-
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('aria-label', 'Switch to light mode');
   });
@@ -164,8 +138,6 @@ describe('ThemeToggle', () => {
     
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('aria-label');
-    expect(button).toHaveAttribute('role', 'button');
-    expect(button).toHaveAttribute('tabIndex', '0');
     
     // Check for live region
     expect(screen.getByRole('status')).toBeInTheDocument();

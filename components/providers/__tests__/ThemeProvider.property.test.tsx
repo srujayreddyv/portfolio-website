@@ -36,7 +36,7 @@ describe('ThemeProvider Integration Property Tests', () => {
   describe('Property 12: ThemeProvider Integration', () => {
     test('**Validates: Requirements 6.1** - ThemeProvider renders children with next-themes provider', async () => {
       render(
-        <ThemeProvider defaultTheme="system" storageKey="theme">
+        <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           <div>Test Content</div>
         </ThemeProvider>
       );
@@ -63,7 +63,7 @@ describe('ThemeProvider Integration Property Tests', () => {
   describe('Property 14: SSR Hydration Consistency', () => {
     test('**Validates: Requirements 6.3** - rendered content stays visible through mount lifecycle', async () => {
       render(
-        <ThemeProvider defaultTheme="system">
+        <ThemeProvider defaultTheme="light">
           <div>Test Content</div>
         </ThemeProvider>
       );

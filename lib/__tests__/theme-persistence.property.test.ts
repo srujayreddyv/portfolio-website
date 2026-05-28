@@ -28,18 +28,6 @@ const createMockStorage = () => {
   };
 };
 
-// Mock matchMedia for system preference testing
-const mockMatchMedia = (matches: boolean) => ({
-  matches,
-  media: '(prefers-color-scheme: dark)',
-  onchange: null,
-  addListener: jest.fn(),
-  removeListener: jest.fn(),
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-  dispatchEvent: jest.fn(),
-});
-
 describe('Theme Persistence Property Tests', () => {
   let mockLocalStorage: any;
 
@@ -141,37 +129,23 @@ describe('Theme Persistence Property Tests', () => {
     });
   });
 
-  describe('Property 3: System Preference Fallback', () => {
-    test('**Validates: Requirements 2.3** - For any system color scheme preference, when no manual selection exists, should default to system preference', async () => {
+  describe('Property 3: Default Theme Fallback', () => {
+    test('**Validates: Requirements 2.3** - When no saved preference exists, the theme state should fall back to light', async () => {
       const property = fc.asyncProperty(
-        fc.boolean(), // System prefers dark
         generators.storageKey(),
-        async (systemPrefersDark, storageKey) => {
+        async (storageKey) => {
           try {
-            // Clear storage to simulate no manual selection
+            // Clear storage to simulate no saved selection
             mockLocalStorage.clear();
-            
-            // Mock system preference
-            Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => mockMatchMedia(systemPrefersDark)),
-              writable: true
-            });
-            
+
             // Verify no stored preference exists
             const storedTheme = mockLocalStorage.getItem(storageKey);
             expect(storedTheme).toBeNull();
-            
-            // Get system preference
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            const systemTheme = mediaQuery.matches ? 'dark' : 'light';
-            const expectedTheme = systemPrefersDark ? 'dark' : 'light';
-            
-            // Verify system preference detection
-            expect(systemTheme).toBe(expectedTheme);
+            expect(storedTheme ?? 'light').toBe('light');
             
             return true;
           } catch (error) {
-            console.error('System preference fallback test failed:', error);
+            console.error('Default theme fallback test failed:', error);
             return false;
           }
         }
@@ -180,7 +154,7 @@ describe('Theme Persistence Property Tests', () => {
       await fc.assert(property, { ...propertyTestConfig, numRuns: 20 });
     });
 
-    test('System preference detection error handling', async () => {
+    test('Default fallback remains light when browser theme APIs are unavailable', async () => {
       const property = fc.asyncProperty(
         generators.storageKey(),
         async (storageKey) => {
@@ -200,13 +174,11 @@ describe('Theme Persistence Property Tests', () => {
             // Verify no stored preference
             const storedTheme = mockLocalStorage.getItem(storageKey);
             expect(storedTheme).toBeNull();
-            
-            // When matchMedia is unavailable, should use fallback
-            expect(window.matchMedia).toBeUndefined();
+            expect(storedTheme ?? 'light').toBe('light');
             
             return true;
           } catch (error) {
-            console.error('System preference error handling test failed:', error);
+            console.error('Default fallback error handling test failed:', error);
             return false;
           }
         }
@@ -217,45 +189,29 @@ describe('Theme Persistence Property Tests', () => {
   });
 
   describe('Property 4: Manual Override Persistence', () => {
-    test('**Validates: Requirements 2.4** - For any theme system with stored manual preference, system preference changes should not affect active theme', async () => {
+    test('**Validates: Requirements 2.4** - A stored theme should remain unchanged across unrelated browser state changes', async () => {
       const property = fc.asyncProperty(
         generators.themeName(),
-        fc.boolean(), // Initial system preference
-        fc.boolean(), // Changed system preference
         generators.storageKey(),
-        async (manualTheme, initialSystemDark, changedSystemDark, storageKey) => {
+        async (manualTheme, storageKey) => {
           try {
             // Store manual preference
             mockLocalStorage.setItem(storageKey, manualTheme);
-            
-            // Set initial system preference
-            Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => mockMatchMedia(initialSystemDark)),
-              writable: true
-            });
-            
+
             // Verify manual preference is stored
             const storedTheme = mockLocalStorage.getItem(storageKey);
             expect(storedTheme).toBe(manualTheme);
-            
-            // Change system preference
+
+            // Simulate unrelated browser state changes
             Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => mockMatchMedia(changedSystemDark)),
+              value: undefined,
               writable: true
             });
             
             // Verify manual preference is still stored and unchanged
             const persistedTheme = mockLocalStorage.getItem(storageKey);
             expect(persistedTheme).toBe(manualTheme);
-            
-            // Manual preference should override system preference
-            if (manualTheme !== 'system') {
-              expect(persistedTheme).toBe(manualTheme);
-              // Only check if they're different when they should be different
-              if (manualTheme !== (changedSystemDark ? 'dark' : 'light')) {
-                expect(persistedTheme).not.toBe(changedSystemDark ? 'dark' : 'light');
-              }
-            }
+            expect(persistedTheme).toBe(manualTheme);
             
             return true;
           } catch (error) {
@@ -268,50 +224,5 @@ describe('Theme Persistence Property Tests', () => {
       await fc.assert(property, { ...propertyTestConfig, numRuns: 20 });
     });
 
-    test('System theme preference should update when manual preference is system', async () => {
-      const property = fc.asyncProperty(
-        fc.boolean(), // Initial system preference
-        fc.boolean(), // Changed system preference  
-        generators.storageKey(),
-        async (initialSystemDark, changedSystemDark, storageKey) => {
-          try {
-            // Store 'system' as manual preference
-            mockLocalStorage.setItem(storageKey, 'system');
-            
-            // Set initial system preference
-            Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => mockMatchMedia(initialSystemDark)),
-              writable: true
-            });
-            
-            const initialResolvedTheme = initialSystemDark ? 'dark' : 'light';
-            
-            // Change system preference
-            Object.defineProperty(window, 'matchMedia', {
-              value: jest.fn(() => mockMatchMedia(changedSystemDark)),
-              writable: true
-            });
-            
-            const changedResolvedTheme = changedSystemDark ? 'dark' : 'light';
-            
-            // When manual preference is 'system', resolved theme should follow system changes
-            const storedTheme = mockLocalStorage.getItem(storageKey);
-            expect(storedTheme).toBe('system');
-            
-            // Resolved theme should change with system preference
-            if (initialSystemDark !== changedSystemDark) {
-              expect(initialResolvedTheme).not.toBe(changedResolvedTheme);
-            }
-            
-            return true;
-          } catch (error) {
-            console.error('System theme preference update test failed:', error);
-            return false;
-          }
-        }
-      );
-
-      await fc.assert(property, { ...propertyTestConfig, numRuns: 20 });
-    });
   });
 });

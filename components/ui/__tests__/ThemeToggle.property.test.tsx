@@ -30,17 +30,8 @@ jest.mock('../../../lib/accessibility-utils', () => ({
   getTransitionDuration: (defaultMs: number) => defaultMs
 }));
 
-// Mock theme fallback hook
-jest.mock('../../../lib/hooks/useThemeWithFallback', () => ({
-  useThemeWithGracefulDegradation: () => ({
-    theme: 'light' as const,
-    setTheme: jest.fn(),
-    mounted: true
-  })
-}));
-
 const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <ThemeProvider attribute="class" defaultTheme="system">
+  <ThemeProvider attribute="class" defaultTheme="light">
     {children}
   </ThemeProvider>
 );
@@ -86,7 +77,7 @@ describe('ThemeToggle Property Tests', () => {
           try {
             // Mock useTheme to return controlled state
             mockThemeState.theme = initialTheme;
-            mockThemeState.resolvedTheme = initialTheme === 'system' ? 'light' : initialTheme;
+            mockThemeState.resolvedTheme = initialTheme;
             mockThemeState.setTheme.mockClear();
 
             const { unmount } = render(
@@ -125,21 +116,20 @@ describe('ThemeToggle Property Tests', () => {
       await fc.assert(property, { ...propertyTestConfig, numRuns: 10 });
     });
 
-    test('Theme cycle consistency - should cycle through light -> dark -> system -> sky -> light', async () => {
+    test('Theme cycle consistency - should toggle between light and dark', async () => {
       const property = fc.asyncProperty(
         fc.constantFrom('sm', 'md', 'lg'),
         async (size) => {
           try {
-            // Test complete cycle
-            const themes = ['light', 'dark', 'system', 'sky'] as const;
-            const expectedCycle = ['dark', 'system', 'sky', 'light'] as const;
+            const themes = ['light', 'dark'] as const;
+            const expectedCycle = ['dark', 'light'] as const;
 
             for (let i = 0; i < themes.length; i++) {
               const currentTheme = themes[i];
               const expectedNext = expectedCycle[i];
 
               mockThemeState.theme = currentTheme;
-              mockThemeState.resolvedTheme = currentTheme === 'system' ? 'light' : currentTheme;
+              mockThemeState.resolvedTheme = currentTheme;
               mockThemeState.setTheme.mockClear();
 
               const { unmount } = render(
@@ -182,7 +172,7 @@ describe('ThemeToggle Property Tests', () => {
         async (keyToPress, initialTheme, size) => {
           try {
             mockThemeState.theme = initialTheme;
-            mockThemeState.resolvedTheme = initialTheme === 'system' ? 'light' : initialTheme;
+            mockThemeState.resolvedTheme = initialTheme;
             mockThemeState.setTheme.mockClear();
 
             const { unmount } = render(
@@ -218,8 +208,6 @@ describe('ThemeToggle Property Tests', () => {
 
             // Verify ARIA attributes for keyboard users
             expect(button).toHaveAttribute('aria-label');
-            expect(button).toHaveAttribute('role', 'button');
-            expect(button).toHaveAttribute('tabIndex', '0');
 
             unmount();
             return true;
@@ -260,7 +248,7 @@ describe('ThemeToggle Property Tests', () => {
             fireEvent.keyDown(document.body, { key: 'Tab' });
             
             // Button should be focusable
-            expect(button.tabIndex).toBe(0);
+            expect(button).not.toHaveAttribute('tabIndex');
             
             // Test focus styles (should have focus classes)
             button.focus();
@@ -288,7 +276,7 @@ describe('ThemeToggle Property Tests', () => {
         async (currentTheme, size, showLabel) => {
           try {
             mockThemeState.theme = currentTheme;
-            mockThemeState.resolvedTheme = currentTheme === 'system' ? 'light' : currentTheme;
+            mockThemeState.resolvedTheme = currentTheme;
             mockThemeState.setTheme.mockClear();
 
             const { unmount } = render(
@@ -308,10 +296,6 @@ describe('ThemeToggle Property Tests', () => {
             const ariaLabel = button.getAttribute('aria-label');
             expect(ariaLabel).toBeTruthy();
             expect(ariaLabel).toContain('Switch to');
-
-            // Verify appropriate ARIA attributes
-            expect(button).toHaveAttribute('role', 'button');
-            expect(button).toHaveAttribute('tabIndex', '0');
 
             // Check for live region (screen reader announcements)
             const liveRegion = screen.getByRole('status');
@@ -349,7 +333,7 @@ describe('ThemeToggle Property Tests', () => {
         async (currentTheme, showLabel) => {
           try {
             mockThemeState.theme = currentTheme;
-            mockThemeState.resolvedTheme = currentTheme === 'system' ? 'light' : currentTheme;
+            mockThemeState.resolvedTheme = currentTheme;
             mockThemeState.setTheme.mockClear();
 
             const { unmount } = render(
@@ -399,18 +383,14 @@ function getExpectedIcon(theme: string): string {
   switch (theme) {
     case 'light': return 'sun';
     case 'dark': return 'moon';
-    case 'sky': return 'star';
-    case 'system': return 'monitor';
-    default: return 'monitor';
+    default: return 'sun';
   }
 }
 
 function getNextTheme(currentTheme: string): string {
   switch (currentTheme) {
     case 'light': return 'dark';
-    case 'dark': return 'system';
-    case 'system': return 'sky';
-    case 'sky': return 'light';
-    default: return 'light';
+    case 'dark': return 'light';
+    default: return 'dark';
   }
 }
