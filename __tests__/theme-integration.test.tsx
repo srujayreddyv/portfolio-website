@@ -97,9 +97,10 @@ describe('Theme Integration Tests', () => {
         expect(themeToggles.length).toBeGreaterThan(0);
       });
 
-      // Get all theme toggles (desktop and mobile versions)
+      // Direction 2 redesign: ThemeToggle lives in the always-visible StatusBar above the nav,
+      // so there is exactly one toggle in the Header tree (no separate mobile copy).
       const themeToggles = screen.getAllByRole('button', { name: /switch to/i });
-      expect(themeToggles.length).toBe(2); // Desktop and mobile versions
+      expect(themeToggles.length).toBe(1);
       
       // Use the first one for testing (both should behave identically)
       const themeToggle = themeToggles[0];
