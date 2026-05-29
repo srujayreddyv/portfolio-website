@@ -128,21 +128,22 @@ body {
 
 /* ============================================================
    Header offset spacing
+   StatusBar (~28-32px) + Nav (~56-80px) — used by main padding-top.
    ============================================================ */
 
 :root {
-  --header-offset: 56px;
+  --header-offset: 84px;
 }
 
 @media (min-width: 640px) {
   :root {
-    --header-offset: 64px;
+    --header-offset: 96px;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --header-offset: 80px;
+    --header-offset: 112px;
   }
 }
 
