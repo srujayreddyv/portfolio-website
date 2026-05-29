@@ -25,7 +25,7 @@ export default function HeroImageButton({
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const sizeClasses = compact
-    ? 'w-14 h-14 sm:w-16 sm:h-16'
+    ? 'w-20 h-20 sm:w-24 sm:h-24'
     : 'w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto mb-6 sm:mb-8';
 
   const frameClasses = compact
@@ -47,7 +47,7 @@ export default function HeroImageButton({
           priority
           sizes={
             compact
-              ? '(max-width: 640px) 56px, 64px'
+              ? '(max-width: 640px) 80px, 96px'
               : '(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px'
           }
         />

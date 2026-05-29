@@ -325,29 +325,27 @@ export default function Hero() {
               <span className="text-accent">$ </span>whoami
             </div>
 
-            {/* Identity row: small photo + name + title */}
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="flex-shrink-0 pt-1">
-                <HeroImageButton
-                  name={personalData.name}
-                  src="/my-profile-pic.webp"
-                  compact
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-ink leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-4">
-                  {personalData.name}
-                </h1>
-                <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-ink/85 font-semibold leading-snug">
-                  {/* Split the title so the role is in ink and the specialty
-                      is highlighted in accent — preserves full title string
-                      via the existing Hero.test.tsx getByText assertion. */}
-                  {personalData.title}
-                </p>
-                <p className="mt-2 font-mono text-[10px] sm:text-xs text-muted">
-                  {personalData.heroLead}
-                </p>
-              </div>
+            {/* Profile photo — squared frame above the headline so the name
+                gets the full column width and reads as the hero element. */}
+            <div>
+              <HeroImageButton
+                name={personalData.name}
+                src="/my-profile-pic.webp"
+                compact
+              />
+            </div>
+
+            {/* Identity block: full-width headline + subtitle + heroLead */}
+            <div className="min-w-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-ink leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-4">
+                {personalData.name}
+              </h1>
+              <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-ink/85 font-semibold leading-snug">
+                {personalData.title}
+              </p>
+              <p className="mt-2 font-mono text-[10px] sm:text-xs text-muted">
+                {personalData.heroLead}
+              </p>
             </div>
 
             {/* Body description — mono prompt vibe with a blinking caret on the last line */}
