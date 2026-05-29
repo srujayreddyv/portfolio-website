@@ -4,7 +4,7 @@
  * Requirements: 5.1
  */
 
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import Footer from '../Footer';
 
 // Mock the personal data
@@ -116,17 +116,13 @@ describe('Footer Component', () => {
       });
     });
 
-    test('quick navigation links trigger smooth scroll', () => {
+    test('quick navigation links use hash anchors', () => {
       render(<Footer />);
       
       const aboutLink = screen.getByRole('link', { name: 'About' });
-      fireEvent.click(aboutLink);
-      
-      expect(mockGetElementById).toHaveBeenCalledWith('about');
-      expect(mockScrollIntoView).toHaveBeenCalledWith({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      expect(aboutLink).toHaveAttribute('href', '#about');
+      expect(mockGetElementById).not.toHaveBeenCalled();
+      expect(mockScrollIntoView).not.toHaveBeenCalled();
     });
 
     test('displays "Quick Links" section heading', () => {
