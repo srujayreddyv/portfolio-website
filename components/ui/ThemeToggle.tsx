@@ -28,7 +28,6 @@ interface ThemeToggleProps {
  */
 export function ThemeToggle({
   className = '',
-  size: _size = 'md',
   showLabel = false,
 }: ThemeToggleProps) {
   const [mounted, setMounted] = useState(false);
