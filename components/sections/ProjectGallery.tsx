@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { Project } from '@/types';
 import ProjectCard from './ProjectCard';
-import ProjectModal from './ProjectModal';
 import { Filter, X } from 'lucide-react';
+
+const ProjectModal = dynamic(() => import('./ProjectModal'));
 
 interface ProjectGalleryProps {
   projects?: Project[];

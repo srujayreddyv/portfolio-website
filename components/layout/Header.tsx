@@ -81,7 +81,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['about', ...navigationItems.map(item => item.section)];
-      const scrollPosition = window.scrollY + 100; // Offset for header height
+      const scrollPosition = window.scrollY + window.innerHeight * 0.3;
 
       // Check if we're at the very top (about section)
       if (window.scrollY < 100) {

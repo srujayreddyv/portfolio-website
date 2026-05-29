@@ -1,23 +1,9 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { education } from '@/content/data/education';
-import { Calendar, GraduationCap, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, GraduationCap, BookOpen, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
 const Education: React.FC = () => {
-  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
-
-  const toggleCard = (id: string) => {
-    const newExpanded = new Set(expandedCards);
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id);
-    } else {
-      newExpanded.add(id);
-    }
-    setExpandedCards(newExpanded);
-  };
-
   return (
     <section id="education" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,17 +19,11 @@ const Education: React.FC = () => {
           {/* Education cards */}
           <div className="space-y-6 sm:space-y-8">
             {education.map((edu) => {
-              const isExpanded = expandedCards.has(edu.id);
-              
               return (
-                <div key={edu.id} className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <details key={edu.id} className="group bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
                   {/* Compact Header - Always Visible */}
-                  <button
-                    type="button"
-                    className="w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                    onClick={() => toggleCard(edu.id)}
-                    aria-expanded={isExpanded}
-                    aria-controls={`education-panel-${edu.id}`}
+                  <summary
+                    className="list-none [&::-webkit-details-marker]:hidden w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4 flex-1">
@@ -93,66 +73,60 @@ const Education: React.FC = () => {
 
                       {/* Expand/Collapse Button */}
                       <div className="flex-shrink-0 ml-4">
-                        {isExpanded ? (
-                          <ChevronUp className="w-5 h-5 text-gray-400" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-gray-400" />
-                        )}
+                        <ChevronDown className="w-5 h-5 text-gray-400 transition-transform duration-200 group-open:rotate-180" />
                       </div>
                     </div>
-                  </button>
+                  </summary>
 
                   {/* Expanded Content */}
-                  {isExpanded && (
-                    <div
-                      id={`education-panel-${edu.id}`}
-                      className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700"
-                    >
-                      <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
-                        {/* Honors & Recognition */}
-                        {edu.honors && edu.honors.length > 0 && (
-                          <div>
-                            <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                              Honors & Recognition
-                            </h4>
-                            <ul className="space-y-2">
-                              {edu.honors.map((honor, honorIndex) => (
-                                <li key={honorIndex} className="flex items-start">
-                                  <div className="flex-shrink-0 w-1.5 h-1.5 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 mr-3"></div>
-                                  <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {honor}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
+                  <div
+                    id={`education-panel-${edu.id}`}
+                    className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700"
+                  >
+                    <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
+                      {/* Honors & Recognition */}
+                      {edu.honors && edu.honors.length > 0 && (
+                        <div>
+                          <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                            Honors & Recognition
+                          </h4>
+                          <ul className="space-y-2">
+                            {edu.honors.map((honor, honorIndex) => (
+                              <li key={honorIndex} className="flex items-start">
+                                <div className="flex-shrink-0 w-1.5 h-1.5 bg-blue-600 dark:bg-blue-400 rounded-full mt-2 mr-3"></div>
+                                <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                  {honor}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
-                        {/* Relevant Coursework */}
-                        {edu.relevantCoursework && edu.relevantCoursework.length > 0 && (
-                          <div>
-                            <div className="flex items-center mb-3">
-                              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 mr-2" />
-                              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
-                                Relevant Coursework
-                              </h4>
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                              {edu.relevantCoursework.map((course, courseIndex) => (
-                                <div
-                                  key={courseIndex}
-                                  className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs sm:text-sm rounded-md font-medium"
-                                >
-                                  {course}
-                                </div>
-                              ))}
-                            </div>
+                      {/* Relevant Coursework */}
+                      {edu.relevantCoursework && edu.relevantCoursework.length > 0 && (
+                        <div>
+                          <div className="flex items-center mb-3">
+                            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 mr-2" />
+                            <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                              Relevant Coursework
+                            </h4>
                           </div>
-                        )}
-                      </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                            {edu.relevantCoursework.map((course, courseIndex) => (
+                              <div
+                                key={courseIndex}
+                                className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs sm:text-sm rounded-md font-medium"
+                              >
+                                {course}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                </details>
               );
             })}
           </div>

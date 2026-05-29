@@ -1,23 +1,9 @@
-'use client';
-
-import { useState } from 'react';
 import { Mail, MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { personalData } from '@/content/data/personal';
+import CopyEmailButton from '@/components/ui/CopyEmailButton';
 
 export default function Contact() {
-  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied'>('idle');
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(personalData.email);
-      setCopyStatus('copied');
-      setTimeout(() => setCopyStatus('idle'), 2000);
-    } catch {
-      setCopyStatus('idle');
-    }
-  };
-
   const getIconForPlatform = (platform: string) => {
     switch (platform.toLowerCase()) {
       case 'github':
@@ -41,9 +27,6 @@ export default function Contact() {
             <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
               Reach out for AI software engineering, backend platform roles, consulting conversations, or technical discussions around production LLM and RAG systems.
-            </p>
-            <p className="mt-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-              Best for hiring conversations, system design discussions, and production AI platform collaboration.
             </p>
           </div>
 
@@ -70,14 +53,7 @@ export default function Contact() {
                         >
                           {personalData.email}
                         </a>
-                        <button
-                          type="button"
-                          onClick={handleCopyEmail}
-                          className="text-xs sm:text-sm px-2.5 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-colors"
-                          aria-label="Copy email address"
-                        >
-                          {copyStatus === 'copied' ? 'Copied' : 'Copy'}
-                        </button>
+                        <CopyEmailButton email={personalData.email} />
                       </div>
                     </div>
                   </div>

@@ -11,7 +11,7 @@ export interface ThemeProviderProps {
 
 export function ThemeProvider({ 
   children, 
-  defaultTheme = 'light', 
+  defaultTheme = 'dark', 
   storageKey = 'portfolio-theme' 
 }: ThemeProviderProps) {
   return (

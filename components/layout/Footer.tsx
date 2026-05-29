@@ -1,4 +1,3 @@
-'use client';
 import { personalData } from '@/content/data/personal';
 
 interface NavigationItem {
@@ -50,20 +49,6 @@ const SocialIcon = ({ platform, className }: { platform: string; className?: str
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // Handle smooth scroll navigation
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.substring(1); // Remove the '#'
-    const targetElement = document.getElementById(targetId);
-    
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  };
-
   return (
     <footer
       className="bg-gray-100 border-t border-gray-200 dark:border-gray-700"
@@ -113,7 +98,6 @@ export default function Footer() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
                   className="block text-sm sm:text-base text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-1"
                 >
                   {item.name}

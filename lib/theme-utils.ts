@@ -10,7 +10,7 @@ export const themeScript = `
 (function() {
   try {
     var theme = localStorage.getItem('portfolio-theme');
-    var activeTheme = theme === 'dark' ? 'dark' : 'light';
+    var activeTheme = theme === 'light' ? 'light' : 'dark';
     
     if (activeTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -21,9 +21,9 @@ export const themeScript = `
     // Prevent flash by ensuring theme is applied before content renders
     document.documentElement.style.colorScheme = activeTheme;
   } catch (e) {
-    // Fallback to light theme if there's any error
-    document.documentElement.classList.remove('dark');
-    document.documentElement.style.colorScheme = 'light';
+    // Fallback to dark theme if there's any error
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
   }
 })();
 `;
@@ -32,7 +32,7 @@ export const themeScript = `
  * Get the current theme from storage
  */
 export function getInitialTheme(): 'light' | 'dark' {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === 'undefined') return 'dark';
   
   try {
     const stored = localStorage.getItem('portfolio-theme');
@@ -43,7 +43,7 @@ export function getInitialTheme(): 'light' | 'dark' {
     console.warn('Failed to read theme from localStorage:', error);
   }
   
-  return 'light';
+  return 'dark';
 }
 
 /**

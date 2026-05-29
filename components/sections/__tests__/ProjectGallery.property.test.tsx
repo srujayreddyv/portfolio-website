@@ -100,10 +100,10 @@ const sortProjectsLikeGallery = (projects: Project[]) =>
 
 describe('Project Gallery Property Tests', () => {
   describe('Property 2: Project interaction completeness', () => {
-    test('For any project in the gallery, clicking on it should display project details in the modal', () => {
-      const property = fc.property(
+    test('For any project in the gallery, clicking on it should display project details in the modal', async () => {
+      const property = fc.asyncProperty(
         projectsArrayGenerator,
-        (projects: Project[]) => {
+        async (projects: Project[]) => {
           try {
             render(<ProjectGallery projects={projects} />);
 
@@ -116,12 +116,13 @@ describe('Project Gallery Property Tests', () => {
             const firstCard = screen.getAllByRole('button', { name: /open .* details/i })[0];
             fireEvent.click(firstCard);
 
-            expect(screen.getByRole('dialog')).toBeInTheDocument();
-            const modalTitle = within(screen.getByRole('dialog')).getByRole('heading', { level: 2 });
+            const dialog = await screen.findByRole('dialog');
+            expect(dialog).toBeInTheDocument();
+            const modalTitle = within(dialog).getByRole('heading', { level: 2 });
             expect(normalizeWhitespace(modalTitle.textContent || '')).toBe(
               normalizeWhitespace(expectedProject.title)
             );
-            expect(within(screen.getByRole('dialog')).getByText(expectedProject.category)).toBeInTheDocument();
+            expect(within(dialog).getByText(expectedProject.category)).toBeInTheDocument();
 
             fireEvent.click(screen.getByRole('button', { name: /close modal/i }));
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -133,7 +134,7 @@ describe('Project Gallery Property Tests', () => {
         }
       );
       
-      fc.assert(property, { ...propertyTestConfig, numRuns: 20 });
+      await fc.assert(property, { ...propertyTestConfig, numRuns: 20 });
     });
     
     test('For any project with available links, they should be properly rendered and accessible', () => {

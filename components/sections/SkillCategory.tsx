@@ -1,8 +1,6 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { SkillCategory as SkillCategoryType } from '@/types';
-import { ChevronDown, ChevronUp, Code, Database, Cloud } from 'lucide-react';
+import { ChevronDown, Code, Database, Cloud } from 'lucide-react';
 import {
   SiAmazoncloudwatch,
   SiAmazonwebservices,
@@ -66,10 +64,10 @@ interface SkillCategoryProps {
 }
 
 const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = false }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const maxInitialSkills = isPrimary ? 9 : 7;
   const hasMoreSkills = category.skills.length > maxInitialSkills;
-  const displayedSkills = isExpanded ? category.skills : category.skills.slice(0, maxInitialSkills);
+  const displayedSkills = category.skills.slice(0, maxInitialSkills);
+  const hiddenSkills = category.skills.slice(maxInitialSkills);
 
   const skillIcons: Record<string, { Icon: ComponentType<SVGProps<SVGSVGElement>>; color: string }> = {
     // Backend & APIs
@@ -204,26 +202,41 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
         ))}
       </div>
 
-      {/* Expand/Collapse Button */}
       {hasMoreSkills && (
-        <div className="mt-4 sm:mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full flex items-center justify-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200"
-          >
-            {isExpanded ? (
-              <>
-                <span>Show Less</span>
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                <span>Show {category.skills.length - maxInitialSkills} More</span>
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
-        </div>
+        <details className="group mt-4 sm:mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
+          <summary className="w-full flex items-center justify-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-200 cursor-pointer">
+            <span className="group-open:hidden">Show {hiddenSkills.length} More</span>
+            <span className="hidden group-open:inline">Show Less</span>
+            <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform duration-200" />
+          </summary>
+          <div className="mt-4 space-y-3 sm:space-y-4">
+            {hiddenSkills.map((skill) => (
+              <div key={skill.name} className="space-y-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                  <span className={`font-medium inline-flex items-center gap-2 ${
+                    isPrimary
+                      ? 'text-sm sm:text-base lg:text-[1.05rem] text-gray-800 dark:text-gray-100'
+                      : 'text-sm sm:text-base text-gray-700 dark:text-gray-200'
+                  }`}>
+                    {(() => {
+                      const iconEntry = skillIcons[skill.name];
+                      const IconComponent = iconEntry?.Icon || Code;
+                      const color = iconEntry?.color;
+                      return (
+                        <IconComponent
+                          className={isPrimary ? 'h-[1.05rem] w-[1.05rem]' : 'h-4 w-4'}
+                          style={color ? { color } : undefined}
+                          aria-hidden="true"
+                        />
+                      );
+                    })()}
+                    {skill.name}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
       )}
     </div>
   );

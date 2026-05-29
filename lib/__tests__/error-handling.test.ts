@@ -79,9 +79,9 @@ describe('Error Handling Unit Tests', () => {
 
       setLocalStorage(mockStorage);
 
-      // getInitialTheme should fallback to 'light'
+      // getInitialTheme should fallback to 'dark'
       const theme = getInitialTheme();
-      expect(theme).toBe('light');
+      expect(theme).toBe('dark');
 
       // storeTheme should not throw
       expect(() => storeTheme('dark')).not.toThrow();
@@ -103,9 +103,9 @@ describe('Error Handling Unit Tests', () => {
 
       setLocalStorage(mockStorage);
 
-      // Should fallback to 'light' for invalid values
+      // Should fallback to 'dark' for invalid values
       const theme = getInitialTheme();
-      expect(theme).toBe('light');
+      expect(theme).toBe('dark');
     });
 
     test('should handle storage quota exceeded errors', () => {
@@ -257,7 +257,7 @@ describe('Error Handling Unit Tests', () => {
       const duration = Date.now() - start;
       
       expect(duration).toBeLessThan(50); // Should be fast
-      expect(theme).toBe('light'); // Should fallback
+      expect(theme).toBe('dark'); // Should fallback
     });
 
     test('should handle memory pressure scenarios', () => {
