@@ -6,6 +6,10 @@ interface CopyEmailButtonProps {
   email: string;
 }
 
+/**
+ * CopyEmailButton — Direction 2 terminal vocabulary.
+ * Mono label, hairline border, accent hover. Shows "copied" feedback.
+ */
 export default function CopyEmailButton({ email }: CopyEmailButtonProps) {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied'>('idle');
 
@@ -23,10 +27,14 @@ export default function CopyEmailButton({ email }: CopyEmailButtonProps) {
     <button
       type="button"
       onClick={handleCopyEmail}
-      className="text-xs sm:text-sm px-2.5 py-1 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500 transition-colors"
+      className={`font-mono text-[10px] sm:text-[11px] px-2 py-1 border transition-colors duration-150 ${
+        copyStatus === 'copied'
+          ? 'border-accent text-accent'
+          : 'border-hairline text-muted hover:border-accent hover:text-accent'
+      }`}
       aria-label="Copy email address"
     >
-      {copyStatus === 'copied' ? 'Copied' : 'Copy'}
+      {copyStatus === 'copied' ? '✓ copied' : 'copy'}
     </button>
   );
 }

@@ -96,31 +96,32 @@ export default function ImageModal({
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       ref={dialogRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
+      style={{ backgroundColor: 'rgba(12, 12, 14, 0.85)' }}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="image-modal-title"
     >
       <div className="relative max-w-4xl max-h-[90vh] mx-4">
-        {/* Close button */}
+        {/* Close button — mono terminal indicator */}
         <button
           ref={closeButtonRef}
           onClick={(e) => {
             e.stopPropagation();
             onClose();
           }}
-          className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+          className="absolute -top-10 right-0 inline-flex items-center font-mono text-xs text-[#f4f4f0] hover:text-[#00ffe0] transition-colors duration-150 z-10"
           aria-label="Close image preview"
         >
-          <X size={32} />
+          <span aria-hidden="true">[ × close ]</span>
         </button>
-        
-        {/* Image container */}
-        <div 
-          className="relative bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-2xl"
+
+        {/* Image container — hairline frame, no rounded corners */}
+        <div
+          className="relative border border-[#1f1f23] bg-[#131316] overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           {onPrevious && hasPrevious && (
@@ -129,10 +130,10 @@ export default function ImageModal({
                 e.stopPropagation();
                 onPrevious();
               }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white hover:bg-black/80 rounded-full p-2 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-[#0c0c0e]/70 text-[#f4f4f0] hover:text-[#00ffe0] border border-[#1f1f23] hover:border-[#00ffe0] p-2 transition-colors duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={20} />
             </button>
           )}
           {onNext && hasNext && (
@@ -141,10 +142,10 @@ export default function ImageModal({
                 e.stopPropagation();
                 onNext();
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white hover:bg-black/80 rounded-full p-2 transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-[#0c0c0e]/70 text-[#f4f4f0] hover:text-[#00ffe0] border border-[#1f1f23] hover:border-[#00ffe0] p-2 transition-colors duration-150 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={20} />
             </button>
           )}
           <Image
@@ -156,11 +157,11 @@ export default function ImageModal({
             priority
           />
         </div>
-        
-        {/* Image title */}
-        <p 
+
+        {/* Image title — mono caption */}
+        <p
           id="image-modal-title"
-          className="text-white text-center mt-4 text-lg font-medium"
+          className="text-center mt-4 font-mono text-xs sm:text-sm text-[#8a8a86]"
         >
           {alt}
         </p>

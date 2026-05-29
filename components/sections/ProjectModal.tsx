@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/types';
-import { X, ExternalLink, Github } from 'lucide-react';
 import ImageModal from '@/components/ui/ImageModal';
 
 interface ProjectModalProps {
@@ -12,6 +11,16 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+/**
+ * ProjectModal — Direction 2 terminal vocabulary.
+ *
+ * Hairline-bordered modal with no rounded corners, mono section labels
+ * (`─── overview`, `─── stack`, etc.), accent proof badges, and terminal-style
+ * link buttons. Close action rendered as `[ × close ]` mono indicator.
+ *
+ * Behavior preserved verbatim: escape-to-close, focus trap, backdrop click,
+ * body scroll lock, image lightbox via ImageModal.
+ */
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
@@ -31,7 +40,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     validationChecks,
     challenges,
     solutions,
-    results
+    results,
   } = project;
   const allImages = useMemo(
     () => Array.from(new Set([imageUrl, ...(images || [])])),
@@ -43,7 +52,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  // Handle escape key press + focus trap
   useEffect(() => {
     previousFocusRef.current = document.activeElement as HTMLElement | null;
     document.body.style.overflow = 'hidden';
@@ -101,16 +109,23 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [onClose]);
 
-  // Handle backdrop click
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
+  // Reusable section header — mono small caps with accent rule.
+  const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+    <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-2 sm:mb-3">
+      ─── {children}
+    </div>
+  );
+
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black bg-opacity-75"
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-canvas/70 backdrop-blur-sm"
+      style={{ backgroundColor: 'rgba(12, 12, 14, 0.78)' }}
       onClick={handleBackdropClick}
     >
       <div
@@ -118,58 +133,73 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
+        className="bg-canvas border border-hairline max-w-4xl w-full max-h-[92vh] sm:max-h-[88vh] overflow-y-auto"
       >
-        {/* Header */}
-        <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 sm:p-6 flex items-start sm:items-center justify-between gap-4">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 min-w-0 flex-1">
-            <h2 id="project-modal-title" className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
-              {title}
-            </h2>
-            <span className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm px-3 py-1 rounded-full self-start">
-              {category}
+        {/* Header — sticky with mono brand label + close */}
+        <div className="sticky top-0 z-10 bg-canvas border-b border-hairline px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 min-w-0 flex-1">
+              <span className="font-mono text-[10px] sm:text-[11px] text-muted tracking-wide flex-shrink-0">
+                <span className="text-accent">$ </span>open project.md
+              </span>
+              <h2
+                id="project-modal-title"
+                className="text-base sm:text-lg lg:text-xl font-semibold text-ink break-words leading-tight"
+              >
+                {title}
+              </h2>
+            </div>
+            <button
+              ref={closeButtonRef}
+              onClick={onClose}
+              className="flex-shrink-0 inline-flex items-center font-mono text-[11px] sm:text-xs text-muted hover:text-accent transition-colors px-2 py-2 min-h-[40px] min-w-[40px] border border-hairline hover:border-accent"
+              aria-label="Close modal"
+            >
+              <span aria-hidden="true" className="text-accent mr-1">[</span>
+              <span aria-hidden="true">× close</span>
+              <span aria-hidden="true" className="text-accent ml-1">]</span>
+            </button>
+          </div>
+          {/* Category meta row */}
+          <div className="mt-2 flex items-center gap-3 font-mono text-[10px] sm:text-[11px] text-muted">
+            <span>
+              <span className="text-accent">●</span> {category.toLowerCase()}
             </span>
           </div>
-          <button
-            ref={closeButtonRef}
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Close modal"
-          >
-            <X size={20} className="sm:w-6 sm:h-6" />
-          </button>
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6">
-          {/* Project Image */}
+        <div className="p-4 sm:p-6 lg:p-8">
+          {/* Hero image — hairline framed */}
           <button
             type="button"
             onClick={() => setSelectedImageIndex(0)}
-            className="relative h-48 sm:h-64 md:h-80 w-full mb-4 sm:mb-6 rounded-lg overflow-hidden cursor-zoom-in block"
+            className="relative h-48 sm:h-64 md:h-80 w-full mb-5 sm:mb-7 overflow-hidden border border-hairline bg-surface cursor-zoom-in block group"
             aria-label={`Expand ${title} preview image`}
           >
             <Image
               src={imageUrl}
               alt={`${title} preview`}
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-[1.02] transition-transform duration-200"
               sizes="(max-width: 768px) 100vw, 80vw"
             />
+            <span className="absolute bottom-2 right-2 font-mono text-[10px] text-canvas bg-ink/80 px-2 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+              ⌕ zoom
+            </span>
           </button>
 
-          {/* Proof badges */}
+          {/* Proof badges — accent chip row */}
           {proofBadges && proofBadges.length > 0 && (
-            <div className="mb-4 sm:mb-6">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                Production Readiness
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {proofBadges.map((badge, index) => (
+            <div className="mb-5 sm:mb-7">
+              <SectionLabel>production readiness</SectionLabel>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {proofBadges.map((badge) => (
                   <span
-                    key={index}
-                    className="px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800"
+                    key={badge}
+                    className="inline-flex items-center font-mono text-[11px] sm:text-xs text-accent border border-accent/60 px-2 py-0.5 tracking-wide"
                   >
+                    <span aria-hidden="true" className="mr-1">●</span>
                     {badge}
                   </span>
                 ))}
@@ -177,109 +207,84 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           )}
 
-          {/* Project Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
-            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
-              {/* Long Description */}
+          {/* Two-column layout: details (left) + sidebar (right) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 lg:gap-8 mb-5 sm:mb-7">
+            {/* Left column — long-form sections */}
+            <div className="space-y-5 sm:space-y-7 min-w-0">
               {longDescription && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Project Details
-                  </h3>
-                  <div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
-                    <div 
-                      className="[&>ul]:list-disc [&>ul]:list-outside [&>ul]:ml-6 [&>ul]:space-y-3 [&>ul>li]:leading-relaxed [&>ul>li]:text-gray-600 [&>ul>li]:dark:text-gray-300"
-                      dangerouslySetInnerHTML={{ __html: longDescription }} 
-                    />
-                  </div>
+                  <SectionLabel>overview</SectionLabel>
+                  <div
+                    className="prose prose-sm sm:prose dark:prose-invert max-w-none text-ink/85 leading-relaxed [&>ul]:list-disc [&>ul]:list-outside [&>ul]:ml-5 [&>ul]:space-y-2 [&>ul>li]:leading-relaxed [&>p]:leading-relaxed [&>p]:text-sm sm:[&>p]:text-base"
+                    dangerouslySetInnerHTML={{ __html: longDescription }}
+                  />
                 </div>
               )}
 
-              {/* Challenges */}
               {challenges && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Challenges
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>challenges</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {challenges}
                   </p>
                 </div>
               )}
 
-              {/* Solutions */}
               {solutions && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Solutions
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>solutions</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {solutions}
                   </p>
                 </div>
               )}
 
-              {/* Results */}
               {results && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Results
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>results</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {results}
                   </p>
                 </div>
               )}
 
-              {/* Architecture */}
               {architecture && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Architecture
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>architecture</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {architecture}
                   </p>
                 </div>
               )}
 
-              {/* Production Readiness */}
               {productionReadiness && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Production Readiness
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>production notes</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {productionReadiness}
                   </p>
                 </div>
               )}
 
-              {/* Validation */}
               {validationChecks && (
                 <div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                    Validation
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <SectionLabel>validation</SectionLabel>
+                  <p className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
                     {validationChecks}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Sidebar */}
-            <div className="space-y-4 sm:space-y-6">
-              {/* Technologies */}
+            {/* Right sidebar — stack + links */}
+            <div className="space-y-5 sm:space-y-7 lg:border-l lg:border-hairline lg:pl-6">
               <div>
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                  Technologies Used
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {technologies.map((tech, index) => (
+                <SectionLabel>stack</SectionLabel>
+                <div className="flex flex-wrap gap-1.5">
+                  {technologies.map((tech) => (
                     <span
-                      key={index}
-                      className="bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-md"
+                      key={tech}
+                      className="font-mono text-[10px] sm:text-[11px] text-ink/85 border border-hairline px-2 py-0.5 hover:border-accent/60 hover:text-accent transition-colors duration-150"
                     >
                       {tech}
                     </span>
@@ -287,63 +292,60 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </div>
               </div>
 
-              {/* Project Links */}
-              <div>
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">
-                  Project Links
-                </h3>
-                <div className="space-y-2 sm:space-y-3">
-                  {liveUrl && (
-                    <Link
-                      href={liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
-                    >
-                      <ExternalLink size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                      <span>View Live Demo</span>
-                    </Link>
-                  )}
-                  {githubUrl && (
-                    <Link
-                      href={githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
-                    >
-                      <Github size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                      <span>View Source Code</span>
-                    </Link>
-                  )}
-                  {apiDocsUrl && (
-                    <Link
-                      href={apiDocsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 text-sm sm:text-base min-h-[44px]"
-                    >
-                      <ExternalLink size={18} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                      <span>View Backend API Docs</span>
-                    </Link>
-                  )}
+              {(liveUrl || githubUrl || apiDocsUrl) && (
+                <div>
+                  <SectionLabel>links</SectionLabel>
+                  <div className="flex flex-col gap-2">
+                    {liveUrl && (
+                      <Link
+                        href={liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 font-mono text-sm text-ink border border-hairline hover:border-accent hover:text-accent transition-colors duration-150 px-3 py-2.5 min-h-[44px]"
+                      >
+                        <span aria-hidden="true" className="text-accent">→</span>
+                        <span>live demo</span>
+                      </Link>
+                    )}
+                    {githubUrl && (
+                      <Link
+                        href={githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 font-mono text-sm text-ink border border-hairline hover:border-accent hover:text-accent transition-colors duration-150 px-3 py-2.5 min-h-[44px]"
+                      >
+                        <span aria-hidden="true" className="text-accent">→</span>
+                        <span>github</span>
+                      </Link>
+                    )}
+                    {apiDocsUrl && (
+                      <Link
+                        href={apiDocsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-center gap-2 font-mono text-sm text-ink border border-hairline hover:border-accent hover:text-accent transition-colors duration-150 px-3 py-2.5 min-h-[44px]"
+                      >
+                        <span aria-hidden="true" className="text-accent">→</span>
+                        <span>api docs</span>
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
-          {/* Additional Images */}
+          {/* Additional screenshots */}
           {additionalImages.length > 0 && (
             <div>
-              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
-                Additional Screenshots
-              </h3>
+              <SectionLabel>screenshots</SectionLabel>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {additionalImages.map((image, index) => (
                   <button
                     key={index}
                     type="button"
                     onClick={() => setSelectedImageIndex(index + 1)}
-                    className="relative h-32 sm:h-48 rounded-lg overflow-hidden cursor-zoom-in block w-full"
+                    className="relative h-32 sm:h-48 overflow-hidden border border-hairline hover:border-accent cursor-zoom-in block w-full transition-colors duration-150"
                     aria-label={`Expand ${title} screenshot ${index + 1}`}
                   >
                     <Image
