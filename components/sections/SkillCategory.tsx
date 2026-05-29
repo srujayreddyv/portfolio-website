@@ -203,27 +203,17 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
                 />
                 <span className="truncate">{skill.name}</span>
               </span>
-              {(skill.level || skill.yearsOfExperience !== undefined) && (
-                <span className="flex-shrink-0 font-mono text-[10px] sm:text-[11px] text-muted">
-                  {skill.level && (
-                    <span
-                      className={
-                        skill.level === 'Expert'
-                          ? 'text-accent'
-                          : skill.level === 'Advanced'
-                            ? 'text-ink/70'
-                            : 'text-muted'
-                      }
-                    >
-                      {skill.level.toLowerCase()}
-                    </span>
-                  )}
-                  {skill.level && skill.yearsOfExperience !== undefined && (
-                    <span className="mx-1 text-hairline">·</span>
-                  )}
-                  {skill.yearsOfExperience !== undefined && (
-                    <span>{skill.yearsOfExperience}y</span>
-                  )}
+              {skill.level && (
+                <span
+                  className={`flex-shrink-0 font-mono text-[10px] sm:text-[11px] ${
+                    skill.level === 'Expert'
+                      ? 'text-accent'
+                      : skill.level === 'Advanced'
+                        ? 'text-ink/70'
+                        : 'text-muted'
+                  }`}
+                >
+                  {skill.level.toLowerCase()}
                 </span>
               )}
             </li>
