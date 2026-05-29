@@ -116,11 +116,12 @@ describe('Hero Component', () => {
   
   test('has responsive design classes', () => {
     render(<Hero />);
-    
-    // Check that responsive classes are applied - match actual implementation
+
+    // Heading sizes were dialed down so the name fits on one line within the
+    // two-column hero (the prior text-6xl/7xl scale forced wrapping).
     const mainHeading = screen.getByRole('heading', { level: 1 });
-    expect(mainHeading).toHaveClass('text-3xl', 'sm:text-4xl', 'md:text-5xl', 'lg:text-6xl', 'xl:text-7xl');
-    
+    expect(mainHeading).toHaveClass('text-2xl', 'sm:text-3xl', 'md:text-4xl', 'lg:text-5xl', 'xl:text-5xl');
+
     const subtitleText = screen.getByText(personalData.title);
     expect(subtitleText).toHaveClass('text-[clamp(1.05rem,2.1vw,2rem)]');
 

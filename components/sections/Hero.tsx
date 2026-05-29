@@ -337,7 +337,7 @@ export default function Hero() {
 
             {/* Identity block: full-width headline + subtitle + heroLead */}
             <div className="min-w-0">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-ink leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-ink leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-4">
                 {personalData.name}
               </h1>
               <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-ink/85 font-semibold leading-snug">
