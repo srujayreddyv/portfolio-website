@@ -20,12 +20,15 @@
    ============================================================ */
 
 :root {
-  /* ---- Direction 2 — Light mode (warm paper-white) ---- */
+  /* ---- Direction 2 — Light mode (warm paper-white) ----
+     Accent darkened from the originally-planned #00a896 (2.76:1, fails WCAG AA)
+     to #007a6b (4.86:1, AA-safe for normal body text on the warm canvas).
+     Keeps the teal identity; just adds the contrast headroom. */
   --canvas: #f7f6f1;
   --ink: #0c0c0e;
   --muted: #6b6b66;
-  --accent: #00a896;
-  --accent-hover: #00876f;
+  --accent: #007a6b;
+  --accent-hover: #005e54;
   --hairline: #e6e4dd;
   --surface: #fefdf8;
   --surface-overlay: rgba(247, 246, 241, 0.92);
@@ -60,8 +63,8 @@
   --canvas: #f7f6f1;
   --ink: #0c0c0e;
   --muted: #6b6b66;
-  --accent: #00a896;
-  --accent-hover: #00876f;
+  --accent: #007a6b;
+  --accent-hover: #005e54;
   --hairline: #e6e4dd;
   --surface: #fefdf8;
   --surface-overlay: rgba(247, 246, 241, 0.92);
