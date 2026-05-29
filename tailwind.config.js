@@ -7,32 +7,35 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  // next-themes uses class strategy — keep it.
   darkMode: 'class',
   theme: {
     extend: {
+      // Direction 2 — Terminal typography.
+      // Inter for sans (display + body); JetBrains Mono for nav, tags, CTAs,
+      // command prompts, and small UI. Variables wired in src/app/layout.tsx.
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
+      // Direction 2 — Semantic color tokens.
+      // Components in restyled phases use these names (bg-canvas, text-ink,
+      // border-hairline, text-accent, etc.). Values resolve via CSS variables
+      // in globals.css, so they swap with the theme automatically.
       colors: {
-        primary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        },
+        canvas: 'var(--canvas)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
         accent: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
         },
+        hairline: 'var(--hairline)',
+        surface: 'var(--surface)',
+      },
+      // Tighter sizing/spacing helpers for the terminal vocabulary.
+      letterSpacing: {
+        'mono-wide': '0.08em',
       },
     },
   },
