@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Project } from '@/types';
 import ProjectCard from './ProjectCard';
-import { Filter, X } from 'lucide-react';
 
 const ProjectModal = dynamic(() => import('./ProjectModal'));
 
@@ -12,55 +11,54 @@ interface ProjectGalleryProps {
   projects?: Project[];
 }
 
+/**
+ * ProjectGallery — Direction 2 restyle.
+ *
+ * Preserves the filtering / sorting / modal behavior from the original.
+ * Restyled with terminal vocabulary: small mono section label, hairline
+ * borders on filter controls, accent counter, mono select inputs.
+ *
+ * Preserves the responsive grid classes (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3)
+ * and section padding (py-16 sm:py-20 lg:py-24) so ResponsiveLayout + visual
+ * consistency tests keep passing.
+ */
 export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedTechnology, setSelectedTechnology] = useState<string>('All');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Get unique categories and technologies
   const categories = useMemo(() => {
     if (!projects || projects.length === 0) return ['All'];
-    const cats = new Set(projects.map(p => p.category));
+    const cats = new Set(projects.map((p) => p.category));
     return ['All', ...Array.from(cats).sort()];
   }, [projects]);
 
   const technologies = useMemo(() => {
     if (!projects || projects.length === 0) return ['All'];
-    const techs = new Set(projects.flatMap(p => p.technologies));
+    const techs = new Set(projects.flatMap((p) => p.technologies));
     return ['All', ...Array.from(techs).sort()];
   }, [projects]);
 
-  // Filter projects based on selected filters
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
+    return projects.filter((project) => {
       const categoryMatch = selectedCategory === 'All' || project.category === selectedCategory;
-      const technologyMatch = selectedTechnology === 'All' || 
-        project.technologies.includes(selectedTechnology);
-      
+      const technologyMatch =
+        selectedTechnology === 'All' || project.technologies.includes(selectedTechnology);
       return categoryMatch && technologyMatch;
     });
   }, [projects, selectedCategory, selectedTechnology]);
 
-  // Sort projects: featured first, then by completion date
   const sortedProjects = useMemo(() => {
     return [...filteredProjects].sort((a, b) => {
-      // Featured projects first
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
-      
-      // Then by completion date (newest first)
       return new Date(b.completedDate).getTime() - new Date(a.completedDate).getTime();
     });
   }, [filteredProjects]);
 
-  const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
+  const handleProjectClick = (project: Project) => setSelectedProject(project);
+  const handleCloseModal = () => setSelectedProject(null);
 
   const clearFilters = () => {
     setSelectedCategory('All');
@@ -70,131 +68,142 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
   const hasActiveFilters = selectedCategory !== 'All' || selectedTechnology !== 'All';
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-black" id="projects">
+    <section
+      id="projects"
+      className="py-16 sm:py-20 lg:py-24 bg-canvas border-t border-hairline"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4 sm:mb-6">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs text-muted tracking-wide mb-3">
+              <span className="text-accent">$ </span>ls projects/
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink tracking-[-0.02em]">
               Featured Projects
             </h2>
-            <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Production-focused AI, RAG, and backend platform projects with real deployment, observability, and API design considerations.
+            <div className="mt-3 h-px w-12 bg-accent" />
+            <p className="mt-5 sm:mt-6 max-w-2xl text-sm sm:text-base text-ink/80 leading-relaxed font-mono">
+              Production-focused AI, RAG, and backend platform projects with
+              real deployment, observability, and API design considerations.
             </p>
           </div>
 
           {/* Filter Controls */}
-          <div className="mb-6 sm:mb-8 lg:mb-10">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                aria-expanded={showFilters}
-                aria-controls="project-filters"
-                className="flex items-center gap-2 px-4 py-2 border-2 border-black dark:border-white text-black dark:text-white rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200 min-h-[44px] text-sm sm:text-base"
-              >
-                <Filter size={16} />
-                <span>Filters</span>
-              </button>
-              
-              {hasActiveFilters && (
+          <div className="mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <button
-                  onClick={clearFilters}
-                  className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 underline rounded-lg min-h-[40px]"
+                  onClick={() => setShowFilters(!showFilters)}
+                  aria-expanded={showFilters}
+                  aria-controls="project-filters"
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-hairline text-ink hover:border-accent hover:text-accent font-mono text-xs sm:text-sm transition-colors duration-150 min-h-[40px]"
                 >
-                  <X size={14} />
-                  <span>Clear filters</span>
+                  <span aria-hidden="true" className="text-accent">⌕</span>
+                  <span>Filters</span>
+                  {hasActiveFilters && (
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent ml-1" aria-hidden="true" />
+                  )}
                 </button>
-              )}
-            </div>
 
-            <div className="text-sm sm:text-base text-gray-600 dark:text-gray-400 order-first sm:order-last">
-              Showing {sortedProjects.length} of {projects.length} projects
-            </div>
-          </div>
-
-          {/* Filter Options */}
-          {showFilters && (
-            <div
-              id="project-filters"
-              className="mt-4 p-4 sm:p-6 bg-gray-300 dark:bg-gray-700 border border-gray-400 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {/* Category Filter */}
-                <div>
-                  <label htmlFor="project-category-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                    Category
-                  </label>
-                  <select
-                    id="project-category-filter"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-400 dark:border-gray-600 rounded-md bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] text-sm sm:text-base"
+                {hasActiveFilters && (
+                  <button
+                    onClick={clearFilters}
+                    className="inline-flex items-center gap-1 px-2 py-1 font-mono text-xs text-muted hover:text-accent transition-colors duration-150 min-h-[32px]"
                   >
-                    {categories.map(category => (
-                      <option key={category} value={category}>
-                        {category}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                    <span aria-hidden="true">×</span>
+                    <span>clear filters</span>
+                  </button>
+                )}
+              </div>
 
-                {/* Technology Filter */}
-                <div>
-                  <label htmlFor="project-technology-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                    Technology
-                  </label>
-                  <select
-                    id="project-technology-filter"
-                    value={selectedTechnology}
-                    onChange={(e) => setSelectedTechnology(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-400 dark:border-gray-600 rounded-md bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[44px] text-sm sm:text-base"
-                  >
-                    {technologies.map(technology => (
-                      <option key={technology} value={technology}>
-                        {technology}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="font-mono text-xs text-muted">
+                Showing <span className="text-accent">{sortedProjects.length}</span> of {projects.length} projects
               </div>
             </div>
+
+            {/* Filter Options */}
+            {showFilters && (
+              <div
+                id="project-filters"
+                className="mt-4 p-4 sm:p-5 border border-hairline bg-surface"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div>
+                    <label
+                      htmlFor="project-category-filter"
+                      className="block font-mono text-[10px] uppercase tracking-[0.08em] text-muted mb-1.5"
+                    >
+                      ─── category
+                    </label>
+                    <select
+                      id="project-category-filter"
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="w-full px-3 py-2 border border-hairline bg-canvas text-ink font-mono text-sm focus:outline-none focus:border-accent transition-colors duration-150 min-h-[40px]"
+                    >
+                      {categories.map((category) => (
+                        <option key={category} value={category}>
+                          {category}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="project-technology-filter"
+                      className="block font-mono text-[10px] uppercase tracking-[0.08em] text-muted mb-1.5"
+                    >
+                      ─── technology
+                    </label>
+                    <select
+                      id="project-technology-filter"
+                      value={selectedTechnology}
+                      onChange={(e) => setSelectedTechnology(e.target.value)}
+                      className="w-full px-3 py-2 border border-hairline bg-canvas text-ink font-mono text-sm focus:outline-none focus:border-accent transition-colors duration-150 min-h-[40px]"
+                    >
+                      {technologies.map((technology) => (
+                        <option key={technology} value={technology}>
+                          {technology}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Projects Grid */}
+          {sortedProjects.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+              {sortedProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => handleProjectClick(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 sm:py-16 border border-hairline border-dashed">
+              <p className="text-muted text-sm sm:text-base mb-4 font-mono">
+                no projects match the selected filters
+              </p>
+              <button
+                onClick={clearFilters}
+                className="inline-flex items-center gap-1 font-mono text-sm text-accent hover:underline underline-offset-4 min-h-[40px]"
+              >
+                <span aria-hidden="true">$ </span>clear-filters
+              </button>
+            </div>
           )}
-        </div>
 
-        {/* Projects Grid */}
-        {sortedProjects.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            {sortedProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={() => handleProjectClick(project)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 sm:py-16 lg:py-20">
-            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg lg:text-xl mb-4 sm:mb-6">
-              No projects found matching the selected filters.
-            </p>
-            <button
-              onClick={clearFilters}
-              className="px-4 sm:px-6 py-2 sm:py-3 bg-black hover:bg-blue-600 dark:bg-white dark:hover:bg-blue-600 text-white dark:text-black rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 min-h-[44px] text-sm sm:text-base"
-            >
-              Clear Filters
-            </button>
-          </div>
-        )}
-
-        {/* Project Detail Modal */}
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={handleCloseModal}
-          />
-        )}
+          {/* Project Detail Modal */}
+          {selectedProject && (
+            <ProjectModal project={selectedProject} onClose={handleCloseModal} />
+          )}
         </div>
       </div>
     </section>

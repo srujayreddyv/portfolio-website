@@ -1,120 +1,103 @@
-import { Mail, MapPin, Github, Linkedin, ExternalLink } from 'lucide-react';
 import ContactForm from './ContactForm';
 import { personalData } from '@/content/data/personal';
 import CopyEmailButton from '@/components/ui/CopyEmailButton';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
 
+/**
+ * Contact — Direction 2 terminal vocabulary.
+ *
+ * Preserves heading "Get In Touch" (case-insensitive regex match in tests).
+ * Restyles contact info as a hairline-bordered card with mono labels and the
+ * form alongside it. ContactForm itself is restyled separately.
+ */
 export default function Contact() {
-  const getIconForPlatform = (platform: string) => {
-    switch (platform.toLowerCase()) {
-      case 'github':
-        return <Github className="w-4 h-4 sm:w-5 sm:h-5" />;
-      case 'linkedin':
-        return <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />;
-      default:
-        return <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />;
-    }
-  };
-
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-950">
+    <section
+      id="contact"
+      className="py-16 sm:py-20 lg:py-24 bg-canvas border-t border-hairline"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4 sm:mb-6">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs text-muted tracking-wide mb-3">
+              <span className="text-accent">$ </span>cat contact.log
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink tracking-[-0.02em]">
               Get In Touch
             </h2>
-            <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto mb-4 sm:mb-6"></div>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+            <div className="mt-3 h-px w-12 bg-accent" />
+            <p className="mt-5 sm:mt-6 max-w-2xl text-sm sm:text-base text-ink/80 leading-relaxed font-mono">
               Reach out for AI software engineering, backend platform roles, consulting conversations, or technical discussions around production LLM and RAG systems.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-8 sm:gap-12 lg:gap-16">
-            {/* Contact Information */}
-            <div className="space-y-6 sm:space-y-8 lg:space-y-10">
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-black dark:text-white mb-4 sm:mb-6">
-                  Contact Information
-                </h3>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  {/* Email */}
-                  <div className="flex items-start space-x-3 sm:space-x-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg p-4 sm:p-5">
-                    <div className="flex-shrink-0 mt-1">
-                      <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-black dark:text-white" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Email</p>
-                      <div className="flex items-center gap-3">
-                        <a
-                          href={`mailto:${personalData.email}`}
-                          className="text-sm sm:text-base lg:text-lg font-semibold text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
-                        >
-                          {personalData.email}
-                        </a>
-                        <CopyEmailButton email={personalData.email} />
-                      </div>
+          <div className="grid lg:grid-cols-[0.8fr_1fr] gap-8 lg:gap-12">
+            {/* Contact Information Column */}
+            <div className="space-y-8">
+              {/* Identity block */}
+              <div className="border border-hairline bg-surface/60 p-5 sm:p-6">
+                <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-3">
+                  ─── contact
+                </div>
+                <div className="space-y-3 sm:space-y-4 font-mono text-sm">
+                  <div>
+                    <div className="text-muted text-[11px] mb-0.5">email:</div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <a
+                        href={`mailto:${personalData.email}`}
+                        className="text-ink hover:text-accent transition-colors break-all"
+                      >
+                        {personalData.email}
+                      </a>
+                      <CopyEmailButton email={personalData.email} />
                     </div>
                   </div>
-
-                  {/* Location (if available) */}
                   {personalData.location && (
-                    <div className="flex items-start space-x-3 sm:space-x-4">
-                      <div className="flex-shrink-0 mt-1">
-                        <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-black dark:text-white" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Location</p>
-                        <p className="text-sm sm:text-base lg:text-lg text-black dark:text-white">{personalData.location}</p>
-                      </div>
+                    <div>
+                      <div className="text-muted text-[11px] mb-0.5">location:</div>
+                      <div className="text-ink">{personalData.location.toLowerCase()}</div>
                     </div>
                   )}
+                  <div>
+                    <div className="text-muted text-[11px] mb-0.5">response_time:</div>
+                    <div className="text-ink">~24-48h</div>
+                  </div>
                 </div>
               </div>
 
-              {/* Social Media Links */}
+              {/* Social links */}
               <div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-black dark:text-white mb-3 sm:mb-4">
-                  Connect With Me
-                </h3>
-                <div className="flex flex-wrap gap-3 sm:gap-4">
-                  {personalData.socialLinks.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-2 px-3 sm:px-4 py-2 sm:py-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 hover:border-blue-600 transition-colors group min-h-[44px]"
-                      aria-label={`Visit my ${link.platform} profile`}
-                    >
-                      <span className="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {getIconForPlatform(link.platform)}
-                      </span>
-                      <span className="text-sm sm:text-base text-gray-700 dark:text-gray-200 group-hover:text-gray-800 dark:group-hover:text-white transition-colors">
-                        {link.platform}
-                      </span>
-                    </a>
-                  ))}
+                <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-3">
+                  ─── connect
                 </div>
-              </div>
-
-              {/* Additional Contact Methods */}
-              <div className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-4 sm:p-6 rounded-lg border border-gray-300 dark:border-gray-600">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-2 sm:mb-3">
-                  Response Time
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Typically respond within 24 to 48 hours.
-                </p>
+                <div className="flex flex-col gap-2">
+                  {personalData.socialLinks.map((link) => {
+                    const Icon = link.platform === 'GitHub' ? SiGithub : SiLinkedin;
+                    return (
+                      <a
+                        key={link.platform}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit my ${link.platform} profile`}
+                        className="inline-flex items-center gap-2 font-mono text-sm text-ink hover:text-accent transition-colors group min-h-[40px]"
+                      >
+                        <span aria-hidden="true" className="text-accent transition-colors">→</span>
+                        <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>{link.platform.toLowerCase()}</span>
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white p-6 sm:p-8 lg:p-10 rounded-lg border border-gray-200 dark:border-gray-700">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white mb-4 sm:mb-6">
-                Send a Message
-              </h3>
+            {/* Contact Form Column */}
+            <div className="border border-hairline bg-surface/60 p-5 sm:p-6 lg:p-8">
+              <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-4">
+                ─── send-message
+              </div>
               <ContactForm />
             </div>
           </div>
