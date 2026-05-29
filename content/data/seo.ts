@@ -33,7 +33,7 @@ export const seoData: SEOData = {
     "hugging face",
     "vector databases"
   ],
-  ogImage: "/my-profile-pic.png",
+  ogImage: "/my-profile-pic.webp",
   canonicalUrl: "https://srujays-portfolio.vercel.app",
   structuredData: {
     "@type": "Person",

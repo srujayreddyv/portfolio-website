@@ -129,7 +129,7 @@ export default function Contact() {
                   Response Time
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Typically respond within 24 to 48 hours. For urgent matters, include URGENT in the subject line.
+                  Typically respond within 24 to 48 hours.
                 </p>
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white p-6 sm:p-8 lg:p-10 rounded-lg border border-gray-200 dark:border-gray-700">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white mb-4 sm:mb-6">
-                Send a Message (Optional)
+                Send a Message
               </h3>
               <ContactForm />
             </div>

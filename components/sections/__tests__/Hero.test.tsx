@@ -54,7 +54,7 @@ describe('Hero Component', () => {
     expect(viewWorkButton).toHaveAttribute('href', '#projects');
     
     // Check for secondary CTA button
-    const contactButton = screen.getByRole('link', { name: /discuss opportunities/i });
+    const contactButton = screen.getByRole('link', { name: /let'?s connect/i });
     expect(contactButton).toBeInTheDocument();
     expect(contactButton).toHaveAttribute('href', '#contact');
   });

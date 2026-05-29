@@ -1,0 +1,42 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="48" fill="#06080D"/>
+  <rect x="56" y="56" width="1488" height="788" rx="36" fill="#0F1724" stroke="#1E293B" stroke-width="4"/>
+  <rect x="112" y="108" width="420" height="212" rx="28" fill="#111827" stroke="#2563EB" stroke-width="3"/>
+  <text x="152" y="172" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="54" font-weight="700">ContextServer</text>
+  <text x="152" y="228" fill="#93C5FD" font-family="Arial, sans-serif" font-size="30">MCP tool infrastructure for AI agents</text>
+  <text x="152" y="274" fill="#94A3B8" font-family="Arial, sans-serif" font-size="26">Filesystem access • Git history • Documentation search</text>
+  <rect x="630" y="132" width="280" height="132" rx="24" fill="#101826" stroke="#334155" stroke-width="3"/>
+  <text x="690" y="188" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="34" font-weight="700">Agent</text>
+  <text x="690" y="226" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Requests tools</text>
+  <rect x="1000" y="132" width="368" height="132" rx="24" fill="#101826" stroke="#334155" stroke-width="3"/>
+  <text x="1060" y="188" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="34" font-weight="700">ContextServer</text>
+  <text x="1060" y="226" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Routes validated actions</text>
+  <path d="M910 198H1000" stroke="#60A5FA" stroke-width="10" stroke-linecap="round"/>
+  <path d="M978 174L1008 198L978 222" stroke="#60A5FA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="190" y="412" width="276" height="176" rx="24" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <text x="240" y="476" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="32" font-weight="700">Filesystem</text>
+  <text x="240" y="520" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Inspect repo structure</text>
+  <text x="240" y="554" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Read config and code</text>
+  <rect x="510" y="412" width="276" height="176" rx="24" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <text x="592" y="476" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="32" font-weight="700">Git</text>
+  <text x="560" y="520" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">History and diffs</text>
+  <text x="560" y="554" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Commit-level reasoning</text>
+  <rect x="830" y="412" width="276" height="176" rx="24" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <text x="882" y="476" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="32" font-weight="700">Docs</text>
+  <text x="880" y="520" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Search knowledge</text>
+  <text x="880" y="554" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Ground tool decisions</text>
+  <rect x="1150" y="412" width="276" height="176" rx="24" fill="#111827" stroke="#334155" stroke-width="3"/>
+  <text x="1208" y="476" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="32" font-weight="700">Registry</text>
+  <text x="1200" y="520" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Plugin-based tools</text>
+  <text x="1198" y="554" fill="#94A3B8" font-family="Arial, sans-serif" font-size="22">Extensible routing</text>
+  <path d="M1180 290V358H328V412" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1180 290V358H648V412" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1180 290V358H968V412" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1180 290V358H1288V412" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="140" y="688" width="1320" height="92" rx="24" fill="#0B1220" stroke="#1E293B" stroke-width="3"/>
+  <text x="188" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">FastAPI</text>
+  <text x="376" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">MCP</text>
+  <text x="510" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">Git</text>
+  <text x="626" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">Filesystem Tools</text>
+  <text x="960" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">Documentation Search</text>
+  <text x="1330" y="747" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="28" font-weight="700">Python</text>

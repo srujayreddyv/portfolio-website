@@ -77,7 +77,7 @@ export default function Footer() {
               {personalData.name}
             </h3>
             <div className="space-y-2">
-              <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
+              <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">
                 <a 
                   href={`mailto:${personalData.email}`}
                   className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
@@ -86,7 +86,7 @@ export default function Footer() {
                 </a>
               </p>
               {personalData.phone && (
-                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">
                   <a 
                     href={`tel:${personalData.phone}`}
                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -96,7 +96,7 @@ export default function Footer() {
                 </p>
               )}
               {personalData.location && (
-                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400">
                   {personalData.location}
                 </p>
               )}

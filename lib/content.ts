@@ -77,9 +77,13 @@ export async function getProjectById(id: string): Promise<Project | null> {
 export async function getAllProjects(): Promise<Project[]> {
   const projectFiles = getProjectFiles();
   const projects: Project[] = [];
+  const hiddenProjectIds = new Set(['fastchat-app', 'sacverse-ar']);
   
   for (const file of projectFiles) {
     const id = file.replace('.mdx', '');
+    if (hiddenProjectIds.has(id)) {
+      continue;
+    }
     const project = await getProjectById(id);
     if (project) {
       projects.push(project);

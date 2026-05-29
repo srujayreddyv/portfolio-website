@@ -31,7 +31,7 @@ export default function Hero() {
               aria-label="Click to view larger image"
             >
               <Image
-                src="/my-profile-pic.png"
+                src="/my-profile-pic.webp"
                 alt={`${personalData.name} - Professional headshot`}
                 fill
                 className="rounded-full object-cover shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:scale-105"
@@ -161,7 +161,7 @@ export default function Hero() {
 
       {/* Image Modal */}
       <ImageModal
-        src="/my-profile-pic.png"
+        src="/my-profile-pic.webp"
         alt={personalData.name}
         isOpen={isImageModalOpen}
         onClose={() => setIsImageModalOpen(false)}
