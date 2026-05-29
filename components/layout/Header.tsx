@@ -77,48 +77,56 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
-  // Track active section based on scroll position
+  // Track active section based on actual section visibility
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['about', ...navigationItems.map(item => item.section)];
-      const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+    const sections = ['about', ...navigationItems.map(item => item.section)];
+    const visibleSections = new Map<string, number>();
 
-      // Check if we're at the very top (about section)
+    const updateActiveSection = () => {
       if (window.scrollY < 100) {
         setPreviousSection('');
         setActiveSection('about');
         return;
       }
 
-      let currentSection = '';
-      let prevSection = '';
+      const visibleSection = [...visibleSections.entries()]
+        .sort((a, b) => b[1] - a[1])[0]?.[0];
 
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            currentSection = section;
-            // Set previous section (the one above current)
-            if (i > 0) {
-              prevSection = sections[i - 1];
-            }
-            break;
-          }
-        }
-      }
+      if (!visibleSection) return;
 
-      if (currentSection) {
-        setActiveSection(currentSection);
-        setPreviousSection(prevSection);
-      }
+      const visibleIndex = sections.indexOf(visibleSection);
+      setActiveSection(visibleSection);
+      setPreviousSection(visibleIndex > 0 ? sections[visibleIndex - 1] : '');
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Set initial active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            visibleSections.set(id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(id);
+          }
+        });
+        updateActiveSection();
+      },
+      {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      }
+    );
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    updateActiveSection();
+
+    return () => observer.disconnect();
   }, []);
 
   return (
