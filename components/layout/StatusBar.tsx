@@ -14,12 +14,14 @@ import { personalData } from '@/content/data/personal';
 export default function StatusBar() {
   // Trim the availability note into a short mono-friendly label.
   // Source: "Open to AI Software Engineer and AI Engineer roles." → "open to ai engineer roles"
-  const availabilityShort = personalData.availabilityNote
+  // Both availabilityNote and location are typed as optional on PersonalData,
+  // so guard with optional chaining + fallback.
+  const availabilityShort = (personalData.availabilityNote ?? '')
     .replace(/\.$/, '')
     .toLowerCase();
 
   // "Sacramento, CA" → "sacramento, ca"
-  const locationShort = personalData.location.toLowerCase();
+  const locationShort = (personalData.location ?? '').toLowerCase();
 
   return (
     <div className="border-b border-hairline bg-canvas">
@@ -32,11 +34,11 @@ export default function StatusBar() {
 
           {/* Right: location · availability */}
           <div className="flex items-center gap-3 sm:gap-4 text-muted">
-            <span className="hidden sm:inline-flex items-center" aria-label={`Location: ${personalData.location}`}>
+            <span className="hidden sm:inline-flex items-center" aria-label={`Location: ${personalData.location ?? ''}`}>
               {locationShort}
             </span>
             <span className="hidden sm:inline text-hairline" aria-hidden="true">·</span>
-            <span className="inline-flex items-center gap-1.5" aria-label={personalData.availabilityNote}>
+            <span className="inline-flex items-center gap-1.5" aria-label={personalData.availabilityNote ?? 'Availability'}>
               <span
                 className="inline-block w-1.5 h-1.5 rounded-full bg-accent"
                 aria-hidden="true"

@@ -454,7 +454,7 @@ export default function Hero() {
                   className="inline-block w-1.5 h-1.5 rounded-full bg-accent"
                   aria-hidden="true"
                 />
-                <span>{personalData.availabilityNote.replace(/\.$/, '').toLowerCase()}</span>
+                <span>{(personalData.availabilityNote ?? '').replace(/\.$/, '').toLowerCase()}</span>
               </span>
             </div>
           </div>

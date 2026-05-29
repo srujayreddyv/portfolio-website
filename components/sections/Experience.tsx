@@ -1,158 +1,180 @@
+'use client';
+
 import React from 'react';
 import { experiences } from '@/content/data/experience';
-import { Calendar, MapPin, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
+/**
+ * Experience — Direction 2 log-entry vocabulary.
+ *
+ * Each role renders as a hairline-bordered log block with a mono timestamp
+ * header. Logos are squared with a hairline border (not rounded). Achievement
+ * bullets use an accent "›" glyph. Tech tags are mono hairline-bordered chips.
+ *
+ * The first role (current) opens by default; the rest use native <details> so
+ * the page stays scannable.
+ */
 const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-950">
+    <section
+      id="experience"
+      className="py-16 sm:py-20 lg:py-24 bg-canvas border-t border-hairline"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4 sm:mb-6">
+        <div className="max-w-5xl mx-auto">
+          {/* Section header — terminal label, not centered */}
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <div className="font-mono text-[11px] sm:text-xs text-muted tracking-wide mb-3">
+              <span className="text-accent">$ </span>cat experience.log
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink tracking-[-0.02em]">
               Work Experience
             </h2>
-            <div className="w-16 sm:w-20 md:w-24 h-1 bg-black dark:bg-white mx-auto"></div>
+            <div className="mt-3 h-px w-12 bg-accent" />
           </div>
 
-          {/* Experience timeline */}
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-gray-600 hidden md:block"></div>
+          {/* Experience log */}
+          <div className="space-y-5 sm:space-y-6">
+            {experiences.map((exp) => {
+              const dateRange = `${exp.startDate.toLowerCase()} — ${
+                exp.current ? 'present' : exp.endDate.toLowerCase()
+              }`;
+              const isWhiteLogoBg = exp.id === 'hsrg-2021' || exp.id === 'spiti-2018';
 
-            <div className="space-y-6 sm:space-y-8">
-              {experiences.map((exp) => {
-                return (
-                  <div key={exp.id} className="relative">
-                    {/* Timeline dot */}
-                    <div className="absolute left-2 sm:left-6 w-4 h-4 bg-black dark:bg-white rounded-full border-4 border-white dark:border-black shadow-lg hidden md:block"></div>
+              return (
+                <details
+                  key={exp.id}
+                  open={exp.id === 'dds-2025'}
+                  className="group border border-hairline bg-surface/60 hover:border-accent/50 transition-colors duration-150"
+                >
+                  {/* Summary row — always visible */}
+                  <summary className="list-none [&::-webkit-details-marker]:hidden cursor-pointer p-4 sm:p-5 lg:p-6 hover:bg-surface transition-colors duration-150">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      {/* Date stamp */}
+                      <div className="hidden sm:block flex-shrink-0 pt-1 w-40 font-mono text-[11px] text-muted tracking-wide">
+                        {dateRange}
+                        {exp.current && (
+                          <span className="inline-flex items-center gap-1 mt-1">
+                            <span
+                              className="inline-block w-1.5 h-1.5 rounded-full bg-accent"
+                              aria-hidden="true"
+                            />
+                            <span className="text-accent">current</span>
+                          </span>
+                        )}
+                      </div>
 
-                    {/* Experience card */}
-                    <details
-                      open={exp.id === 'dds-2025'}
-                      className={`group md:ml-16 bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300 overflow-hidden ${
-                        exp.id === 'dds-2025'
-                          ? 'border-2 border-gray-300 dark:border-gray-600 shadow-lg hover:shadow-xl'
-                          : 'border border-gray-200 dark:border-gray-700 hover:shadow-lg'
-                      }`}
-                    >
-                      {/* Compact Header - Always Visible */}
-                      <summary
-                        className="list-none [&::-webkit-details-marker]:hidden w-full text-left p-4 sm:p-6 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/80 transition-colors duration-200"
-                      >
-                        <div className="flex items-start justify-between gap-3 sm:gap-4">
-                          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
-                            {/* Company Logo */}
-                            <div className="flex-shrink-0">
-                              {exp.logo ? (
-                                <div className={`w-12 h-12 sm:w-16 sm:h-16 relative rounded-lg overflow-hidden ${
-                                  exp.id === 'hsrg-2021' || exp.id === 'spiti-2018'
-                                    ? 'bg-white dark:bg-white'
-                                    : 'bg-gray-100 dark:bg-gray-600'
-                                }`}>
-                                  <Image
-                                    src={exp.logo}
-                                    alt={`${exp.company} logo`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 640px) 48px, 64px"
-                                  />
-                                </div>
-                              ) : (
-                                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center">
-                                  <span className="text-gray-600 dark:text-gray-400 font-bold text-lg sm:text-xl">
-                                    {exp.company.charAt(0)}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-
-                            {/* Basic Info */}
-                            <div className="flex-1 min-w-0">
-                              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-tight break-words">
-                                {exp.title}
-                              </h3>
-                              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium break-words">
-                                {exp.company}
-                              </p>
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500/75 dark:text-gray-400/75 mt-1">
-                                <Calendar className="w-4 h-4" />
-                                <span className="break-words">
-                                  {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
-                                </span>
-                                {exp.current && (
-                                  <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">
-                                    Current
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Expand/Collapse Button */}
-                          <div className="flex-shrink-0 ml-4">
-                            <ChevronDown
-                              className="w-6 h-6 p-1 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 transition-all duration-200 group-open:rotate-180"
+                      {/* Logo + title */}
+                      <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
+                        {exp.logo ? (
+                          <div
+                            className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 relative border border-hairline overflow-hidden ${
+                              isWhiteLogoBg ? 'bg-white' : 'bg-surface'
+                            }`}
+                          >
+                            <Image
+                              src={exp.logo}
+                              alt={`${exp.company} logo`}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 640px) 40px, 48px"
                             />
                           </div>
-                        </div>
-                      </summary>
-
-                      {/* Expanded Content */}
-                      <div
-                        id={`experience-panel-${exp.id}`}
-                        className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-200 dark:border-gray-700"
-                      >
-                        <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
-                          {/* Location */}
-                          <div className="flex items-center text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                            <MapPin className="w-4 h-4 mr-2" />
-                            <span>{exp.location}</span>
+                        ) : (
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 border border-hairline bg-surface flex items-center justify-center">
+                            <span className="font-mono text-muted font-bold text-base">
+                              {exp.company.charAt(0)}
+                            </span>
                           </div>
+                        )}
 
-                          {/* Key Achievements */}
-                          <div>
-                            <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                              Key Achievements
-                            </h4>
-                            <ul className="space-y-2">
-                              {exp.achievements.map((achievement, achievementIndex) => (
-                                <li key={achievementIndex} className="flex items-start">
-                                  <div className="flex-shrink-0 w-1.5 h-1.5 bg-gray-600 dark:bg-gray-400 rounded-full mt-2 mr-3"></div>
-                                  <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {achievement}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
+                        <div className="flex-1 min-w-0">
+                          {/* Mobile-only date row */}
+                          <div className="sm:hidden font-mono text-[10px] text-muted mb-1">
+                            {dateRange}
+                            {exp.current && (
+                              <span className="ml-2 text-accent">● current</span>
+                            )}
                           </div>
-
-                          {/* Technologies */}
-                          {exp.technologies && exp.technologies.length > 0 && (
-                            <div>
-                              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                                Technologies Used
-                              </h4>
-                              <div className="flex flex-wrap gap-2">
-                                {exp.technologies.map((tech, techIndex) => (
-                                  <span
-                                    key={techIndex}
-                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs sm:text-sm rounded-full font-medium"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          )}
+                          <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-ink leading-tight break-words">
+                            {exp.title}
+                          </h3>
+                          <p className="font-mono text-[12px] sm:text-sm text-muted mt-0.5 break-words">
+                            {exp.company.toLowerCase()}
+                          </p>
+                          <p className="font-mono text-[10px] sm:text-[11px] text-muted/80 mt-0.5">
+                            {exp.location.toLowerCase()}
+                          </p>
                         </div>
                       </div>
-                    </details>
+
+                      {/* Expand indicator — terminal-style toggle */}
+                      <div className="flex-shrink-0 font-mono text-[10px] sm:text-xs text-muted self-center pl-2">
+                        <span aria-hidden="true" className="inline-block transition-transform duration-150 group-open:rotate-90">
+                          ›
+                        </span>
+                      </div>
+                    </div>
+                  </summary>
+
+                  {/* Expanded body */}
+                  <div className="px-4 sm:px-5 lg:px-6 pb-5 sm:pb-6 border-t border-hairline">
+                    <div className="pt-4 sm:pt-5 space-y-5 sm:space-y-6 sm:pl-44">
+                      {/* Description */}
+                      {exp.description && (
+                        <p className="font-mono text-[13px] sm:text-sm text-ink/80 leading-relaxed max-w-[68ch]">
+                          <span aria-hidden="true" className="text-accent select-none mr-2">
+                            #
+                          </span>
+                          {exp.description}
+                        </p>
+                      )}
+
+                      {/* Achievements */}
+                      <div>
+                        <div className="font-mono text-[10px] sm:text-[11px] text-muted uppercase tracking-[0.08em] mb-2">
+                          ─── achievements
+                        </div>
+                        <ul className="space-y-2">
+                          {exp.achievements.map((achievement, i) => (
+                            <li key={i} className="flex items-start gap-2 max-w-[72ch]">
+                              <span
+                                aria-hidden="true"
+                                className="text-accent flex-shrink-0 mt-0.5 select-none font-mono"
+                              >
+                                ›
+                              </span>
+                              <span className="text-sm sm:text-[15px] text-ink/85 leading-relaxed">
+                                {achievement}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Technologies */}
+                      {exp.technologies && exp.technologies.length > 0 && (
+                        <div>
+                          <div className="font-mono text-[10px] sm:text-[11px] text-muted uppercase tracking-[0.08em] mb-2">
+                            ─── stack
+                          </div>
+                          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                            {exp.technologies.map((tech, techIndex) => (
+                              <span
+                                key={techIndex}
+                                className="font-mono text-[10px] sm:text-[11px] text-ink/80 border border-hairline px-2 py-0.5 hover:border-accent/60 hover:text-accent transition-colors duration-150"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                );
-              })}
-            </div>
+                </details>
+              );
+            })}
           </div>
         </div>
       </div>
