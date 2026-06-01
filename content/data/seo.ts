@@ -38,7 +38,7 @@ export const seoData: SEOData = {
   structuredData: {
     "@type": "Person",
     name: "Srujay Reddy Vangoor",
-    jobTitle: "AI Software Engineer · LLM Platforms · RAG · Multi-Agent Systems · FastAPI · AWS",
+    jobTitle: "AI Software Engineer building production LLM systems",
     url: "https://srujays-portfolio.vercel.app",
     sameAs: [
       "https://github.com/srujayreddyv",

@@ -4,9 +4,10 @@ export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "AI Software Engineer building production LLM systems",
   bio: "Built and deployed RAG systems, multi agent workflows, and scalable backend platforms using Python, TypeScript, AWS, and modern AI infrastructure.",
-  heroLead: "Built and deployed RAG systems, multi agent workflows, and scalable backend platforms using Python, TypeScript, AWS, and modern AI infrastructure.",
   heroDescription: [
-    "Built and deployed RAG systems, multi agent workflows, and scalable backend platforms using Python, TypeScript, AWS, and modern AI infrastructure."
+    "I enjoy building systems that turn complex AI capabilities into reliable products people can actually use.",
+    "Over the past 6+ years, I've worked across backend engineering, cloud infrastructure, and AI systems development. My focus today is building production LLM applications, RAG systems, multi agent workflows, and scalable AWS platforms using Python and TypeScript.",
+    "Currently, I develop AI solutions for the California Department of Developmental Services, helping modernize statewide healthcare technology through cloud native architectures and AI driven systems."
   ],
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA",
@@ -22,7 +23,7 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayResume2026.pdf", // Optional - can be removed if no resume available
+  resumeUrl: "/SrujayResume.pdf", // Optional - can be removed if no resume available
   availabilityNote: "Open to AI Software Engineer and AI Engineer roles.",
   careerHighlights: [
     "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",

@@ -36,7 +36,6 @@ describe('Hero Component', () => {
     
     // Check for subtitle and intro content
     expect(screen.getByText(personalData.title)).toBeInTheDocument();
-    expect(screen.getByText(personalData.heroLead ?? '')).toBeInTheDocument();
     ['Python', 'FastAPI', 'AWS', 'RAG', 'Multi-Agent Systems'].forEach((skill) => {
       expect(screen.getByText(skill)).toBeInTheDocument();
     });

@@ -30,14 +30,11 @@ export default function Hero() {
             <p className="text-[clamp(1.05rem,2.1vw,2rem)] text-gray-600 dark:text-gray-300 font-semibold">
               {personalData.title}
             </p>
-            <p className="mt-2 text-[0.7rem] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
-              {personalData.heroLead}
-            </p>
           </div>
 
           {/* Introduction */}
           <div className="mb-9 sm:mb-11 lg:mb-14">
-            <div className="flex flex-wrap justify-center gap-2 mb-16 sm:mb-20">
+            <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10">
               {[
                 { name: 'Python', Icon: SiPython, color: '#3776AB' },
                 { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
@@ -55,10 +52,8 @@ export default function Hero() {
                 </span>
               ))}
             </div>
-            <div className="text-[clamp(0.95rem,1.55vw,1.5rem)] text-gray-700 dark:text-gray-300 max-w-[620px] mx-auto leading-snug px-4 sm:px-6 space-y-3 sm:space-y-4">
-              {personalData.heroDescription
-                ?.filter((paragraph) => paragraph !== personalData.heroLead)
-                .map((paragraph) => (
+            <div className="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6 space-y-4 sm:space-y-5">
+              {personalData.heroDescription?.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>

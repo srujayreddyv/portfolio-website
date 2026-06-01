@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-geist-sans: "Avenir Next", "SF Pro Display", "Segoe UI", sans-serif;
+  --font-geist-mono: "SF Mono", "Cascadia Code", "Menlo", monospace;
   --page-bg: linear-gradient(180deg, #d9ecff 0%, #e9f4ff 52%, #f7fbff 100%);
 
   /* Base colors */

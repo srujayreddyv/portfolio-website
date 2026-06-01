@@ -15,11 +15,11 @@ export const experiences: Experience[] = [
       "Built a conversational RAG system for internal report analysis, reducing processing time by 65% and improving grounded response accuracy by 35% using retrieval augmented evaluation pipelines.",
       "Improved retrieval quality (hit@1 from 0.35 to 0.63) by designing a knowledge graph augmented retrieval layer with subgraph expansion, hybrid embeddings, and relevance pruning.",
       "Engineered a multi agent orchestration system (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
-      "Designed and scaled FastAPI microservices supporting 200K+ daily API requests with sub second P99 latency on ECS and Lambda, integrating Cognito and EventBridge for secure healthcare workflows.",
+      "Designed and deployed AWS cloud native FastAPI microservices supporting 200K+ daily API requests with sub second P99 latency using EC2, ECS, Lambda, S3, IAM, and EventBridge for secure healthcare workflows.",
       "Built a React and TypeScript AI workflow intake portal on AWS provisioned via Terraform, reducing submission time from 30 to 10 minutes through automated validation and review.",
       "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, reducing nightly processing time by 60% and eliminating 200+ manual steps."
     ],
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "MCP", "Claude", "FAISS", "PostgreSQL", "Docker", "AWS ECS", "Lambda", "Terraform", "Azure DevOps"]
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "MCP", "Claude", "FAISS", "PostgreSQL", "Docker", "EC2", "AWS ECS", "Lambda", "S3", "IAM", "EventBridge", "Terraform", "Azure DevOps"]
   },
   {
     id: "doc-2024",
@@ -33,10 +33,10 @@ export const experiences: Experience[] = [
     achievements: [
       "Engineered a seismic modeling service on AWS, integrating Python (OpenQuake) with legacy PHP and Perl systems, delivering ground motion predictions in under 3 seconds per request.",
       "Reduced data pipeline latency by 50% by optimizing Kafka-based ingestion of 10+ GB/day from earthquake monitoring stations and migrating analytics from PostgreSQL to Druid for real time analytics.",
-      "Implemented RBAC and two factor authentication for 60+ monitoring stations, integrating Azure Entra ID for SSO and IAM authorization with session authentication, supporting compliance audit requirements.",
+      "Implemented RBAC, MFA, encryption controls, AWS Secrets Manager, IAM policies, and Azure Entra ID SSO for 60+ monitoring stations, supporting compliance audits and secure access management.",
       "Improved geospatial applications performance by 40% by optimizing Leaflet rendering and GeoServer integration for large geospatial datasets, eliminating recurring downtime."
     ],
-    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "Apache Kafka", "InfluxDB", "Druid", "PostgreSQL", "Azure Entra ID", "AWS IAM", "API Gateway", "GeoServer", "Leaflet.js", "React", "JavaScript"]
+    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "Apache Kafka", "InfluxDB", "Druid", "PostgreSQL", "Azure Entra ID", "AWS IAM", "AWS Secrets Manager", "API Gateway", "GeoServer", "Leaflet.js", "React", "JavaScript"]
   },
   {
     id: "prc-2023",
