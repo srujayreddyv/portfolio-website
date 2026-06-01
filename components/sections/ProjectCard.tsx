@@ -41,7 +41,6 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       tabIndex={onClick ? 0 : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      aria-label={onClick ? `Open ${title} details` : undefined}
     >
       {/* Featured Badge */}
       {featured && (
@@ -121,7 +120,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
             </span>
           ))}
           {technologies.length > 6 && (
-            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 px-2 py-1">
+            <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 px-2 py-1">
               +{technologies.length - 6} more
             </span>
           )}

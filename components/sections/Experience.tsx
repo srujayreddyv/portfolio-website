@@ -97,7 +97,7 @@ const Experience: React.FC = () => {
                               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium break-words">
                                 {exp.company}
                               </p>
-                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500/75 dark:text-gray-400/75 mt-1">
+                              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-600 dark:text-gray-300 mt-1">
                                 <Calendar className="w-4 h-4" />
                                 <span className="break-words">
                                   {exp.startDate} - {exp.current ? 'Present' : exp.endDate}

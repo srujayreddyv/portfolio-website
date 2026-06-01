@@ -59,8 +59,8 @@ describe('Project Visual Consistency Property Tests', () => {
     render(<ProjectGallery projects={projects} />);
 
     expect(screen.getByRole('heading', { name: /featured projects/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /open buddhira details/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /open ca dmv rag system details/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /buddhira/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /ca dmv rag system/i })).toBeInTheDocument();
   });
 
   test('each card includes preview image, category, and technologies', () => {

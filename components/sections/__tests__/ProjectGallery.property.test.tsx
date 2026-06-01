@@ -91,6 +91,11 @@ const projectsArrayGenerator = fc.uniqueArray(projectGenerator, {
   maxLength: 10
 });
 const normalizeWhitespace = (value: string) => value.replace(/\s+/g, ' ').trim();
+const getProjectCards = () =>
+  screen.getAllByRole('button').filter((button) =>
+    !/^filters$/i.test(normalizeWhitespace(button.textContent || ''))
+  );
+
 const sortProjectsLikeGallery = (projects: Project[]) =>
   [...projects].sort((a, b) => {
     if (a.featured && !b.featured) return -1;
@@ -108,12 +113,12 @@ describe('Project Gallery Property Tests', () => {
             render(<ProjectGallery projects={projects} />);
 
             // Every project should render as an interactive card
-            expect(screen.getAllByRole('button', { name: /open .* details/i })).toHaveLength(projects.length);
+            expect(getProjectCards()).toHaveLength(projects.length);
 
             // Open first card and verify modal details
             const sortedProjects = sortProjectsLikeGallery(projects);
             const expectedProject = sortedProjects[0];
-            const firstCard = screen.getAllByRole('button', { name: /open .* details/i })[0];
+            const firstCard = getProjectCards()[0];
             fireEvent.click(firstCard);
 
             const dialog = await screen.findByRole('dialog');
@@ -144,7 +149,7 @@ describe('Project Gallery Property Tests', () => {
           try {
             render(<ProjectGallery projects={[project]} />);
 
-            fireEvent.click(screen.getAllByRole('button', { name: /open .* details/i })[0]);
+            fireEvent.click(getProjectCards()[0]);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             if (project.liveUrl) {
@@ -181,7 +186,7 @@ describe('Project Gallery Property Tests', () => {
           try {
             render(<ProjectGallery projects={[project]} />);
 
-            fireEvent.click(screen.getAllByRole('button', { name: /open .* details/i })[0]);
+            fireEvent.click(getProjectCards()[0]);
 
             const modal = screen.getByRole('dialog');
             expect(modal).toBeInTheDocument();
