@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { type KeyboardEvent, useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { useReducedMotion } from '@/lib/accessibility-utils';
 
@@ -87,6 +87,12 @@ export function ThemeToggle({
     }
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    toggleTheme();
+  };
+
   const transitionClass = prefersReducedMotion
     ? ''
     : 'transition-colors duration-150';
@@ -95,6 +101,7 @@ export function ThemeToggle({
     <div className={`relative inline-flex items-center ${className}`}>
       <button
         onClick={toggleTheme}
+        onKeyDown={handleKeyDown}
         className={`
           inline-flex items-center gap-0
           font-mono text-[10px] sm:text-[11px] tracking-[0.05em]

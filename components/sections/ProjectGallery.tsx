@@ -117,7 +117,12 @@ export default function ProjectGallery({ projects = [] }: ProjectGalleryProps) {
               </div>
 
               <div className="font-mono text-xs text-muted">
-                Showing <span className="text-accent">{sortedProjects.length}</span> of {projects.length} projects
+                <span className="sr-only">
+                  Showing {sortedProjects.length} of {projects.length} projects
+                </span>
+                <span aria-hidden="true">
+                  Showing <span className="text-accent">{sortedProjects.length}</span> of {projects.length} projects
+                </span>
               </div>
             </div>
 

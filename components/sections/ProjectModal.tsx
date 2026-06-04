@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/types';
@@ -9,6 +9,14 @@ import ImageModal from '@/components/ui/ImageModal';
 interface ProjectModalProps {
   project: Project;
   onClose: () => void;
+}
+
+function SectionLabel({ children }: { children: ReactNode }) {
+  return (
+    <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-2 sm:mb-3">
+      --- {children}
+    </div>
+  );
 }
 
 /**
@@ -114,13 +122,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       onClose();
     }
   };
-
-  // Reusable section header — mono small caps with accent rule.
-  const SectionLabel = ({ children }: { children: React.ReactNode }) => (
-    <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-muted mb-2 sm:mb-3">
-      ─── {children}
-    </div>
-  );
 
   return (
     <div
@@ -283,9 +284,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div>
                 <SectionLabel>stack</SectionLabel>
                 <div className="flex flex-wrap gap-1.5">
-                  {technologies.map((tech) => (
+                  {technologies.map((tech, index) => (
                     <span
-                      key={tech}
+                      key={`${tech}-${index}`}
                       className="font-mono text-[10px] sm:text-[11px] text-ink/85 border border-hairline px-2 py-0.5 hover:border-accent/60 hover:text-accent transition-colors duration-150"
                     >
                       {tech}
