@@ -30,7 +30,7 @@ function RagDiagram() {
           viewBox="0 0 320 460"
           className="w-full h-auto text-ink"
           role="img"
-          aria-label="CA DMV handbook RAG architecture: a user query is embedded, retrieved from a FAISS vector index over the DMV handbook, reranked with confidence scoring, sent to an LLM, and returned as a cited answer"
+          aria-label="CA DMV handbook RAG architecture: a user query is embedded, retrieved from a FAISS vector index over the DMV handbook, reranked with confidence scoring, sent to a Llama 3.2 model, and returned as a cited answer"
         >
           <defs>
             <marker
@@ -231,7 +231,7 @@ function RagDiagram() {
               fontSize="12"
               fill="currentColor"
             >
-              llm
+              llama 3.2
             </text>
           </g>
           <line
