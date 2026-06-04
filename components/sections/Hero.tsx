@@ -23,14 +23,14 @@ function RagDiagram() {
           <span>
             <span className="text-accent">●</span> ca-dmv-rag · live
           </span>
-          <span aria-hidden="true">srujayreddyv/dmv-rag</span>
+          <span aria-hidden="true">srujayreddyv/ca-dmv-rag-system</span>
         </div>
 
         <svg
           viewBox="0 0 320 460"
           className="w-full h-auto text-ink"
           role="img"
-          aria-label="CA DMV RAG system architecture: a user query is embedded, retrieved from a FAISS vector index plus knowledge graph, reranked, sent to an LLM, and returned as a cited response"
+          aria-label="CA DMV handbook RAG architecture: a user query is embedded, retrieved from a FAISS vector index over the DMV handbook, reranked with confidence scoring, sent to an LLM, and returned as a cited answer"
         >
           <defs>
             <marker
@@ -144,7 +144,7 @@ function RagDiagram() {
               fontWeight="600"
               style={{ fill: 'var(--accent)' }}
             >
-              faiss index
+              faiss retrieval
             </text>
             <text
               x="160"
@@ -154,7 +154,7 @@ function RagDiagram() {
               fontSize="9.5"
               style={{ fill: 'var(--accent)' }}
             >
-              + knowledge-graph subgraph expansion
+              dmv handbook · multi-doc context
             </text>
           </g>
           <line
@@ -198,7 +198,7 @@ function RagDiagram() {
               fontSize="9.5"
               style={{ fill: 'var(--accent)' }}
             >
-              hit@1 0.35 → 0.63
+              rerank + confidence score
             </text>
           </g>
           <line
@@ -231,7 +231,7 @@ function RagDiagram() {
               fontSize="12"
               fill="currentColor"
             >
-              claude / bedrock
+              llm
             </text>
           </g>
           <line
@@ -278,7 +278,7 @@ function RagDiagram() {
             fontSize="10"
             style={{ fill: 'var(--muted)' }}
           >
-            200K+ daily reqs · sub-second p99
+            fastapi · faiss · sentence-transformers
           </text>
           <text
             x="160"
@@ -288,12 +288,12 @@ function RagDiagram() {
             fontSize="10"
             style={{ fill: 'var(--muted)' }}
           >
-            multi-step failures 23% → 7%
+            citations · confidence · pytest eval · ci/cd
           </text>
         </svg>
       </div>
       <figcaption className="mt-3 font-mono text-[10px] sm:text-[11px] text-muted">
-        fig 1 · ca dmv rag system — live in production
+        fig 1 · ca dmv handbook rag · live demo
       </figcaption>
     </figure>
   );
