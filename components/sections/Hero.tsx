@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Professional headshot */}
           <div className="mb-8 sm:mb-10 lg:mb-12">
-            <HeroImageButton name={personalData.name} src="/my-profile-pic.webp" />
+            <HeroImageButton name={personalData.name} src="/my-profile-pic.png" />
           </div>
 
           {/* Name */}

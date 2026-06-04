@@ -1,14 +1,25 @@
 ---
 id: "contextserver"
-title: "ContextServer - MCP Tool Infrastructure for AI Agents"
-description: "Built an MCP-based tool server enabling AI agents to inspect and reason over real codebases through filesystem access, Git history, and documentation search."
-technologies: ["Python", "FastAPI", "MCP", "AI Agents", "Git", "Filesystem Tools", "Documentation Search"]
+title: "ContextServer - Local MCP Repository Inspection Server"
+description: "Built a local Python stdio MCP server that gives AI agents read-only repository inspection tools for files, directories, text search, documentation search, and Git state inside a configured repository root."
+technologies: ["Python 3.10+", "MCP SDK", "stdio", "JSON Schema", "AI Agents", "Git", "Filesystem Tools", "Documentation Search", "PyTest", "Hypothesis"]
 category: "AI/ML"
 featured: true
-completedDate: "2026-03-15"
+completedDate: "2026-06-02"
+githubUrl: "https://github.com/srujayreddyv/ContextServer"
 imageUrl: "/projects/contextserver/architecture-dark.svg"
+proofBadges: ["MCP Server", "Read-Only Tools", "Path Safety", "Local Dashboard", "CLI Client", "Tested"]
+architecture: "Implemented as a local stdio MCP server using the official Python MCP SDK. MCP clients launch ContextServer as a subprocess, discover tools through tools/list, and call tools through tools/call. Tool routing is handled by an internal plugin-style registry with JSON Schema validation before dispatch."
+productionReadiness: "The server is scoped for local repository inspection rather than hosted deployment. It enforces repository-root path containment, keeps filesystem access read-only, runs Git commands from the configured repo root, exposes installable console scripts, and includes a local browser dashboard for managing stdio MCP server definitions and manually calling tools."
+validationChecks: "Covered path safety, filesystem tools, Git tools, search tools, documentation search, plugin registration, registry behavior, MCP stdio integration, local web UI helpers, and CLI argument parsing with PyTest and Hypothesis-based test support."
+images:
+  - "/projects/contextserver/architecture-dark.svg"
 ---
 
-- Built an MCP-based tool server enabling AI agents to inspect and reason over real codebases through filesystem access, Git history, and documentation search.
+- Built a local Python MCP server that gives MCP-compatible AI clients a small, read-only toolset for repository inspection across files, directories, text search, documentation search, and Git state.
 
-- Architected an extensible plugin based tool registry allowing new tools to be added without modifying core routing logic, reducing integration time for new capabilities by 60%.
+- Implemented 9 tools: `read_file`, `list_directory`, `search_files`, `git_log`, `git_diff`, `git_status`, `git_branches`, `grep_search`, and `docs_search`.
+
+- Designed a plugin-style tool registry with JSON Schema parameter validation so filesystem, Git, search, and documentation tool groups can be registered without changing MCP request routing.
+
+- Added path containment checks to keep file operations inside the configured repository root, plus an interactive CLI client and local browser dashboard for manual testing and stdio MCP server management.

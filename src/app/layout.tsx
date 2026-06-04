@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Srujay Reddy Vangoor Portfolio",
     images: [
       {
-        url: "/my-profile-pic.webp",
+        url: seoData.ogImage,
         width: 1200,
         height: 630,
         alt: seoData.title,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: seoData.title,
     description: seoData.description,
-    images: ["/my-profile-pic.webp"],
+    images: [seoData.ogImage],
   },
   robots: {
     index: true,
@@ -63,7 +63,7 @@ export default function RootLayout({
     jobTitle: seoData.structuredData.jobTitle,
     url: seoData.structuredData.url,
     sameAs: seoData.structuredData.sameAs,
-    image: `${seoData.canonicalUrl}/my-profile-pic.webp`,
+    image: `${seoData.canonicalUrl}${seoData.ogImage}`,
     description: seoData.description,
   };
 
