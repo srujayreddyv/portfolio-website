@@ -15,6 +15,13 @@ interface ProjectCardProps {
  * Hairline-bordered card with no soft rounded corners, mono category label,
  * accent top border when featured, accent proof badges, and terminal-style
  * link rows with an arrow glyph in the card footer.
+ *
+ * Accessibility: the whole card is made clickable via a single absolutely-
+ * positioned "stretched" <button> (opens the detail modal) that sits BENEATH
+ * the action links. The action links carry a higher z-index, so they remain
+ * independently clickable without being nested inside another interactive
+ * element (avoids the role="button" + nested <a> anti-pattern). A native
+ * <button> also gives free Enter/Space activation.
  */
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const {
@@ -30,30 +37,29 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     proofBadges,
   } = project;
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!onClick) return;
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      onClick();
-    }
-  };
-
   return (
     <div
       className={`
         group relative flex flex-col bg-surface border border-hairline
         hover:border-accent transition-colors duration-150 overflow-hidden
-        cursor-pointer
         ${featured ? 'border-t-2 border-t-accent' : ''}
       `.trim()}
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
     >
+      {/* Stretched open-button — covers the card to open the detail modal.
+          z-10 keeps it above the (non-interactive) visual content; the action
+          links below use z-20 so they sit above it and stay clickable. */}
+      {onClick && (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Open ${title}`}
+          className="absolute inset-0 z-10 cursor-pointer focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-[-2px]"
+        />
+      )}
+
       {/* Featured Badge — top-right, mono terminal style */}
       {featured && (
-        <div className="absolute top-3 right-3 z-10 font-mono text-[10px] text-accent bg-canvas border border-accent px-2 py-0.5 tracking-[0.08em] uppercase">
+        <div className="absolute top-3 right-3 z-20 font-mono text-[10px] text-accent bg-canvas border border-accent px-2 py-0.5 tracking-[0.08em] uppercase">
           Featured
         </div>
       )}
@@ -118,15 +124,16 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           )}
         </div>
 
-        {/* Link row — terminal-style with arrow glyphs */}
+        {/* Link row — terminal-style with arrow glyphs.
+            relative z-20 lifts the links above the stretched open-button so
+            they're independently clickable (no stopPropagation hacks needed). */}
         {(liveUrl || apiDocsUrl || githubUrl) && (
-          <div className="flex flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-hairline font-mono text-[11px] sm:text-xs">
+          <div className="relative z-20 flex flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-hairline font-mono text-[11px] sm:text-xs">
             {liveUrl && (
               <Link
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="inline-flex items-center gap-1 text-ink/85 hover:text-accent transition-colors duration-150"
                 aria-label={`View ${title} live demo`}
               >
@@ -139,7 +146,6 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
                 href={apiDocsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="inline-flex items-center gap-1 text-ink/85 hover:text-accent transition-colors duration-150"
                 aria-label={`View ${title} API docs`}
               >
@@ -152,7 +158,6 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
                 className="inline-flex items-center gap-1 text-ink/85 hover:text-accent transition-colors duration-150"
                 aria-label={`View ${title} source code`}
               >

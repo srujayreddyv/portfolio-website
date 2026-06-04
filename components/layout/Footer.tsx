@@ -7,8 +7,8 @@ interface NavigationItem {
 
 const quickNavigation: NavigationItem[] = [
   { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
   { name: 'Skills', href: '#skills' },
   { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' },
@@ -64,7 +64,7 @@ export default function Footer() {
   return (
     <footer className="bg-canvas border-t border-hairline">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 lg:py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Brand and Contact */}
           <div className="space-y-3 sm:col-span-2 lg:col-span-1">
             <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] text-accent">
@@ -93,7 +93,7 @@ export default function Footer() {
                 </p>
               )}
               {personalData.location && (
-                <p className="text-muted">{personalData.location.toLowerCase()}</p>
+                <p className="text-muted">{personalData.location}</p>
               )}
             </div>
           </div>

@@ -81,7 +81,9 @@ export default function RootLayout({
     jobTitle: seoData.structuredData.jobTitle,
     url: seoData.structuredData.url,
     sameAs: seoData.structuredData.sameAs,
-    image: `${seoData.canonicalUrl}${seoData.ogImage}`,
+    // Person-schema image stays the real headshot (the branded OG card is for
+    // social link previews via og:image / twitter:image, not the Person entity).
+    image: `${seoData.canonicalUrl}/my-profile-pic.png`,
     description: seoData.description,
   };
 

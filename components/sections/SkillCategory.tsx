@@ -190,11 +190,11 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
       {/* Category header */}
       <div className="mb-4 flex items-baseline justify-between gap-3">
         <h3 className="font-mono text-sm sm:text-base font-semibold text-ink leading-tight">
-          {category.category.toLowerCase()}
+          {category.category}
         </h3>
         {isPrimary && (
           <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.12em] text-accent">
-            core
+            Core
           </span>
         )}
       </div>

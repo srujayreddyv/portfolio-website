@@ -128,7 +128,8 @@ describe('Footer Component', () => {
     test('displays "Quick Links" section heading', () => {
       render(<Footer />);
       
-      expect(screen.getByText('Quick Links')).toBeInTheDocument();
+      // Redesign label is "─── quick-links" (terminal style).
+      expect(screen.getByText(/quick.links/i)).toBeInTheDocument();
     });
   });
 
@@ -136,7 +137,8 @@ describe('Footer Component', () => {
     test('displays "Find Me" section heading', () => {
       render(<Footer />);
       
-      expect(screen.getByText('Find Me')).toBeInTheDocument();
+      // Redesign label is "─── find-me" (terminal style).
+      expect(screen.getByText(/find.me/i)).toBeInTheDocument();
     });
 
     test('displays all social media links with proper attributes', () => {
@@ -203,7 +205,8 @@ describe('Footer Component', () => {
       render(<Footer />);
       
       const copyrightSection = screen.getByText(/© \d{4} John Doe/).closest('.flex');
-      expect(copyrightSection).toHaveClass('flex', 'justify-center', 'sm:justify-start', 'items-center');
+      // Redesign uses a space-between row (copyright left, build tagline right).
+      expect(copyrightSection).toHaveClass('flex', 'sm:flex-row', 'sm:justify-between', 'sm:items-center');
     });
   });
 

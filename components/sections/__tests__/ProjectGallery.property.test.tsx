@@ -153,14 +153,14 @@ describe('Project Gallery Property Tests', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             if (project.liveUrl) {
-              const liveDemoLink = screen.getByRole('link', { name: /^view live demo$/i });
+              const liveDemoLink = screen.getByRole('link', { name: /^live demo$/i });
               expect(new URL(liveDemoLink.getAttribute('href') || '').href).toBe(new URL(project.liveUrl).href);
               expect(liveDemoLink).toHaveAttribute('target', '_blank');
               expect(liveDemoLink).toHaveAttribute('rel', expect.stringContaining('noopener'));
             }
 
             if (project.githubUrl) {
-              const sourceCodeLink = screen.getByRole('link', { name: /^view source code$/i });
+              const sourceCodeLink = screen.getByRole('link', { name: /^github$/i });
               expect(new URL(sourceCodeLink.getAttribute('href') || '').href).toBe(new URL(project.githubUrl).href);
               expect(sourceCodeLink).toHaveAttribute('target', '_blank');
               expect(sourceCodeLink).toHaveAttribute('rel', expect.stringContaining('noopener'));
@@ -194,7 +194,7 @@ describe('Project Gallery Property Tests', () => {
             expect(normalizeWhitespace(modalTitle.textContent || '')).toBe(
               normalizeWhitespace(project.title)
             );
-            expect(screen.getByText('Technologies Used')).toBeInTheDocument();
+            expect(screen.getByText(/stack/i)).toBeInTheDocument();
             expect(screen.getByRole('button', { name: /close modal/i })).toBeInTheDocument();
 
             // Escape key should close modal

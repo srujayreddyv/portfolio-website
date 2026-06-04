@@ -239,8 +239,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {submitStatus === 'error' && (
         <div className="p-3 border border-destructive bg-destructive/10 font-mono text-sm text-ink">
-          <span style={{ color: 'var(--destructive)' }}>●</span>{' '}
-          {errorMessage || 'There was an error sending your message. Please try again.'}
+          <span aria-hidden="true" style={{ color: 'var(--destructive)' }}>●</span>{' '}
+          <span>{errorMessage || 'There was an error sending your message. Please try again.'}</span>
         </div>
       )}
     </form>

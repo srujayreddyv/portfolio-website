@@ -16,8 +16,8 @@ export default async function Home() {
       <Header />
       <main className="pt-[84px] sm:pt-24 lg:pt-28">
         <Hero />
-        <Experience />
         <ProjectGallery projects={projects} />
+        <Experience />
         <Skills />
         <Education />
         <Contact />

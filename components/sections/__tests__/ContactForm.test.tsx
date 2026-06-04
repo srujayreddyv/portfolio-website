@@ -39,9 +39,9 @@ describe('ContactForm Error Handling', () => {
       expect(errorDisplay).toBeInTheDocument();
     });
 
-    // Verify error styling is applied
+    // Verify error styling is applied (Direction 2 destructive tokens)
     const errorContainer = screen.getByText(errorMessage).closest('div');
-    expect(errorContainer).toHaveClass('bg-red-50', 'border-red-200');
+    expect(errorContainer).toHaveClass('border-destructive', 'bg-destructive/10');
   });
 
   test('displays generic error message when no specific error is provided', async () => {

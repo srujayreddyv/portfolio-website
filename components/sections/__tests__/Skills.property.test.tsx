@@ -45,11 +45,13 @@ describe('Skills Organization Property Tests', () => {
       skills: [{ name: 'React' }]
     };
 
+    // Redesign uses a uniform hairline border; primary vs secondary are
+    // distinguished by surface fill (bg-surface vs bg-surface/60).
     const { rerender, container } = render(<SkillCategory category={category} isPrimary={true} />);
-    expect(container.firstChild).toHaveClass('border-black');
+    expect(container.firstChild).toHaveClass('bg-surface');
 
     rerender(<SkillCategory category={category} isPrimary={false} />);
-    expect(container.firstChild).toHaveClass('border-gray-300');
+    expect(container.firstChild).toHaveClass('bg-surface/60');
   });
 
   test('skills rows are icon + skill name only (no years/proficiency labels)', () => {

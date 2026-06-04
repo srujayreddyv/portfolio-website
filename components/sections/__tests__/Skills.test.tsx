@@ -48,8 +48,10 @@ describe('Skills Component', () => {
   test('renders core and supporting stack labels', () => {
     render(<Skills />);
     
-    expect(screen.getByText('Core Stack')).toBeInTheDocument();
-    expect(screen.getByText('Supporting Stack')).toBeInTheDocument();
+    // Redesign prefixes the labels with a terminal rule ("─── Core Stack"),
+    // so match on the label text rather than an exact string.
+    expect(screen.getByText(/core stack/i)).toBeInTheDocument();
+    expect(screen.getByText(/supporting stack/i)).toBeInTheDocument();
   });
 
   test('has proper semantic structure', () => {
@@ -123,7 +125,7 @@ describe('SkillCategory Component', () => {
     render(<SkillCategory category={mockCategory} isPrimary={false} />);
     
     const categoryHeader = screen.getByText('Test Category');
-    expect(categoryHeader).toHaveClass('text-gray-800');
+    expect(categoryHeader).toHaveClass('text-ink');
   });
 
   test('does not render progress bars for skills with levels', () => {
@@ -138,13 +140,13 @@ describe('SkillCategory Component', () => {
     const { container } = render(<SkillCategory category={mockCategory} />);
     
     const categoryCard = container.querySelector('div');
-    expect(categoryCard).toHaveClass('p-4', 'sm:p-6', 'lg:p-8', 'rounded-lg', 'border', 'shadow-sm');
+    expect(categoryCard).toHaveClass('p-4', 'sm:p-5', 'lg:p-6', 'border');
   });
 
   test('maintains consistent spacing between skills', () => {
     const { container } = render(<SkillCategory category={mockCategory} />);
     
-    const skillsContainer = container.querySelector('.space-y-3');
+    const skillsContainer = container.querySelector('.space-y-2');
     expect(skillsContainer).toBeInTheDocument();
   });
 

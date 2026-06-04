@@ -160,10 +160,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <span aria-hidden="true" className="text-accent ml-1">]</span>
             </button>
           </div>
-          {/* Category meta row */}
+          {/* Category meta row — category kept as real text (CSS-only lowercase)
+              so tests can match getByText(category). */}
           <div className="mt-2 flex items-center gap-3 font-mono text-[10px] sm:text-[11px] text-muted">
-            <span>
-              <span className="text-accent">●</span> {category.toLowerCase()}
+            <span className="inline-flex items-center gap-1.5">
+              <span className="text-accent" aria-hidden="true">●</span>
+              <span className="lowercase">{category}</span>
             </span>
           </div>
         </div>
