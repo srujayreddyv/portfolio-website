@@ -6,6 +6,28 @@ Do not use this file as a change log, release notes, task history, or commit his
 
 When a decision is replaced, mark the old decision as `Superseded` and reference the replacement decision. Preserve decision history.
 
+## 2026-06-04
+
+### Title
+
+Use Terminal/Infrastructure Portfolio Visual Direction
+
+### Status
+
+Accepted
+
+### Context
+
+The portfolio redesign replaces the previous general portfolio styling with a stronger AI/backend systems presentation.
+
+### Decision
+
+Use a terminal/infrastructure-inspired visual system with compact mono labels, semantic Tailwind color tokens, hairline borders, projects-before-experience page order, and a branded Open Graph image.
+
+### Impact
+
+Future UI changes should extend this visual language instead of reintroducing rounded card-heavy or generic marketing styling. Keep project content, resume links, analytics, and Vercel deployment behavior preserved when changing presentation.
+
 ## 2026-06-03
 
 ### Title

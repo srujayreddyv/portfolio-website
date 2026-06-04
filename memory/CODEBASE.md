@@ -15,7 +15,7 @@ There are no admin apps, background workers, databases, or separate services in 
 
 ## Major Directories
 
-- `components/layout`: Header and footer for the single-page portfolio shell.
+- `components/layout`: Header, status bar, and footer for the single-page portfolio shell.
 - `components/sections`: Page sections such as hero, experience, project gallery, skills, education, and contact.
 - `components/ui`: Reusable UI controls such as theme toggle, image modal, copy email button, responsive container, and hero image button.
 - `components/providers`: React providers; currently wraps `next-themes`.
@@ -23,7 +23,7 @@ There are no admin apps, background workers, databases, or separate services in 
 - `content/projects`: MDX project entries with frontmatter used by the project gallery and modal.
 - `lib`: Content loading, content management helpers, theme/accessibility utilities, hooks, and test utilities.
 - `types`: Shared TypeScript interfaces and content validators.
-- `public`: Static images, project screenshots, logos, SVG architecture diagrams, and resume PDF.
+- `public`: Static images, project screenshots, logos, SVG architecture diagrams, branded Open Graph image, and resume PDF.
 - `docs`: Human-facing documentation for API, components, and testing.
 - `scripts`: Deployment/setup and environment validation scripts.
 - `templates`: Task and review templates for engineering workflow.
@@ -65,4 +65,4 @@ Required production contact environment variables are `SENDGRID_API_KEY`, `SENDG
 - `src/app/api/contact/route.ts`: Handles untrusted form input and interpolates it into HTML email. Preserve validation and review escaping/sanitization when changing this route.
 - `lib/content.ts` and `types/index.ts`: Project content is filesystem-backed and validated at load time. Schema changes must be reflected in content files, validators, components, and tests.
 - Theme behavior spans `ThemeProvider`, `ThemeToggle`, `themeScript`, global CSS variables, and tests. Changes can cause hydration or accessibility regressions.
-- SEO behavior is centralized in `content/data/seo.ts`, `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts`; keep these aligned with canonical site URLs and public assets.
+- SEO behavior is centralized in `content/data/seo.ts`, `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts`; keep these aligned with canonical site URLs and public assets. The social preview image is the branded `/og.png`, while structured person data can still reference the profile image.

@@ -10,8 +10,8 @@ The application has no database, no authentication layer, no user accounts, and 
 
 ## Major Components
 
-- Page composition: `src/app/page.tsx` loads projects and composes the portfolio sections inside the shared header/footer shell.
-- Root document and SEO: `src/app/layout.tsx` defines metadata, structured data, analytics, speed insights, theme bootstrap script, and the global provider tree.
+- Page composition: `src/app/page.tsx` loads projects and composes the portfolio sections inside the shared header/status/footer shell. The current section order prioritizes projects before experience.
+- Root document and SEO: `src/app/layout.tsx` defines metadata, structured data, analytics, speed insights, Google-hosted fonts through `next/font`, theme bootstrap script, and the global provider tree.
 - Content layer: `lib/content.ts` reads project MDX files, parses frontmatter, renders markdown to sanitized HTML, validates content, and exposes query helpers.
 - Content authoring helpers: `lib/content-manager.ts` provides filesystem create/update/delete/import helpers for project MDX files.
 - Presentation components: `components/sections`, `components/layout`, and `components/ui` render the portfolio experience and own client-side interaction state.

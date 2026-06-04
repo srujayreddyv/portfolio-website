@@ -6,7 +6,7 @@ Use App Router defaults: server components for page composition and data loading
 
 Keep section-level UI in `components/sections`, shared controls in `components/ui`, layout chrome in `components/layout`, and providers in `components/providers`.
 
-Component styling is primarily Tailwind utility classes with global CSS variables and shared classes in `src/app/globals.css` for theme surfaces, buttons, cards, focus states, and layout shell behavior.
+Component styling is primarily Tailwind utility classes with global CSS variables and shared classes in `src/app/globals.css` for theme surfaces, buttons, cards, focus states, and layout shell behavior. The active visual language is terminal/infrastructure-oriented: semantic Tailwind tokens such as `canvas`, `ink`, `muted`, `accent`, `hairline`, and `surface`; square hairline frames; compact mono labels; and restrained motion.
 
 ## Content Pattern
 
@@ -34,7 +34,7 @@ Avoid logging during tests where existing helpers suppress output. Do not log se
 
 ## Theme And Accessibility Pattern
 
-Theme support is class-based through `next-themes` with `light` and `dark` themes only. Preserve `suppressHydrationWarning`, the inline `themeScript`, and mounted-state guards where components depend on the resolved theme.
+Theme support is class-based through `next-themes` with `light` and `dark` themes only. Preserve `suppressHydrationWarning`, the inline `themeScript`, mounted-state guards where components depend on the resolved theme, and the terminal-style text theme toggle contract.
 
 Interactive controls should have accessible names, visible focus states, keyboard behavior, and mobile-friendly touch targets. Respect reduced-motion utilities for optional animation.
 
