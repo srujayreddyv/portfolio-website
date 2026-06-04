@@ -208,29 +208,14 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ category, isPrimary = fal
           return (
             <li
               key={skill.name}
-              className="flex items-center justify-between gap-3 font-mono text-[12px] sm:text-[13px] text-ink/85"
+              className="flex items-center gap-2 font-mono text-[12px] sm:text-[13px] text-ink/85"
             >
-              <span className="inline-flex items-center gap-2 min-w-0 flex-1">
-                <IconComponent
-                  className="h-3.5 w-3.5 flex-shrink-0"
-                  style={iconColor ? { color: iconColor } : undefined}
-                  aria-hidden="true"
-                />
-                <span className="truncate">{skill.name}</span>
-              </span>
-              {skill.level && (
-                <span
-                  className={`flex-shrink-0 font-mono text-[10px] sm:text-[11px] ${
-                    skill.level === 'Expert'
-                      ? 'text-accent'
-                      : skill.level === 'Advanced'
-                        ? 'text-ink/70'
-                        : 'text-muted'
-                  }`}
-                >
-                  {skill.level.toLowerCase()}
-                </span>
-              )}
+              <IconComponent
+                className="h-3.5 w-3.5 flex-shrink-0"
+                style={iconColor ? { color: iconColor } : undefined}
+                aria-hidden="true"
+              />
+              <span className="truncate">{skill.name}</span>
             </li>
           );
         })}
