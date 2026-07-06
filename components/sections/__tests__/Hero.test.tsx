@@ -4,6 +4,8 @@
  */
 
 import { render, screen } from '@testing-library/react';
+import fs from 'fs';
+import path from 'path';
 import Hero from '../Hero';
 import { personalData } from '@/content/data/personal';
 
@@ -85,6 +87,11 @@ describe('Hero Component', () => {
       expect(resumeLink).toHaveAttribute('href', personalData.resumeUrl);
       expect(resumeLink).toHaveAttribute('target', '_blank');
       expect(resumeLink).toHaveAttribute('rel', 'noopener noreferrer');
+      expect(
+        fs.existsSync(
+          path.join(process.cwd(), 'public', personalData.resumeUrl.replace(/^\//, ''))
+        )
+      ).toBe(true);
     } else {
       // If no resumeUrl, the link should not exist
       expect(resumeLink).not.toBeInTheDocument();

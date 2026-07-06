@@ -18,7 +18,7 @@ describe('Skills Component', () => {
     expect(mainHeading).toBeInTheDocument();
     
     // Check for section description
-    expect(screen.getByText(/technologies i use to build and scale production software, data systems, and genai systems/i)).toBeInTheDocument();
+    expect(screen.getByText(/technologies i use to build backend services, cloud platforms, data workflows, and production ai systems/i)).toBeInTheDocument();
   });
 
   test('displays all skill categories from data', () => {
@@ -34,7 +34,7 @@ describe('Skills Component', () => {
     render(<Skills />);
     
     // Test requirement 4.4: THE Portfolio_Website SHALL highlight primary and secondary skill areas
-    const primaryCategories = ['Backend & APIs', 'AI & LLM Systems', 'Cloud & DevOps'];
+    const primaryCategories = ['AI & LLM Systems', 'Backend & APIs', 'Cloud & DevOps'];
     
     primaryCategories.forEach((categoryName) => {
       const categoryElement = screen.getByText(categoryName);

@@ -3,11 +3,11 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "AI Software Engineer building production LLM systems",
-  bio: "Built and deployed RAG systems, multi agent workflows, and scalable backend platforms using Python, TypeScript, AWS, and modern AI infrastructure.",
+  bio: "Software Engineer with 6+ years of experience building scalable backend systems, AWS cloud platforms, data workflows, and production AI applications.",
   heroDescription: [
-    "I enjoy building systems that turn complex AI capabilities into reliable products people can actually use.",
-    "Over the past 6+ years, I've worked across backend engineering, cloud infrastructure, and AI systems development. My focus today is building production LLM applications, RAG systems, multi agent workflows, and scalable AWS platforms using Python and TypeScript.",
-    "Currently, I develop AI solutions for the California Department of Developmental Services, helping modernize statewide healthcare technology through cloud native architectures and AI driven systems."
+    "Software Engineer with 6+ years of experience designing scalable backend systems, cloud native platforms, and production AI applications.",
+    "I build AWS based FastAPI services, data workflows, dashboards, and AI enabled software spanning RAG, multi agent orchestration, evaluation, and agentic AI tooling.",
+    "Currently building secure healthcare workflows and cloud native systems for the California Department of Developmental Services."
   ],
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA",
@@ -23,21 +23,20 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayResume.pdf", // Optional - can be removed if no resume available
-  availabilityNote: "Open to AI Software Engineer and AI Engineer roles.",
+  resumeUrl: "/Srujay-Resume.pdf",
+  availabilityNote: "Open to AI Engineer, Backend Engineer, and Software Development Engineer roles.",
   careerHighlights: [
-    "Increased statewide data processing throughput by 30% by architecting and deploying 31 HL7 FHIR compliant REST APIs",
-    "Scaled FastAPI services to 20K+ daily requests on AWS ECS and Lambda with 99% uptime",
-    "Modernized COBOL, JCL, and Db2 batch systems into Python services, cutting nightly processing time by 60%",
-    "Reduced analyst review effort by 85% by building an LLMOps QA platform with AWS Bedrock, LangChain, and FAISS",
-    "Delivered a production multi-agent GenAI system providing source-cited answers across healthcare and compliance data",
-    "Built a React and TypeScript portal that reduced AI Assessment entry time from 30 to 10 minutes"
+    "Designed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency",
+    "Reduced production multi step failures from 23% to under 7% with deterministic multi agent orchestration and schema validation",
+    "Improved retrieval hit@1 from 0.35 to 0.63 with knowledge graph augmented retrieval and relevance pruning",
+    "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards",
+    "Built a React and TypeScript workflow portal that reduced submission time from 30 to 10 minutes"
   ],
   achievements: [
     "MS in Computer Science from California State University, Sacramento (2025)",
     "BTech in Computer Science from IIIT Hyderabad (2019)",
-    "6+ years of full-stack development experience",
-    "Expert in GenAI/LLM solutions with production deployments",
+    "6+ years of software engineering experience",
+    "Production experience with RAG, multi agent systems, and cloud native backend services",
     "Proven track record in modernizing legacy systems and cloud migrations",
     "Experience with high-volume data processing and real-time systems"
   ],

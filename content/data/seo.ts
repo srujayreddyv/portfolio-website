@@ -1,17 +1,15 @@
 import { SEOData } from '@/types';
 
 export const seoData: SEOData = {
-  title: "Srujay Reddy | AI Software Engineer, RAG & LLM Platforms",
-  description: "Software Engineer with 6+ years of experience building scalable backend systems, cloud native platforms, and production AI systems.",
+  title: "Srujay Reddy | AI & Backend Software Engineer",
+  description: "Software Engineer with 6+ years building AWS and FastAPI backend systems, data workflows, and production AI applications using RAG and multi agent systems.",
   keywords: [
     "ai software engineer",
     "ai engineer",
-    "genai engineer",
+    "aws software engineer",
     "backend engineer",
     "software engineer",
     "software development engineer",
-    "full stack developer",
-    "data engineer",
     "backend developer",
     "python",
     "fastapi",
@@ -31,14 +29,18 @@ export const seoData: SEOData = {
     "langchain",
     "crewai",
     "hugging face",
-    "vector databases"
+    "vector databases",
+    "production ai systems",
+    "multi agent systems",
+    "agentic ai tooling",
+    "sql"
   ],
   ogImage: "/og.png",
   canonicalUrl: "https://srujays-portfolio.vercel.app",
   structuredData: {
     "@type": "Person",
     name: "Srujay Reddy Vangoor",
-    jobTitle: "AI Software Engineer building production LLM systems",
+    jobTitle: "AI and Backend Software Engineer",
     url: "https://srujays-portfolio.vercel.app",
     sameAs: [
       "https://github.com/srujayreddyv",

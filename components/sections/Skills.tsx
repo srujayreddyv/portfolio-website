@@ -13,7 +13,11 @@ import { skillCategories } from '@/content/data/skills';
  * Stack" labels, all category names, section#skills — for existing tests.
  */
 const Skills: React.FC = () => {
-  const primaryCategoryNames = ['Backend & APIs', 'AI & LLM Systems', 'Cloud & DevOps'];
+  const primaryCategoryNames = [
+    'AI & LLM Systems',
+    'Backend & APIs',
+    'Cloud & DevOps',
+  ];
   const primaryCategories = skillCategories.filter((category) =>
     primaryCategoryNames.includes(category.category)
   );
@@ -38,7 +42,7 @@ const Skills: React.FC = () => {
             </h2>
             <div className="mt-3 h-px w-12 bg-accent" />
             <p className="mt-5 sm:mt-6 max-w-2xl text-sm sm:text-base text-ink/80 leading-relaxed font-mono">
-              Technologies I use to build and scale production software, data systems, and GenAI systems.
+              Technologies I use to build backend services, cloud platforms, data workflows, and production AI systems.
             </p>
           </div>
 

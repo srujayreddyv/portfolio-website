@@ -5,7 +5,7 @@ import {
   SiGithub,
   SiLinkedin,
 } from 'react-icons/si';
-import { Bot } from 'lucide-react';
+import { Bot, Database } from 'lucide-react';
 import { personalData } from '@/content/data/personal';
 import HeroImageButton from '@/components/ui/HeroImageButton';
 
@@ -372,7 +372,7 @@ export default function Hero() {
               {[
                 { name: 'Python', Icon: SiPython, color: '#3776AB' },
                 { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
-                { name: 'TypeScript', Icon: Bot, color: '#3178C6' },
+                { name: 'SQL', Icon: Database, color: '#336791' },
                 { name: 'AWS', Icon: SiAmazonwebservices, color: '#FF9900' },
                 { name: 'RAG', Icon: Bot, color: '#2563EB' },
                 { name: 'Multi-Agent Systems', Icon: Bot, color: '#2563EB' },

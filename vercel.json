@@ -43,8 +43,13 @@
   "redirects": [
     {
       "source": "/resume",
-      "destination": "/SrujayReddyVangoor_Resume.pdf",
+      "destination": "/Srujay-Resume.pdf",
       "permanent": false
+    },
+    {
+      "source": "/SrujayResume.pdf",
+      "destination": "/Srujay-Resume.pdf",
+      "permanent": true
     }
   ]
 }

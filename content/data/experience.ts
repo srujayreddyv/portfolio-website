@@ -12,14 +12,14 @@ export const experiences: Experience[] = [
     logo: "/logos/dds-logo.png",
     description: "Building GenAI systems and cloud native backend workflows for healthcare report analysis and operational modernization.",
     achievements: [
-      "Built a conversational RAG system for internal report analysis, reducing processing time by 65% and improving grounded response accuracy by 35% using retrieval augmented evaluation pipelines.",
+      "Built a conversational RAG system for internal report analysis, implementing retrieval evaluation pipelines to measure answer grounding, retrieval relevance, and response quality.",
       "Improved retrieval quality (hit@1 from 0.35 to 0.63) by designing a knowledge graph augmented retrieval layer with subgraph expansion, hybrid embeddings, and relevance pruning.",
       "Engineered a multi agent orchestration system (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
-      "Designed and deployed AWS cloud native FastAPI microservices supporting 200K+ daily API requests with sub second P99 latency using EC2, ECS, Lambda, S3, IAM, and EventBridge for secure healthcare workflows.",
+      "Designed and deployed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency for secure healthcare workflows.",
       "Built a React and TypeScript AI workflow intake portal on AWS provisioned via Terraform, reducing submission time from 30 to 10 minutes through automated validation and review.",
-      "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, reducing nightly processing time by 60% and eliminating 200+ manual steps."
+      "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, replacing batch oriented processes with API driven healthcare integrations."
     ],
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS Bedrock", "LangChain", "CrewAI", "MCP", "Claude", "FAISS", "PostgreSQL", "Docker", "EC2", "AWS ECS", "Lambda", "S3", "IAM", "EventBridge", "Terraform", "Azure DevOps"]
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS", "CrewAI", "Terraform", "Knowledge Graphs", "FHIR", "Db2"]
   },
   {
     id: "doc-2024",
@@ -32,11 +32,11 @@ export const experiences: Experience[] = [
     description: "Engineered seismic modeling and real time geospatial data systems for earthquake monitoring and prediction.",
     achievements: [
       "Engineered a seismic modeling service on AWS, integrating Python (OpenQuake) with legacy PHP and Perl systems, delivering ground motion predictions in under 3 seconds per request.",
-      "Reduced data pipeline latency by 50% by optimizing Kafka-based ingestion of 10+ GB/day from earthquake monitoring stations and migrating analytics from PostgreSQL to Druid for real time analytics.",
-      "Implemented RBAC, MFA, encryption controls, AWS Secrets Manager, IAM policies, and Azure Entra ID SSO for 60+ monitoring stations, supporting compliance audits and secure access management.",
-      "Improved geospatial applications performance by 40% by optimizing Leaflet rendering and GeoServer integration for large geospatial datasets, eliminating recurring downtime."
+      "Reduced data pipeline latency by optimizing Kafka based ingestion of 10+ GB per day from earthquake monitoring stations and supporting real time analytics workloads with Apache Druid.",
+      "Implemented identity and access management controls including RBAC, MFA, AWS Secrets Manager, and Azure Entra ID SSO to secure access across 60+ monitoring stations.",
+      "Improved geospatial application responsiveness by optimizing Leaflet rendering and GeoServer integration for large datasets and reduced recurring downtime incidents through targeted performance fixes."
     ],
-    technologies: ["Python", "Perl", "PHP", "D3.js", "OpenQuake", "AWS", "Apache Kafka", "InfluxDB", "Druid", "PostgreSQL", "Azure Entra ID", "AWS IAM", "AWS Secrets Manager", "API Gateway", "GeoServer", "Leaflet.js", "React", "JavaScript"]
+    technologies: ["Python", "OpenQuake", "PHP", "Perl", "AWS", "Apache Kafka", "Apache Druid", "AWS Secrets Manager", "Azure Entra ID", "GeoServer", "Leaflet.js"]
   },
   {
     id: "prc-2023",
@@ -48,12 +48,12 @@ export const experiences: Experience[] = [
     logo: "/logos/csus-logo.png",
     description: "Built internal public health tools and analytics workflows for survey operations and reporting.",
     achievements: [
-      "Built a staff management system using C#, Entity Framework, and SQL Server, optimizing stored procedures and indexing to reduce administrative workload by 40%.",
-      "Designed and automated health data ETL pipelines using .NET, SQL Server, and PowerShell, migrating Access and Oracle datasets into centralized analytics systems and enabling HIPAA compliant reporting workflows.",
-      "Developed data entry tools and analytics dashboards for statewide public health studies, increasing data collection efficiency by 60% through automated validation and quality checks.",
-      "Reduced survey delays by 30% by implementing system upgrades and PowerShell diagnostic utilities to support high volume CATI survey operations."
+      "Built a staff management system using C#, Entity Framework, and SQL Server, optimizing stored procedures and indexing to reduce report generation and data retrieval times by 40%.",
+      "Designed and automated health data ETL pipelines using .NET, React, and SQL Server, migrating Access and Oracle datasets into centralized systems and supporting HIPAA aligned data handling practices.",
+      "Developed data entry tools and analytics dashboards for statewide public health studies, increasing data collection efficiency through automated validation and quality checks.",
+      "Implemented role based access controls and server side validation across internal .NET applications to enforce secure access to sensitive public health and research data."
     ],
-    technologies: ["C#", "Entity Framework", "SQL Server", ".NET", "PowerShell", "Power BI", "Oracle", "HIPAA Compliance"]
+    technologies: ["C#", ".NET", "Entity Framework", "React", "SQL Server", "Access", "Oracle", "RBAC"]
   },
   {
     id: "hsrg-2021",
@@ -65,11 +65,11 @@ export const experiences: Experience[] = [
     logo: "/logos/iiith-logo.png",
     description: "Architected cloud native analytics systems and ML pipelines for large scale social media analysis.",
     achievements: [
-      "Architected a cloud-native archival and analytics platform for social media and news streams, enabling near real time analysis of 1M+ data points during the Indian Farmers' Protests.",
-      "Achieved 8% accuracy improvement over baseline by fine-tuning multilingual BERT and IndicBERT using Hugging Face Transformers for sentiment classification and topic modeling.",
-      "Built 13 secure REST API endpoints using C# and ASP.NET Core for high volume data ingestion and metadata management, with React based dashboards supporting exploratory analysis."
+      "Architected a cloud native archival and analytics platform for social media and news streams, enabling near real time analysis of over 1 million social media posts and articles during the Indian Farmers' Protests.",
+      "Improved sentiment classification F1 score by 8% over baseline by fine tuning multilingual BERT and IndicBERT models using Hugging Face Transformers for multilingual social media analysis.",
+      "Built 13 secure REST API endpoints using C# and ASP.NET Core for high volume data ingestion and metadata management, with React based dashboards supporting exploratory analysis and reporting."
     ],
-    technologies: ["Python", "C#", "ASP.NET Core", "React", "Docker", "GitHub Actions", "Hugging Face Transformers", "BERT", "IndicBERT", "Machine Learning", "NLP"]
+    technologies: ["Python", "C#", "ASP.NET Core", "React", "Hugging Face Transformers", "BERT", "IndicBERT", "NLP"]
   },
   {
     id: "spiti-2018",
@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
     achievements: [
       "Built a GIS platform using Python, Django, PostgreSQL, and PostGIS to map 280+ heritage sites across 25 villages, enabling spatial search, analytics, and interactive visualization.",
       "Developed responsive React web and offline capable React Native mobile applications using Leaflet, achieving 60% faster load times in low bandwidth field environments.",
-      "Automated Python based ETL and spatial processing workflows integrating surveys, census, and archival datasets into a unified geospatial repository, improving metadata accuracy by 40% and enabling near real time updates."
+      "Automated Python ETL and spatial processing workflows integrating surveys, census, and archival datasets into a unified geospatial repository with automated validation and incremental updates."
     ],
     technologies: ["Python", "Django", "PostgreSQL", "PostGIS", "React", "React Native", "Leaflet.js", "Django REST Framework", "GIS", "Spatial Analysis"]
   }
