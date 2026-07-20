@@ -5,13 +5,14 @@ export const skillCategories: SkillCategory[] = [
     category: "AI & LLM Systems",
     skills: [
       { name: "RAG Pipelines", level: "Advanced" },
-      { name: "Multi-Agent Systems", level: "Advanced" },
+      { name: "Agentic Workflows", level: "Advanced" },
       { name: "MCP", level: "Advanced" },
       { name: "LangChain", level: "Advanced" },
       { name: "LangGraph", level: "Advanced" },
       { name: "CrewAI", level: "Advanced" },
       { name: "Vector Search (FAISS, Pinecone)", level: "Advanced" },
-      { name: "Evaluation (RAGAS, LangSmith)", level: "Advanced" },
+      { name: "LLM Evaluation (RAGAS, LangSmith)", level: "Advanced" },
+      { name: "Prompt Engineering", level: "Advanced" },
       { name: "Hugging Face Transformers", level: "Advanced" },
       { name: "PyTorch", level: "Advanced" },
       { name: "Scikit-learn", level: "Advanced" }
@@ -43,7 +44,9 @@ export const skillCategories: SkillCategory[] = [
       { name: "CI/CD", level: "Expert" },
       { name: "OpenTelemetry", level: "Advanced" },
       { name: "Grafana", level: "Intermediate" },
-      { name: "Prometheus", level: "Intermediate" }
+      { name: "Prometheus", level: "Intermediate" },
+      { name: "Loki", level: "Intermediate" },
+      { name: "Tempo", level: "Intermediate" }
     ]
   },
   {

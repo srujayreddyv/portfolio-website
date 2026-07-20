@@ -10,16 +10,16 @@ export const experiences: Experience[] = [
     endDate: "Present",
     current: true,
     logo: "/logos/dds-logo.png",
-    description: "Building GenAI systems and cloud native backend workflows for healthcare report analysis and operational modernization.",
+    description: "Building agentic AI, cloud native backend, and observability platforms for secure healthcare workflows.",
     achievements: [
-      "Built a conversational RAG system for internal report analysis, implementing retrieval evaluation pipelines to measure answer grounding, retrieval relevance, and response quality.",
+      "Built a conversational RAG system from scratch for internal report analysis, implementing retrieval evaluation pipelines to measure answer grounding, retrieval relevance, and response quality.",
+      "Engineered an agentic AI workflow orchestration platform (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
       "Improved retrieval quality (hit@1 from 0.35 to 0.63) by designing a knowledge graph augmented retrieval layer with subgraph expansion, hybrid embeddings, and relevance pruning.",
-      "Engineered a multi agent orchestration system (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
+      "Building an enterprise AI observability platform for Claude Code using OpenTelemetry and Grafana Alloy, streaming metrics, logs, and traces to Prometheus, Loki, and Tempo for centralized monitoring in Grafana.",
       "Designed and deployed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency for secure healthcare workflows.",
-      "Built a React and TypeScript AI workflow intake portal on AWS provisioned via Terraform, reducing submission time from 30 to 10 minutes through automated validation and review.",
-      "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards, replacing batch oriented processes with API driven healthcare integrations."
+      "Built a full stack AI workflow intake portal using Next.js, TypeScript, Express, AWS, and Terraform, reducing submission time from 30 to 10 minutes through automated validation and review."
     ],
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "AWS", "CrewAI", "Terraform", "Knowledge Graphs", "FHIR", "Db2"]
+    technologies: ["Python", "FastAPI", "Next.js", "TypeScript", "Express", "AWS", "CrewAI", "Terraform", "OpenTelemetry", "Grafana Alloy", "Prometheus", "Loki", "Tempo", "Knowledge Graphs"]
   },
   {
     id: "doc-2024",

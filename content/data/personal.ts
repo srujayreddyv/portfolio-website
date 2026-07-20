@@ -3,11 +3,11 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "AI Software Engineer building production LLM systems",
-  bio: "Software Engineer with 6+ years of experience building scalable backend systems, AWS cloud platforms, data workflows, and production AI applications.",
+  bio: "Software Engineer with 6+ years of experience designing scalable backend systems, full stack cloud native applications, and production AI platforms.",
   heroDescription: [
-    "Software Engineer with 6+ years of experience designing scalable backend systems, cloud native platforms, and production AI applications.",
-    "I build AWS based FastAPI services, data workflows, dashboards, and AI enabled software spanning RAG, multi agent orchestration, evaluation, and agentic AI tooling.",
-    "Currently building secure healthcare workflows and cloud native systems for the California Department of Developmental Services."
+    "Software Engineer with 6+ years of experience designing scalable backend systems, full stack cloud native applications, and production AI platforms.",
+    "I build LLM systems spanning retrieval augmented generation, agentic workflows, evaluation, and knowledge graph augmented retrieval.",
+    "I deploy distributed microservices on AWS and Azure and instrument production systems for observability and reliability."
   ],
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA",
@@ -23,14 +23,14 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/Srujay-Resume.pdf",
+  resumeUrl: "/SrujayResume2026.pdf",
   availabilityNote: "Open to AI Engineer, Backend Engineer, and Software Development Engineer roles.",
   careerHighlights: [
     "Designed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency",
-    "Reduced production multi step failures from 23% to under 7% with deterministic multi agent orchestration and schema validation",
+    "Reduced production multi step failures from 23% to under 7% with deterministic agentic workflow orchestration and schema validation",
     "Improved retrieval hit@1 from 0.35 to 0.63 with knowledge graph augmented retrieval and relevance pruning",
-    "Modernized COBOL, JCL, and Db2 workflows into event driven Python services aligned with FHIR standards",
-    "Built a React and TypeScript workflow portal that reduced submission time from 30 to 10 minutes"
+    "Building an AI observability platform using OpenTelemetry, Grafana Alloy, Prometheus, Loki, and Tempo",
+    "Built a Next.js, TypeScript, and Express workflow portal that reduced submission time from 30 to 10 minutes"
   ],
   achievements: [
     "MS in Computer Science from California State University, Sacramento (2025)",

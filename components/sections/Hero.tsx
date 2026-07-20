@@ -375,7 +375,7 @@ export default function Hero() {
                 { name: 'SQL', Icon: Database, color: '#336791' },
                 { name: 'AWS', Icon: SiAmazonwebservices, color: '#FF9900' },
                 { name: 'RAG', Icon: Bot, color: '#2563EB' },
-                { name: 'Multi-Agent Systems', Icon: Bot, color: '#2563EB' },
+                { name: 'Agentic AI', Icon: Bot, color: '#2563EB' },
               ].map(({ name }, i, arr) => (
                 <span key={name} className="inline-flex items-center text-ink/85">
                   <span>{name}</span>
