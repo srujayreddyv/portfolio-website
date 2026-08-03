@@ -4,7 +4,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "AI & LLM Systems",
     skills: [
-      { name: "RAG Pipelines", level: "Advanced" },
+      { name: "RAG", level: "Advanced" },
       { name: "Agentic Workflows", level: "Advanced" },
       { name: "MCP", level: "Advanced" },
       { name: "LangChain", level: "Advanced" },
@@ -34,7 +34,7 @@ export const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    category: "Cloud & DevOps",
+    category: "Cloud",
     skills: [
       { name: "AWS", level: "Expert" },
       { name: "Azure", level: "Advanced" },
@@ -56,7 +56,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Redis", level: "Advanced" },
       { name: "Kafka", level: "Advanced" },
       { name: "DynamoDB", level: "Advanced" },
-      { name: "MS SQL Server", level: "Advanced" },
+      { name: "Microsoft SQL Server", level: "Advanced" },
       { name: "Snowflake", level: "Intermediate" },
       { name: "Power BI", level: "Advanced" }
     ]

@@ -43,17 +43,22 @@
   "redirects": [
     {
       "source": "/resume",
-      "destination": "/SrujayResume2026.pdf",
+      "destination": "/Srujay-Resume2026.pdf",
       "permanent": false
     },
     {
       "source": "/SrujayResume.pdf",
-      "destination": "/SrujayResume2026.pdf",
+      "destination": "/Srujay-Resume2026.pdf",
       "permanent": true
     },
     {
       "source": "/Srujay-Resume.pdf",
-      "destination": "/SrujayResume2026.pdf",
+      "destination": "/Srujay-Resume2026.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/SrujayResume2026.pdf",
+      "destination": "/Srujay-Resume2026.pdf",
       "permanent": true
     }
   ]

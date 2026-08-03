@@ -16,7 +16,7 @@ const Skills: React.FC = () => {
   const primaryCategoryNames = [
     'AI & LLM Systems',
     'Backend & APIs',
-    'Cloud & DevOps',
+    'Cloud',
   ];
   const primaryCategories = skillCategories.filter((category) =>
     primaryCategoryNames.includes(category.category)

@@ -2,7 +2,7 @@ import { SEOData } from '@/types';
 
 export const seoData: SEOData = {
   title: "Srujay Reddy | AI Software Engineer & Agentic AI",
-  description: "Software Engineer with 6+ years building AWS and Azure backend systems, cloud applications, and production AI platforms with RAG and agentic workflows.",
+  description: "Software Engineer with 6+ years delivering production AI systems, cloud native backend services, and full stack applications across AWS and Azure.",
   keywords: [
     "ai software engineer",
     "ai engineer",

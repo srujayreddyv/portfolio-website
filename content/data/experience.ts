@@ -15,7 +15,7 @@ export const experiences: Experience[] = [
       "Built a conversational RAG system from scratch for internal report analysis, implementing retrieval evaluation pipelines to measure answer grounding, retrieval relevance, and response quality.",
       "Engineered an agentic AI workflow orchestration platform (CrewAI) with deterministic execution, schema validation, and persistent memory, reducing multi step failures from 23% to under 7% in production.",
       "Improved retrieval quality (hit@1 from 0.35 to 0.63) by designing a knowledge graph augmented retrieval layer with subgraph expansion, hybrid embeddings, and relevance pruning.",
-      "Building an enterprise AI observability platform for Claude Code using OpenTelemetry and Grafana Alloy, streaming metrics, logs, and traces to Prometheus, Loki, and Tempo for centralized monitoring in Grafana.",
+      "Implemented an enterprise AI observability platform for Claude Code using OpenTelemetry and Grafana Alloy, centralizing metrics, logs, and traces in Prometheus, Loki, Tempo, and Grafana for engineering observability.",
       "Designed and deployed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency for secure healthcare workflows.",
       "Built a full stack AI workflow intake portal using Next.js, TypeScript, Express, AWS, and Terraform, reducing submission time from 30 to 10 minutes through automated validation and review."
     ],
@@ -49,16 +49,16 @@ export const experiences: Experience[] = [
     description: "Built internal public health tools and analytics workflows for survey operations and reporting.",
     achievements: [
       "Built a staff management system using C#, Entity Framework, and SQL Server, optimizing stored procedures and indexing to reduce report generation and data retrieval times by 40%.",
-      "Designed and automated health data ETL pipelines using .NET, React, and SQL Server, migrating Access and Oracle datasets into centralized systems and supporting HIPAA aligned data handling practices.",
-      "Developed data entry tools and analytics dashboards for statewide public health studies, increasing data collection efficiency through automated validation and quality checks.",
-      "Implemented role based access controls and server side validation across internal .NET applications to enforce secure access to sensitive public health and research data."
+      "Designed and automated health data ETL pipelines using .NET and SQL Server, migrating Access and Oracle datasets into centralized systems while supporting HIPAA aligned data handling practices.",
+      "Developed React based data entry tools and analytics dashboards for statewide public health studies, improving data collection quality through automated validation and quality checks.",
+      "Implemented role based access controls and server side validation across internal .NET applications to protect sensitive public health and research data."
     ],
     technologies: ["C#", ".NET", "Entity Framework", "React", "SQL Server", "Access", "Oracle", "RBAC"]
   },
   {
     id: "hsrg-2021",
     title: "Software Engineer",
-    company: "Human Sciences Research Group (HSRG), IIIT-H",
+    company: "Human Sciences Research Group (HSRG), IIIT Hyderabad",
     location: "Hyderabad, India",
     startDate: "Jan 2021",
     endDate: "Aug 2022",

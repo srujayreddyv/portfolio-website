@@ -3,11 +3,11 @@ import { PersonalData } from '@/types'
 export const personalData: PersonalData = {
   name: "Srujay Reddy Vangoor",
   title: "AI Software Engineer building production LLM systems",
-  bio: "Software Engineer with 6+ years of experience designing scalable backend systems, full stack cloud native applications, and production AI platforms.",
+  bio: "Software Engineer with 6+ years of experience delivering production AI systems, cloud native backend services, and full stack applications.",
   heroDescription: [
-    "Software Engineer with 6+ years of experience designing scalable backend systems, full stack cloud native applications, and production AI platforms.",
-    "I build LLM systems spanning retrieval augmented generation, agentic workflows, evaluation, and knowledge graph augmented retrieval.",
-    "I deploy distributed microservices on AWS and Azure and instrument production systems for observability and reliability."
+    "Software Engineer with 6+ years of experience delivering production AI systems, cloud native backend services, and full stack applications.",
+    "I build retrieval augmented generation, agentic workflows, LLM evaluation, knowledge graph augmented retrieval, and distributed microservice architectures.",
+    "I deploy systems on AWS and Azure, build observability and reliability into production platforms, and modernize legacy applications into secure cloud native solutions."
   ],
   email: "srujayreddyv@icloud.com",
   location: "Sacramento, CA",
@@ -23,20 +23,20 @@ export const personalData: PersonalData = {
       icon: "linkedin"
     }
   ],
-  resumeUrl: "/SrujayResume2026.pdf",
+  resumeUrl: "/Srujay-Resume2026.pdf",
   availabilityNote: "Open to AI Engineer, Backend Engineer, and Software Development Engineer roles.",
   careerHighlights: [
     "Designed AWS based FastAPI microservices supporting more than 200K daily API requests with sub second P99 latency",
     "Reduced production multi step failures from 23% to under 7% with deterministic agentic workflow orchestration and schema validation",
     "Improved retrieval hit@1 from 0.35 to 0.63 with knowledge graph augmented retrieval and relevance pruning",
-    "Building an AI observability platform using OpenTelemetry, Grafana Alloy, Prometheus, Loki, and Tempo",
+    "Implemented an AI observability platform using OpenTelemetry, Grafana Alloy, Prometheus, Loki, Tempo, and Grafana",
     "Built a Next.js, TypeScript, and Express workflow portal that reduced submission time from 30 to 10 minutes"
   ],
   achievements: [
     "MS in Computer Science from California State University, Sacramento (2025)",
     "BTech in Computer Science from IIIT Hyderabad (2019)",
     "6+ years of software engineering experience",
-    "Production experience with RAG, multi agent systems, and cloud native backend services",
+    "Production experience with RAG, agentic workflows, and cloud native backend services",
     "Proven track record in modernizing legacy systems and cloud migrations",
     "Experience with high-volume data processing and real-time systems"
   ],

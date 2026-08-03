@@ -28,7 +28,7 @@ export default function Contact() {
             </h2>
             <div className="mt-3 h-px w-12 bg-accent" />
             <p className="mt-5 sm:mt-6 max-w-2xl text-sm sm:text-base text-ink/80 leading-relaxed font-mono">
-              Reach out for AI Software Engineer and AI Engineer roles focused on production LLM, RAG, and multi agent systems.
+              Reach out for AI Software Engineer and AI Engineer roles focused on production LLM, RAG, and agentic workflows.
             </p>
           </div>
 
